@@ -21,8 +21,8 @@
         
         body { 
             font-family: 'Inter', sans-serif; 
-            background-color: var(--bg-page); 
-            background-image: linear-gradient(to right, rgba(186, 230, 253, 0.35) 0%, rgba(255, 255, 255, 0) 15%, rgba(255, 255, 255, 0) 85%, rgba(186, 230, 253, 0.35) 100%);
+            /* Symmetric Navy Blue Gradient */
+            background: linear-gradient(to right, rgba(30, 58, 138, 0.45) 0%, #ffffff 20%, #ffffff 80%, rgba(30, 58, 138, 0.45) 100%);
             background-attachment: fixed;
             color: var(--text-main); 
             line-height: 1.6; 
@@ -35,19 +35,20 @@
         :focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 3px; border-radius: 4px; }
         
         /* Navigation */
-        nav { position: sticky; top: 0; background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); z-index: 100; }
+        nav { position: sticky; top: 0; background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); z-index: 100; }
         .nav-container { max-width: 1000px; margin: 0 auto; padding: 1rem 1.5rem; display: flex; justify-content: space-between; align-items: center; position: relative; }
         .nav-brand { font-weight: 600; font-size: 1.1rem; text-decoration: none; color: var(--text-main); }
         .nav-links { display: flex; gap: 2rem; align-items: center; }
-        .nav-links a { text-decoration: none; color: var(--text-muted); font-size: 0.9rem; font-weight: 500; }
+        .nav-links a { text-decoration: none; color: var(--text-muted); font-size: 0.9rem; font-weight: 500; transition: color 0.2s ease; }
         .nav-links a:hover, .nav-links a.active { color: var(--text-main); }
-        .btn-linkedin { background-color: var(--blue-accent); color: white !important; padding: 0.5rem 1rem; border-radius: 6px; font-weight: 500; text-decoration: none; }
+        .btn-linkedin { background-color: var(--blue-accent); color: white !important; padding: 0.5rem 1rem; border-radius: 6px; font-weight: 500; text-decoration: none; transition: opacity 0.2s ease, transform 0.2s ease; }
+        .btn-linkedin:hover { opacity: 0.9; transform: translateY(-1px); }
         
         .mobile-menu-btn { display: none; background: none; border: none; font-size: 1.5rem; color: var(--text-main); cursor: pointer; }
 
         /* Contact Layout */
         main { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 5rem 1.5rem; text-align: center; }
-        .contact-card { max-width: 500px; }
+        .contact-card { max-width: 500px; background: rgba(249, 250, 251, 0.8); backdrop-filter: blur(8px); padding: 3rem; border-radius: 12px; border: 1px solid var(--border); }
         h1 { font-size: 2.5rem; font-weight: 600; margin-bottom: 1rem; letter-spacing: -0.03em; }
         p { font-size: 1.1rem; color: var(--text-muted); margin-bottom: 2.5rem; }
         
@@ -62,6 +63,7 @@
             .nav-links { display: none; flex-direction: column; width: 100%; position: absolute; top: 100%; left: 0; background: rgba(255, 255, 255, 0.98); border-bottom: 1px solid var(--border); padding: 1.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
             .nav-links.active { display: flex; }
             .btn-linkedin { text-align: center; width: 100%; }
+            .contact-card { padding: 2rem 1rem; border: none; background: transparent; }
         }
     </style>
 </head>
