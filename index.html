@@ -2,26 +2,29 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Louis Lin — Engineering Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Louis Lin | Engineering Portfolio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #090a0f;
-            --surface: #11131b;
-            --surface-hover: #161924;
-            --border: #1f2333;
-            --border-highlight: #2f354d;
-            --text: #f0f3f6;
-            --text-muted: #8b949e;
-            --text-dim: #545d68;
-            --accent: #60a5fa;
-            --accent-glow: rgba(96, 165, 250, 0.12);
-            --code-bg: #151821;
-            --mono: 'JetBrains Mono', monospace;
-            --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            /* Palette: Bright white with Purple and Blue accents */
+            --bg-page: #ffffff;
+            --bg-surface: #f9fafb;
+            --text-main: #111827;
+            --text-muted: #6b7280;
+            --border: #e5e7eb;
+            --border-hover: #d1d5db;
+            
+            /* Accents */
+            --blue-accent: #3b82f6;
+            --blue-light: #eff6ff;
+            --purple-accent: #8b5cf6;
+            --purple-light: #f5f3ff;
+            
+            /* Utilities */
+            --focus-ring: #8b5cf6;
         }
 
         * {
@@ -31,410 +34,372 @@
         }
 
         body {
-            background-color: var(--bg);
-            color: var(--text);
-            font-family: var(--sans);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg-page);
+            color: var(--text-main);
             line-height: 1.6;
-            padding: 3.5rem 1.5rem 6rem;
             -webkit-font-smoothing: antialiased;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
-        .layout {
-            max-width: 820px;
-            margin: 0 auto;
+        /* Accessibility: Vercel Focus Guidelines */
+        :focus:not(:focus-visible) { outline: none; }
+        :focus-visible {
+            outline: 2px solid var(--focus-ring);
+            outline-offset: 3px;
+            border-radius: 4px;
         }
 
-        /* Header / Hero */
-        header {
-            margin-bottom: 4rem;
-            padding-bottom: 2.5rem;
+        /* Navigation */
+        nav {
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
             border-bottom: 1px solid var(--border);
+            z-index: 100;
         }
 
-        .status-badge {
-            display: inline-flex;
+        .nav-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
             align-items: center;
-            gap: 0.5rem;
-            padding: 0.25rem 0.75rem;
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 999px;
-            font-family: var(--mono);
-            font-size: 0.75rem;
-            color: var(--accent);
-            margin-bottom: 1.25rem;
         }
 
-        .status-dot {
-            width: 6px;
-            height: 6px;
-            background-color: #10b981;
-            border-radius: 50%;
-            box-shadow: 0 0 8px #10b981;
+        .nav-brand {
+            font-weight: 600;
+            font-size: 1.1rem;
+            text-decoration: none;
+            color: var(--text-main);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--text-main);
+        }
+
+        .btn-linkedin {
+            background-color: var(--blue-accent);
+            color: white !important;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-weight: 500;
+            transition: opacity 0.2s ease, transform 0.2s ease;
+        }
+
+        .btn-linkedin:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+
+        /* Layout */
+        main {
+            flex: 1;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 5rem 1.5rem;
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-bottom: 6rem;
+            max-width: 700px;
         }
 
         h1 {
-            font-size: 2.4rem;
-            font-weight: 700;
-            letter-spacing: -0.04em;
-            line-height: 1.15;
-            margin-bottom: 0.5rem;
-        }
-
-        .subtitle {
-            font-size: 1.05rem;
-            color: var(--text-muted);
-            font-weight: 400;
-            margin-bottom: 1.25rem;
-        }
-
-        .bio {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            max-width: 680px;
-            line-height: 1.7;
-        }
-
-        /* Section Typography */
-        section {
-            margin-bottom: 4rem;
-        }
-
-        .section-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 600;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
             margin-bottom: 1.5rem;
         }
 
-        h2 {
-            font-family: var(--mono);
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
+        .hero p {
+            font-size: clamp(1.1rem, 2vw, 1.25rem);
             color: var(--text-muted);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        h2::before {
-            content: "//";
-            color: var(--accent);
-        }
-
-        /* Grids & Cards */
-        .grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 1.25rem;
-        }
-
-        .card {
-            background-color: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            padding: 1.5rem;
-            transition: all 0.2s ease;
-            position: relative;
-        }
-
-        .card:hover {
-            border-color: var(--border-highlight);
-            background-color: var(--surface-hover);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
-        }
-
-        .card-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            margin-bottom: 0.35rem;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-
-        .card-title {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--text);
-            letter-spacing: -0.01em;
-        }
-
-        .card-date {
-            font-family: var(--mono);
-            font-size: 0.75rem;
-            color: var(--text-dim);
-        }
-
-        .card-sub {
-            font-size: 0.88rem;
-            color: var(--accent);
-            font-weight: 500;
-            margin-bottom: 0.85rem;
-        }
-
-        .card-desc {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            margin-bottom: 1.25rem;
             line-height: 1.6;
         }
 
-        /* Tags */
-        .tags {
+        /* Timeline Section */
+        .timeline-section {
+            background-color: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 3rem 0;
+            overflow: hidden;
+        }
+
+        .timeline-header {
+            padding: 0 2rem;
+            margin-bottom: 3rem;
             display: flex;
-            flex-wrap: wrap;
-            gap: 0.4rem;
+            justify-content: space-between;
+            align-items: flex-end;
         }
 
-        .tag {
-            font-family: var(--mono);
-            font-size: 0.72rem;
-            background: var(--code-bg);
-            border: 1px solid var(--border);
-            padding: 0.2rem 0.55rem;
-            border-radius: 4px;
-            color: var(--text-muted);
-        }
-
-        /* Skills Matrix */
-        .skills-matrix {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 1rem;
-        }
-
-        .skill-group {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 1.25rem;
-        }
-
-        .skill-group-title {
-            font-family: var(--mono);
-            font-size: 0.8rem;
+        .timeline-header h2 {
+            font-size: 1.25rem;
             font-weight: 600;
-            color: var(--text);
-            margin-bottom: 0.75rem;
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
         }
 
-        .skill-list {
-            list-style: none;
+        .timeline-legend {
+            display: flex;
+            gap: 1.5rem;
             font-size: 0.85rem;
             color: var(--text-muted);
         }
 
-        .skill-list li {
-            padding: 0.2rem 0;
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .legend-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+
+        .dot-blue { background-color: var(--blue-accent); }
+        .dot-purple { background-color: var(--purple-accent); }
+
+        /* Horizontal Scroll Wrapper */
+        .timeline-scroll-wrapper {
+            overflow-x: auto;
+            overscroll-behavior-x: contain; /* Vercel guideline for gestures */
+            padding: 0 2rem 2rem 2rem;
+            scrollbar-width: thin;
+            scrollbar-color: var(--border-hover) transparent;
+        }
+
+        .timeline-scroll-wrapper::-webkit-scrollbar {
+            height: 6px;
+        }
+        .timeline-scroll-wrapper::-webkit-scrollbar-thumb {
+            background-color: var(--border-hover);
+            border-radius: 4px;
+        }
+
+        /* Dual Tracks */
+        .timeline-tracks {
+            display: flex;
+            flex-direction: column;
+            gap: 5rem;
+            min-width: 800px; /* Forces horizontal scroll on small screens */
+            position: relative;
+        }
+
+        .track {
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .track-line {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 4px;
+            border-radius: 2px;
+            transform: translateY(-50%);
+            z-index: 1;
+        }
+
+        .track-blue .track-line { background-color: var(--blue-light); }
+        .track-purple .track-line { background-color: var(--purple-light); }
+
+        /* Timeline Nodes */
+        .node {
+            position: relative;
+            z-index: 2;
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 160px;
+            text-align: center;
+            transition: transform 0.2s ease;
+        }
+
+        .node:hover {
+            transform: translateY(-4px);
+        }
+
+        .node-marker {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background-color: white;
+            border: 4px solid;
+            margin-bottom: 1rem;
+            transition: box-shadow 0.2s ease;
+        }
+
+        .track-blue .node-marker { border-color: var(--blue-accent); }
+        .track-purple .node-marker { border-color: var(--purple-accent); }
+
+        .node:hover .node-marker {
+            box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.8), 0 0 0 8px rgba(0,0,0,0.05);
+        }
+
+        .node-date {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            margin-bottom: 0.25rem;
+        }
+
+        .node-title {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--text-main);
         }
 
         /* Footer */
         footer {
             border-top: 1px solid var(--border);
-            padding-top: 2rem;
+            padding: 2rem 1.5rem;
+            margin-top: auto;
+        }
+
+        .footer-content {
+            max-width: 1000px;
+            margin: 0 auto;
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            font-size: 0.85rem;
-            color: var(--text-dim);
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .links {
-            display: flex;
-            gap: 1.25rem;
-        }
-
-        .links a {
             color: var(--text-muted);
-            text-decoration: none;
-            font-family: var(--mono);
-            font-size: 0.8rem;
-            transition: color 0.2s;
+            font-size: 0.85rem;
         }
 
-        .links a:hover {
-            color: var(--accent);
-        }
-
-        @media (max-width: 600px) {
-            body { padding: 2rem 1rem 4rem; }
-            h1 { font-size: 1.9rem; }
+        @media (max-width: 768px) {
+            .nav-links { display: none; /* We will add a mobile menu later if needed */ }
+            .btn-linkedin { display: block; }
+            h1 { font-size: 2.25rem; }
+            .timeline-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
         }
     </style>
 </head>
 <body>
 
-<div class="layout">
-    <header>
-        <div class="status-badge">
-            <span class="status-dot"></span>
-            Available for Co-op & Internships
-        </div>
-        <h1>Louis Lin</h1>
-        <div class="subtitle">Biomedical Engineering · University of Waterloo</div>
-        <p class="bio">
-            Specializing in mechatronics, mechanical systems integration, and analog circuit design. Focused on building high-reliability hardware, optimized mechanical assemblies, and precise embedded control systems.
-        </p>
-    </header>
-
-    <!-- Selected Engineering Projects -->
-    <section>
-        <div class="section-header">
-            <h2>Featured Systems & Projects</h2>
-        </div>
-        <div class="grid">
-
-            <div class="card">
-                <div class="card-header">
-                    <span class="card-title">Powered Exoskeleton System (EXO)</span>
-                    <span class="card-date">UW Biomechatronics</span>
-                </div>
-                <div class="card-sub">Mechanical Lead · System Architecture & Integration</div>
-                <p class="card-desc">
-                    Led mechanical design and multi-axis CAD integration for a powered lower-limb exoskeleton prototype. Engineered custom structural linkages and optimized load-bearing mount tolerances for dynamic human-machine coupling.
-                </p>
-                <div class="tags">
-                    <span class="tag">SolidWorks</span>
-                    <span class="tag">Structural FEA</span>
-                    <span class="tag">System Integration</span>
-                    <span class="tag">Actuation</span>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-header">
-                    <span class="card-title">Tendon-Driven Myoelectric Prosthetic Hand</span>
-                    <span class="card-date">Biomedical Mechatronics</span>
-                </div>
-                <div class="card-sub">Embedded Systems & Actuation Design</div>
-                <p class="card-desc">
-                    Engineered an anthropomorphic 5-digit prosthetic hand prototype using tendon-driven mechanical routing. Developed Arduino C++ firmware, calibrated EMG signal conditioning pipelines, and optimized rapid FDM 3D print tolerances for joint interfaces.
-                </p>
-                <div class="tags">
-                    <span class="tag">Arduino C++</span>
-                    <span class="tag">EMG Signal Chain</span>
-                    <span class="tag">FDM 3D Printing</span>
-                    <span class="tag">Tendon Routing</span>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-header">
-                    <span class="card-title">Precision Analog Signal & Circuit Design</span>
-                    <span class="card-date">Hardware Simulation</span>
-                </div>
-                <div class="card-sub">Circuit Analysis & Hardware Validation</div>
-                <p class="card-desc">
-                    Designed and simulated multi-stage filter topologies and full-wave bridge rectifier networks. Conducted nodal circuit analysis, component-level tolerance checks, and noise-floor optimization for sensor acquisition hardware.
-                </p>
-                <div class="tags">
-                    <span class="tag">Analog Circuits</span>
-                    <span class="tag">SPICE Simulation</span>
-                    <span class="tag">Power Rectification</span>
-                    <span class="tag">Nodal Analysis</span>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- Experience -->
-    <section>
-        <div class="section-header">
-            <h2>Experience & Leadership</h2>
-        </div>
-        <div class="grid">
-
-            <div class="card">
-                <div class="card-header">
-                    <span class="card-title">Hygea Medical Technology</span>
-                    <span class="card-date">Incoming Sept 2026</span>
-                </div>
-                <div class="card-sub">Mechanical Engineering Intern · Beijing</div>
-                <p class="card-desc">
-                    Joining the engineering group to support mechanical development, precision hardware validation, and medical device system design.
-                </p>
-            </div>
-
-            <div class="card">
-                <div class="card-header">
-                    <span class="card-title">UW Biomechatronics Club</span>
-                    <span class="card-date">2025 – Present</span>
-                </div>
-                <div class="card-sub">Mechanical Team Lead — EXO Exoskeleton</div>
-                <p class="card-desc">
-                    Oversee mechanical design reviews, subsystem integration schedules, and CAD modeling conventions across multi-disciplinary engineering sub-teams.
-                </p>
-            </div>
-
-            <div class="card">
-                <div class="card-header">
-                    <span class="card-title">Premier Healthcare</span>
-                    <span class="card-date">Technical Operations</span>
-                </div>
-                <div class="card-sub">Mechatronics & Equipment Diagnostics</div>
-                <p class="card-desc">
-                    Executed mechanical and electrical diagnostics, hardware troubleshooting, and preventive maintenance across complex medical machinery.
-                </p>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- Technical Skill Matrix -->
-    <section>
-        <div class="section-header">
-            <h2>Technical Skills Matrix</h2>
-        </div>
-        <div class="skills-matrix">
-            <div class="skill-group">
-                <div class="skill-group-title">Mechanical & CAD</div>
-                <ul class="skill-list">
-                    <li>SolidWorks / CAD Modeling</li>
-                    <li>FDM 3D Print Tolerance Tuning</li>
-                    <li>Structural & Statics Analysis</li>
-                    <li>Mechanism & Actuation Design</li>
-                </ul>
-            </div>
-            <div class="skill-group">
-                <div class="skill-group-title">Electrical & Embedded</div>
-                <ul class="skill-list">
-                    <li>Arduino & Microcontrollers (C++)</li>
-                    <li>Analog Circuit Design & SPICE</li>
-                    <li>EMG & Sensor Signal Filtering</li>
-                    <li>Bridge Rectifiers & Power Flow</li>
-                </ul>
-            </div>
-            <div class="skill-group">
-                <div class="skill-group-title">Tools & Methods</div>
-                <ul class="skill-list">
-                    <li>Git / Version Control</li>
-                    <li>Rapid Prototyping & Machining</li>
-                    <li>Hardware Diagnostics</li>
-                    <li>System Verification</li>
-                </ul>
+    <!-- Sticky Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">Louis Lin</a>
+            <div class="nav-links">
+                <a href="index.html" class="active">Home</a>
+                <a href="experiences.html">Experiences</a>
+                <a href="projects.html">Projects</a>
+                <a href="contact.html">Contact</a>
+                <a href="https://linkedin.com/in/yourprofile" target="_blank" class="btn-linkedin">LinkedIn</a>
             </div>
         </div>
-    </section>
+    </nav>
 
-    <!-- Footer -->
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <div class="hero">
+            <h1>Engineering precise mechanical and embedded systems.</h1>
+            <p>I am a Biomedical Engineering student specializing in advanced mechatronics, system integration, and hardware validation. Building hardware that scales and systems that last.</p>
+        </div>
+
+        <!-- Horizontal Timeline -->
+        <section class="timeline-section">
+            <div class="timeline-header">
+                <h2>Trajectory</h2>
+                <div class="timeline-legend">
+                    <div class="legend-item"><span class="legend-dot dot-blue"></span> Projects</div>
+                    <div class="legend-item"><span class="legend-dot dot-purple"></span> Employment</div>
+                </div>
+            </div>
+
+            <div class="timeline-scroll-wrapper">
+                <div class="timeline-tracks">
+                    
+                    <!-- Top Track: Projects (Blue) -->
+                    <div class="track track-blue">
+                        <div class="track-line"></div>
+                        
+                        <!-- Placeholder Nodes (Linked to future project page anchors) -->
+                        <a href="projects.html#placeholder1" class="node">
+                            <div class="node-marker"></div>
+                            <div class="node-date">Early 2025</div>
+                            <div class="node-title">Project Node 1</div>
+                        </a>
+                        
+                        <a href="projects.html#placeholder2" class="node">
+                            <div class="node-marker"></div>
+                            <div class="node-date">Late 2025</div>
+                            <div class="node-title">Project Node 2</div>
+                        </a>
+
+                        <a href="projects.html#exo" class="node">
+                            <div class="node-marker"></div>
+                            <div class="node-date">Present</div>
+                            <div class="node-title">EXO Exoskeleton</div>
+                        </a>
+                    </div>
+
+                    <!-- Bottom Track: Employment (Purple) -->
+                    <div class="track track-purple">
+                        <div class="track-line"></div>
+                        
+                        <!-- Placeholder Nodes (Linked to future experiences page anchors) -->
+                        <a href="experiences.html#premier" class="node">
+                            <div class="node-marker"></div>
+                            <div class="node-date">Previous</div>
+                            <div class="node-title">Premier Healthcare</div>
+                        </a>
+                        
+                        <a href="experiences.html#roche" class="node">
+                            <div class="node-marker"></div>
+                            <div class="node-date">Previous</div>
+                            <div class="node-title">Internship Node</div>
+                        </a>
+
+                        <a href="experiences.html#hygea" class="node">
+                            <div class="node-marker"></div>
+                            <div class="node-date">Sept 2026</div>
+                            <div class="node-title">Hygea Medical Technology</div>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Global Footer -->
     <footer>
-        <div>© 2026 Louis Lin · Built with GitHub Pages</div>
-        <div class="links">
-            <a href="https://github.com/Louis-Lin06" target="_blank">GitHub</a>
-            <a href="mailto:contact@louislin.dev">Email</a>
-            <a href="#">LinkedIn</a>
+        <div class="footer-content">
+            <span>© 2026 Louis Lin. All rights reserved.</span>
+            <span>Built with GitHub Pages</span>
         </div>
     </footer>
-</div>
 
 </body>
 </html>
