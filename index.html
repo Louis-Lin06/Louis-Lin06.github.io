@@ -1,6 +1,143 @@
-<style>
-        /* (Keep your existing root variables, nav, hero, and footer CSS here) */
-        
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Louis Lin | Engineering Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Palette: Bright white with Purple and Blue accents */
+            --bg-page: #ffffff;
+            --bg-surface: #f9fafb;
+            --text-main: #111827;
+            --text-muted: #6b7280;
+            --border: #e5e7eb;
+            --border-hover: #d1d5db;
+            
+            /* Accents */
+            --blue-accent: #3b82f6;
+            --purple-accent: #8b5cf6;
+            
+            /* Utilities */
+            --focus-ring: #8b5cf6;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg-page);
+            color: var(--text-main);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Accessibility: Vercel Focus Guidelines */
+        :focus:not(:focus-visible) { outline: none; }
+        :focus-visible {
+            outline: 2px solid var(--focus-ring);
+            outline-offset: 3px;
+            border-radius: 4px;
+        }
+
+        /* Navigation */
+        nav {
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border-bottom: 1px solid var(--border);
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-brand {
+            font-weight: 600;
+            font-size: 1.1rem;
+            text-decoration: none;
+            color: var(--text-main);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--text-main);
+        }
+
+        .btn-linkedin {
+            background-color: var(--blue-accent);
+            color: white !important;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-weight: 500;
+            transition: opacity 0.2s ease, transform 0.2s ease;
+        }
+
+        .btn-linkedin:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+
+        /* Layout */
+        main {
+            flex: 1;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 5rem 1.5rem;
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-bottom: 6rem;
+            max-width: 700px;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 600;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero p {
+            font-size: clamp(1.1rem, 2vw, 1.25rem);
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
         /* Gantt Timeline Section */
         .timeline-section {
             background-color: var(--bg-surface);
@@ -18,6 +155,17 @@
             align-items: flex-end;
         }
 
+        .timeline-header h2 {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .timeline-legend {
+            display: flex;
+            gap: 1.5rem;
+            font-size: 0.85rem;
+        }
+
         /* Scroll Wrapper */
         .gantt-scroll-wrapper {
             overflow-x: auto;
@@ -29,16 +177,15 @@
         /* The Grid System */
         .gantt-grid {
             display: grid;
-            /* Creates 12 equal columns for 12 months, minimum 100px wide each */
             grid-template-columns: repeat(12, minmax(100px, 1fr));
-            gap: 1rem 0;
-            min-width: 1200px; /* Forces scroll on smaller screens */
+            gap: 1.5rem 0;
+            min-width: 1000px; 
             position: relative;
         }
 
         /* Time Axis (X-Axis) */
         .gantt-axis {
-            display: contents; /* Allows children to participate in the main grid */
+            display: contents; 
         }
 
         .gantt-month {
@@ -106,65 +253,123 @@
             border-left: 4px solid #6d28d9;
         }
 
-        /* Grid Placement Classes (Start/End Months) */
+        /* Grid Placement Classes (Adjust these to fit your data later) */
         .span-jan-may { grid-column: 1 / 6; grid-row: 2; }
         .span-mar-aug { grid-column: 3 / 9; grid-row: 3; }
         .span-jun-dec { grid-column: 6 / 13; grid-row: 4; }
         .span-sep-dec { grid-column: 9 / 13; grid-row: 5; }
 
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 2rem 1.5rem;
+            margin-top: auto;
+        }
+
+        .footer-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .btn-linkedin { display: block; }
+            h1 { font-size: 2.25rem; }
+            .timeline-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+        }
     </style>
+</head>
+<body>
 
-    <!-- Main Content Replacement -->
-    <section class="timeline-section">
-        <div class="timeline-header">
-            <h2>2026 Trajectory</h2>
-            <div class="timeline-legend">
-                <span style="color: var(--blue-accent); font-weight: 600;">■ Projects</span>
-                <span style="color: var(--purple-accent); font-weight: 600; margin-left: 1rem;">■ Employment</span>
+    <!-- Sticky Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">Louis Lin</a>
+            <div class="nav-links">
+                <a href="index.html" class="active">Home</a>
+                <a href="experiences.html">Experiences</a>
+                <a href="projects.html">Projects</a>
+                <a href="contact.html">Contact</a>
+                <a href="https://linkedin.com/in/yourprofile" target="_blank" class="btn-linkedin">LinkedIn</a>
             </div>
         </div>
+    </nav>
 
-        <div class="gantt-scroll-wrapper">
-            <div class="gantt-grid">
-                
-                <!-- Time Axis -->
-                <div class="gantt-axis">
-                    <div class="gantt-month" style="grid-column: 1">Jan</div>
-                    <div class="gantt-month" style="grid-column: 2">Feb</div>
-                    <div class="gantt-month" style="grid-column: 3">Mar</div>
-                    <div class="gantt-month" style="grid-column: 4">Apr</div>
-                    <div class="gantt-month" style="grid-column: 5">May</div>
-                    <div class="gantt-month" style="grid-column: 6">Jun</div>
-                    <div class="gantt-month" style="grid-column: 7">Jul</div>
-                    <div class="gantt-month" style="grid-column: 8">Aug</div>
-                    <div class="gantt-month" style="grid-column: 9">Sep</div>
-                    <div class="gantt-month" style="grid-column: 10">Oct</div>
-                    <div class="gantt-month" style="grid-column: 11">Nov</div>
-                    <div class="gantt-month" style="grid-column: 12">Dec</div>
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <div class="hero">
+            <h1>Engineering precise mechanical and embedded systems.</h1>
+            <p>I am a Biomedical Engineering student specializing in advanced mechatronics, system integration, and hardware validation. Building hardware that scales and systems that last.</p>
+        </div>
+
+        <!-- Gantt Timeline Section -->
+        <section class="timeline-section">
+            <div class="timeline-header">
+                <h2>2026 Trajectory</h2>
+                <div class="timeline-legend">
+                    <span style="color: var(--blue-accent); font-weight: 600;">■ Projects</span>
+                    <span style="color: var(--purple-accent); font-weight: 600; margin-left: 1rem;">■ Employment</span>
                 </div>
-
-                <!-- Projects (Blue) -->
-                <a href="projects.html#exo" class="gantt-bar bar-project span-jan-may">
-                    <span class="bar-title">EXO Exoskeleton</span>
-                    <span class="bar-subtitle">Mechanical Team Lead</span>
-                </a>
-
-                <a href="projects.html#myoelectric" class="gantt-bar bar-project span-jun-dec">
-                    <span class="bar-title">Myoelectric Hand Prototype</span>
-                    <span class="bar-subtitle">Embedded Systems & Actuation</span>
-                </a>
-
-                <!-- Employment (Purple) -->
-                <a href="experiences.html#premier" class="gantt-bar bar-job span-mar-aug">
-                    <span class="bar-title">Premier Healthcare</span>
-                    <span class="bar-subtitle">Mechatronics Tech</span>
-                </a>
-
-                <a href="experiences.html#hygea" class="gantt-bar bar-job span-sep-dec">
-                    <span class="bar-title">Hygea Medical Technology</span>
-                    <span class="bar-subtitle">Mechanical Engineering Intern</span>
-                </a>
-
             </div>
+
+            <div class="gantt-scroll-wrapper">
+                <div class="gantt-grid">
+                    
+                    <!-- Time Axis -->
+                    <div class="gantt-axis">
+                        <div class="gantt-month" style="grid-column: 1">Jan</div>
+                        <div class="gantt-month" style="grid-column: 2">Feb</div>
+                        <div class="gantt-month" style="grid-column: 3">Mar</div>
+                        <div class="gantt-month" style="grid-column: 4">Apr</div>
+                        <div class="gantt-month" style="grid-column: 5">May</div>
+                        <div class="gantt-month" style="grid-column: 6">Jun</div>
+                        <div class="gantt-month" style="grid-column: 7">Jul</div>
+                        <div class="gantt-month" style="grid-column: 8">Aug</div>
+                        <div class="gantt-month" style="grid-column: 9">Sep</div>
+                        <div class="gantt-month" style="grid-column: 10">Oct</div>
+                        <div class="gantt-month" style="grid-column: 11">Nov</div>
+                        <div class="gantt-month" style="grid-column: 12">Dec</div>
+                    </div>
+
+                    <!-- Projects (Blue) -->
+                    <a href="projects.html#exo" class="gantt-bar bar-project span-jan-may">
+                        <span class="bar-title">EXO Exoskeleton</span>
+                        <span class="bar-subtitle">Mechanical Team Lead</span>
+                    </a>
+
+                    <a href="projects.html#myoelectric" class="gantt-bar bar-project span-jun-dec">
+                        <span class="bar-title">Myoelectric Hand Prototype</span>
+                        <span class="bar-subtitle">Embedded Systems & Actuation</span>
+                    </a>
+
+                    <!-- Employment (Purple) -->
+                    <a href="experiences.html#premier" class="gantt-bar bar-job span-mar-aug">
+                        <span class="bar-title">Premier Healthcare</span>
+                        <span class="bar-subtitle">Mechatronics Tech</span>
+                    </a>
+
+                    <a href="experiences.html#hygea" class="gantt-bar bar-job span-sep-dec">
+                        <span class="bar-title">Hygea Medical Technology</span>
+                        <span class="bar-subtitle">Mechanical Engineering Intern</span>
+                    </a>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Global Footer -->
+    <footer>
+        <div class="footer-content">
+            <span>© 2026 Louis Lin. All rights reserved.</span>
+            <span>Built with GitHub Pages</span>
         </div>
-    </section>
+    </footer>
+
+</body>
+</html>
