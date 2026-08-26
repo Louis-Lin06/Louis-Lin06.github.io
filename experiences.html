@@ -11,7 +11,19 @@
         :root { --bg-page: #ffffff; --bg-surface: #f9fafb; --text-main: #111827; --text-muted: #6b7280; --border: #e5e7eb; --purple-accent: #8b5cf6; --blue-accent: #3b82f6; --focus-ring: #8b5cf6; }
         html { scroll-behavior: smooth; }
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Inter', sans-serif; background-color: var(--bg-page); color: var(--text-main); line-height: 1.6; display: flex; flex-direction: column; min-height: 100vh; }
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: var(--bg-page); 
+            background-image: linear-gradient(to right, rgba(186, 230, 253, 0.35) 0%, rgba(255, 255, 255, 0) 15%, rgba(255, 255, 255, 0) 85%, rgba(186, 230, 253, 0.35) 100%);
+            background-attachment: fixed;
+            color: var(--text-main); 
+            line-height: 1.6; 
+            display: flex; 
+            flex-direction: column; 
+            min-height: 100vh; 
+        }
+        
         :focus:not(:focus-visible) { outline: none; }
         :focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 3px; border-radius: 4px; }
         
@@ -24,7 +36,6 @@
         .nav-links a:hover, .nav-links a.active { color: var(--text-main); }
         .btn-linkedin { background-color: var(--blue-accent); color: white !important; padding: 0.5rem 1rem; border-radius: 6px; font-weight: 500; }
         
-        /* Mobile Menu Buttons */
         .mobile-menu-btn { display: none; background: none; border: none; font-size: 1.5rem; color: var(--text-main); cursor: pointer; }
         .mobile-toc-btn { display: none; }
         .toc-backdrop { display: none; }
@@ -32,7 +43,7 @@
         /* Page Layout */
         .page-wrapper { max-width: 1100px; margin: 0 auto; padding: 4rem 1.5rem; width: 100%; display: grid; grid-template-columns: 220px 1fr; gap: 4rem; align-items: start; flex: 1; }
         
-        /* Sidebar TOC (Desktop) */
+        /* Sidebar TOC */
         aside { position: sticky; top: 100px; z-index: 90; }
         .toc-title { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600; color: var(--text-muted); margin-bottom: 1rem; }
         .toc-list { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; border-left: 2px solid var(--border); }
@@ -42,7 +53,7 @@
         .toc-year-label { font-size: 0.75rem; font-weight: 600; color: var(--text-muted); padding-left: 1rem; margin-top: 1rem; }
         .toc-close-btn { display: none; }
 
-        /* Main Content */
+        /* Content */
         .page-header { margin-bottom: 4rem; border-bottom: 1px solid var(--border); padding-bottom: 2rem; }
         h1 { font-size: 2.5rem; font-weight: 600; letter-spacing: -0.03em; margin-bottom: 0.5rem; }
         
@@ -69,38 +80,15 @@
             .page-wrapper { grid-template-columns: 1fr; gap: 2rem; }
             .btn-download { max-width: 100%; }
 
-            /* Mobile Floating TOC Button */
-            .mobile-toc-btn { 
-                display: flex; align-items: center; justify-content: center; gap: 0.5rem; 
-                position: fixed; bottom: 1.5rem; right: 1.5rem; 
-                background-color: var(--text-main); color: white; border: none; 
-                padding: 0.75rem 1.25rem; border-radius: 99px; font-weight: 600; 
-                font-size: 0.9rem; z-index: 90; box-shadow: 0 4px 12px rgba(0,0,0,0.2); 
-                cursor: pointer; transition: transform 0.2s;
-            }
+            .mobile-toc-btn { display: flex; align-items: center; justify-content: center; gap: 0.5rem; position: fixed; bottom: 1.5rem; right: 1.5rem; background-color: var(--text-main); color: white; border: none; padding: 0.75rem 1.25rem; border-radius: 99px; font-weight: 600; font-size: 0.9rem; z-index: 90; box-shadow: 0 4px 12px rgba(0,0,0,0.2); cursor: pointer; transition: transform 0.2s; }
             .mobile-toc-btn:active { transform: scale(0.95); }
 
-            /* Mobile TOC Bottom Sheet Overlay */
-            aside { 
-                position: fixed; top: auto; bottom: 0; left: 0; width: 100%; 
-                background: var(--bg-page); padding: 2rem 1.5rem; 
-                border-top-left-radius: 20px; border-top-right-radius: 20px; 
-                box-shadow: 0 -4px 20px rgba(0,0,0,0.15); 
-                transform: translateY(100%); transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-                max-height: 80vh; overflow-y: auto; 
-            }
+            aside { position: fixed; top: auto; bottom: 0; left: 0; width: 100%; background: var(--bg-page); padding: 2rem 1.5rem; border-top-left-radius: 20px; border-top-right-radius: 20px; box-shadow: 0 -4px 20px rgba(0,0,0,0.15); transform: translateY(100%); transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); max-height: 80vh; overflow-y: auto; }
             aside.active { transform: translateY(0); }
-            
-            .toc-backdrop { 
-                display: none; position: fixed; inset: 0; 
-                background: rgba(0,0,0,0.4); z-index: 85; 
-                backdrop-filter: blur(2px);
-            }
+            .toc-backdrop { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 85; backdrop-filter: blur(2px); }
             .toc-backdrop.active { display: block; }
-            
             .toc-title { display: flex; justify-content: space-between; align-items: center; font-size: 1rem; color: var(--text-main); margin-bottom: 1.5rem; }
             .toc-close-btn { display: block; background: none; border: none; font-size: 1.5rem; line-height: 1; cursor: pointer; color: var(--text-muted); }
-            
             .toc-list { border-left: none; }
             .toc-link { padding-left: 0.75rem; border-left: 2px solid transparent; padding-top: 0.25rem; padding-bottom: 0.25rem; font-size: 1rem; margin-left: 0; }
             .toc-year-label { padding-left: 0.75rem; font-size: 0.85rem; margin-top: 1.5rem; color: var(--text-main); }
@@ -122,16 +110,12 @@
         </div>
     </nav>
 
-    <!-- Mobile TOC Floating Button -->
     <button class="mobile-toc-btn">☰ Contents</button>
     <div class="toc-backdrop"></div>
 
     <div class="page-wrapper">
         <aside>
-            <div class="toc-title">
-                Contents
-                <button class="toc-close-btn">×</button>
-            </div>
+            <div class="toc-title">Contents <button class="toc-close-btn">×</button></div>
             <ul class="toc-list">
                 <li class="toc-year-label">2026</li>
                 <li><a href="#hygea" class="toc-link">Hygea Medical Tech</a></li>
@@ -171,7 +155,6 @@
 
             <section class="resume-panel" id="resume">
                 <h3 style="font-size: 1.25rem; font-weight: 600;">Curriculum Vitae</h3>
-                <!-- Replace "resume.pdf" with your actual file path once uploaded to GitHub -->
                 <object data="resume.pdf" type="application/pdf" class="pdf-viewer">
                     <p>Your browser does not support PDF viewing. <a href="resume.pdf">Download the PDF</a>.</p>
                 </object>
@@ -185,52 +168,28 @@
     </footer>
 
     <script>
-        // Main Navigation Mobile Menu
         document.querySelector('.mobile-menu-btn').addEventListener('click', () => {
             document.querySelector('.nav-links').classList.toggle('active');
         });
 
-        // Mobile TOC Bottom Sheet Logic
         const tocBtn = document.querySelector('.mobile-toc-btn');
         const tocAside = document.querySelector('aside');
         const tocBackdrop = document.querySelector('.toc-backdrop');
         const tocCloseBtn = document.querySelector('.toc-close-btn');
         const tocLinks = document.querySelectorAll('.toc-link');
 
-        function toggleTOC() {
-            tocAside.classList.toggle('active');
-            tocBackdrop.classList.toggle('active');
-        }
-
+        function toggleTOC() { tocAside.classList.toggle('active'); tocBackdrop.classList.toggle('active'); }
         tocBtn.addEventListener('click', toggleTOC);
         tocBackdrop.addEventListener('click', toggleTOC);
         tocCloseBtn.addEventListener('click', toggleTOC);
         
-        tocLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                if (window.innerWidth <= 768) {
-                    toggleTOC();
-                }
-            });
-        });
+        tocLinks.forEach(link => { link.addEventListener('click', () => { if (window.innerWidth <= 768) toggleTOC(); }); });
 
-        // Scrollspy for TOC
         const sections = document.querySelectorAll('.job-section, .resume-panel');
         window.addEventListener('scroll', () => {
             let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                if (scrollY >= (sectionTop - 150)) {
-                    current = section.getAttribute('id');
-                }
-            });
-
-            tocLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === `#${current}`) {
-                    link.classList.add('active');
-                }
-            });
+            sections.forEach(section => { if (scrollY >= (section.offsetTop - 150)) current = section.getAttribute('id'); });
+            tocLinks.forEach(link => { link.classList.remove('active'); if (link.getAttribute('href') === `#${current}`) link.classList.add('active'); });
         });
     </script>
 </body>
