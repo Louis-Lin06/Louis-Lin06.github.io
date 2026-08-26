@@ -3,15 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Louis Lin | Engineering Portfolio</title>
+    <title>Louis Lin — Engineering Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-primary: #fafafa;
-            --text-main: #111111;
-            --text-muted: #666666;
-            --border-color: #eaeaea;
-            --card-bg: #ffffff;
-            --accent: #000000;
+            --bg: #090a0f;
+            --surface: #11131b;
+            --surface-hover: #161924;
+            --border: #1f2333;
+            --border-highlight: #2f354d;
+            --text: #f0f3f6;
+            --text-muted: #8b949e;
+            --text-dim: #545d68;
+            --accent: #60a5fa;
+            --accent-glow: rgba(96, 165, 250, 0.12);
+            --code-bg: #151821;
+            --mono: 'JetBrains Mono', monospace;
+            --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
         }
 
         * {
@@ -21,201 +31,410 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--bg-primary);
-            color: var(--text-main);
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: var(--sans);
             line-height: 1.6;
-            padding: 3rem 1.5rem;
+            padding: 3.5rem 1.5rem 6rem;
             -webkit-font-smoothing: antialiased;
         }
 
-        .container {
-            max-width: 720px;
+        .layout {
+            max-width: 820px;
             margin: 0 auto;
         }
 
+        /* Header / Hero */
         header {
             margin-bottom: 4rem;
+            padding-bottom: 2.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.25rem 0.75rem;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            font-family: var(--mono);
+            font-size: 0.75rem;
+            color: var(--accent);
+            margin-bottom: 1.25rem;
+        }
+
+        .status-dot {
+            width: 6px;
+            height: 6px;
+            background-color: #10b981;
+            border-radius: 50%;
+            box-shadow: 0 0 8px #10b981;
         }
 
         h1 {
-            font-size: 2.5rem;
-            font-weight: 600;
-            letter-spacing: -0.03em;
+            font-size: 2.4rem;
+            font-weight: 700;
+            letter-spacing: -0.04em;
+            line-height: 1.15;
             margin-bottom: 0.5rem;
         }
 
-        p.lead {
+        .subtitle {
+            font-size: 1.05rem;
             color: var(--text-muted);
-            font-size: 1.1rem;
+            font-weight: 400;
+            margin-bottom: 1.25rem;
         }
 
+        .bio {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            max-width: 680px;
+            line-height: 1.7;
+        }
+
+        /* Section Typography */
         section {
             margin-bottom: 4rem;
         }
 
-        h2 {
-            font-size: 1.1rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: var(--text-muted);
-            margin-bottom: 1.5rem;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 0.5rem;
-        }
-
-        .about-text {
-            color: var(--text-main);
-            font-size: 1.05rem;
-        }
-
-        .grid {
+        .section-header {
             display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+        }
+
+        h2 {
+            font-family: var(--mono);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        h2::before {
+            content: "//";
+            color: var(--accent);
+        }
+
+        /* Grids & Cards */
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.25rem;
         }
 
         .card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
+            background-color: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 10px;
             padding: 1.5rem;
-            transition: box-shadow 0.2s ease, transform 0.2s ease;
+            transition: all 0.2s ease;
+            position: relative;
         }
 
         .card:hover {
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+            border-color: var(--border-highlight);
+            background-color: var(--surface-hover);
             transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
         }
 
         .card-header {
             display: flex;
             justify-content: space-between;
             align-items: baseline;
-            margin-bottom: 0.25rem;
+            margin-bottom: 0.35rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
         }
 
         .card-title {
-            font-weight: 600;
             font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text);
+            letter-spacing: -0.01em;
         }
 
         .card-date {
-            color: var(--text-muted);
-            font-size: 0.9rem;
+            font-family: var(--mono);
+            font-size: 0.75rem;
+            color: var(--text-dim);
         }
 
-        .card-subtitle {
-            color: var(--text-main);
-            font-size: 0.95rem;
-            font-weight: 500;
-            margin-bottom: 1rem;
-        }
-
-        ul.tech-list {
-            list-style-type: none;
-            color: var(--text-muted);
-            font-size: 0.95rem;
-        }
-
-        ul.tech-list li {
-            position: relative;
-            padding-left: 1rem;
-            margin-bottom: 0.5rem;
-        }
-
-        ul.tech-list li::before {
-            content: "•";
-            position: absolute;
-            left: 0;
-            color: var(--text-muted);
-        }
-
-        a {
+        .card-sub {
+            font-size: 0.88rem;
             color: var(--accent);
-            text-decoration: none;
-            border-bottom: 1px solid var(--border-color);
-            transition: border-color 0.2s ease;
+            font-weight: 500;
+            margin-bottom: 0.85rem;
         }
 
-        a:hover {
-            border-bottom-color: var(--accent);
+        .card-desc {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 1.25rem;
+            line-height: 1.6;
+        }
+
+        /* Tags */
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+        }
+
+        .tag {
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            background: var(--code-bg);
+            border: 1px solid var(--border);
+            padding: 0.2rem 0.55rem;
+            border-radius: 4px;
+            color: var(--text-muted);
+        }
+
+        /* Skills Matrix */
+        .skills-matrix {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
+        }
+
+        .skill-group {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.25rem;
+        }
+
+        .skill-group-title {
+            font-family: var(--mono);
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .skill-list {
+            list-style: none;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .skill-list li {
+            padding: 0.2rem 0;
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border);
+            padding-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            color: var(--text-dim);
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .links {
+            display: flex;
+            gap: 1.25rem;
+        }
+
+        .links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-family: var(--mono);
+            font-size: 0.8rem;
+            transition: color 0.2s;
+        }
+
+        .links a:hover {
+            color: var(--accent);
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 2rem 1rem 4rem; }
+            h1 { font-size: 1.9rem; }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>Louis Lin</h1>
-            <p class="lead">Biomedical Engineering, University of Waterloo</p>
-        </header>
 
-        <section>
-            <h2>About</h2>
-            <p class="about-text">
-                Engineering student with a 3.7 GPA specializing in advanced mechatronics, system integration, and analog circuit design. Passionate about pushing hardware limits, from calculating precise tolerances for FDM 3D printing to maintaining disciplined consistency in both technical projects and competitive athletics.
-            </p>
-        </section>
+<div class="layout">
+    <header>
+        <div class="status-badge">
+            <span class="status-dot"></span>
+            Available for Co-op & Internships
+        </div>
+        <h1>Louis Lin</h1>
+        <div class="subtitle">Biomedical Engineering · University of Waterloo</div>
+        <p class="bio">
+            Specializing in mechatronics, mechanical systems integration, and analog circuit design. Focused on building high-reliability hardware, optimized mechanical assemblies, and precise embedded control systems.
+        </p>
+    </header>
 
-        <section>
+    <!-- Selected Engineering Projects -->
+    <section>
+        <div class="section-header">
+            <h2>Featured Systems & Projects</h2>
+        </div>
+        <div class="grid">
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">Powered Exoskeleton System (EXO)</span>
+                    <span class="card-date">UW Biomechatronics</span>
+                </div>
+                <div class="card-sub">Mechanical Lead · System Architecture & Integration</div>
+                <p class="card-desc">
+                    Led mechanical design and multi-axis CAD integration for a powered lower-limb exoskeleton prototype. Engineered custom structural linkages and optimized load-bearing mount tolerances for dynamic human-machine coupling.
+                </p>
+                <div class="tags">
+                    <span class="tag">SolidWorks</span>
+                    <span class="tag">Structural FEA</span>
+                    <span class="tag">System Integration</span>
+                    <span class="tag">Actuation</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">Tendon-Driven Myoelectric Prosthetic Hand</span>
+                    <span class="card-date">Biomedical Mechatronics</span>
+                </div>
+                <div class="card-sub">Embedded Systems & Actuation Design</div>
+                <p class="card-desc">
+                    Engineered an anthropomorphic 5-digit prosthetic hand prototype using tendon-driven mechanical routing. Developed Arduino C++ firmware, calibrated EMG signal conditioning pipelines, and optimized rapid FDM 3D print tolerances for joint interfaces.
+                </p>
+                <div class="tags">
+                    <span class="tag">Arduino C++</span>
+                    <span class="tag">EMG Signal Chain</span>
+                    <span class="tag">FDM 3D Printing</span>
+                    <span class="tag">Tendon Routing</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">Precision Analog Signal & Circuit Design</span>
+                    <span class="card-date">Hardware Simulation</span>
+                </div>
+                <div class="card-sub">Circuit Analysis & Hardware Validation</div>
+                <p class="card-desc">
+                    Designed and simulated multi-stage filter topologies and full-wave bridge rectifier networks. Conducted nodal circuit analysis, component-level tolerance checks, and noise-floor optimization for sensor acquisition hardware.
+                </p>
+                <div class="tags">
+                    <span class="tag">Analog Circuits</span>
+                    <span class="tag">SPICE Simulation</span>
+                    <span class="tag">Power Rectification</span>
+                    <span class="tag">Nodal Analysis</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Experience -->
+    <section>
+        <div class="section-header">
             <h2>Experience & Leadership</h2>
-            <div class="grid">
-                
-                <div class="card">
-                    <div class="card-header">
-                        <span class="card-title">Incoming Mechanical Engineering Intern</span>
-                        <span class="card-date">Sept 2026</span>
-                    </div>
-                    <div class="card-subtitle">Hygea Medical Technology | Beijing</div>
-                    <ul class="tech-list">
-                        <li>Preparing for comprehensive mechanical engineering and design roles.</li>
-                    </ul>
-                </div>
+        </div>
+        <div class="grid">
 
-                <div class="card">
-                    <div class="card-header">
-                        <span class="card-title">Mechanical Team Lead</span>
-                        <span class="card-date">Present</span>
-                    </div>
-                    <div class="card-subtitle">UW Biomechatronics Club – EXO Project</div>
-                    <ul class="tech-list">
-                        <li>Directing CAD modeling and overseeing mechanical system integration for a powered exoskeleton prototype.</li>
-                    </ul>
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">Hygea Medical Technology</span>
+                    <span class="card-date">Incoming Sept 2026</span>
                 </div>
-
-                <div class="card">
-                    <div class="card-header">
-                        <span class="card-title">Mechatronics Role</span>
-                        <span class="card-date">Previous</span>
-                    </div>
-                    <div class="card-subtitle">Premier Healthcare</div>
-                    <ul class="tech-list">
-                        <li>Troubleshot and maintained machinery, ensuring reliable operation of critical hardware systems.</li>
-                    </ul>
-                </div>
-
+                <div class="card-sub">Mechanical Engineering Intern · Beijing</div>
+                <p class="card-desc">
+                    Joining the engineering group to support mechanical development, precision hardware validation, and medical device system design.
+                </p>
             </div>
-        </section>
 
-        <section>
-            <h2>Selected Projects</h2>
-            <div class="grid">
-                
-                <div class="card">
-                    <div class="card-header">
-                        <span class="card-title">Myoelectric Prosthetic Hand Prototype</span>
-                    </div>
-                    <div class="card-subtitle">Academic Team Project</div>
-                    <ul class="tech-list">
-                        <li>Engineered a tendon-driven prototype utilizing an Arduino Uno.</li>
-                        <li>Developed technical firmware and drafted comprehensive electrical processing chain documentation.</li>
-                    </ul>
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">UW Biomechatronics Club</span>
+                    <span class="card-date">2025 – Present</span>
                 </div>
-
+                <div class="card-sub">Mechanical Team Lead — EXO Exoskeleton</div>
+                <p class="card-desc">
+                    Oversee mechanical design reviews, subsystem integration schedules, and CAD modeling conventions across multi-disciplinary engineering sub-teams.
+                </p>
             </div>
-        </section>
 
-    </div>
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">Premier Healthcare</span>
+                    <span class="card-date">Technical Operations</span>
+                </div>
+                <div class="card-sub">Mechatronics & Equipment Diagnostics</div>
+                <p class="card-desc">
+                    Executed mechanical and electrical diagnostics, hardware troubleshooting, and preventive maintenance across complex medical machinery.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Technical Skill Matrix -->
+    <section>
+        <div class="section-header">
+            <h2>Technical Skills Matrix</h2>
+        </div>
+        <div class="skills-matrix">
+            <div class="skill-group">
+                <div class="skill-group-title">Mechanical & CAD</div>
+                <ul class="skill-list">
+                    <li>SolidWorks / CAD Modeling</li>
+                    <li>FDM 3D Print Tolerance Tuning</li>
+                    <li>Structural & Statics Analysis</li>
+                    <li>Mechanism & Actuation Design</li>
+                </ul>
+            </div>
+            <div class="skill-group">
+                <div class="skill-group-title">Electrical & Embedded</div>
+                <ul class="skill-list">
+                    <li>Arduino & Microcontrollers (C++)</li>
+                    <li>Analog Circuit Design & SPICE</li>
+                    <li>EMG & Sensor Signal Filtering</li>
+                    <li>Bridge Rectifiers & Power Flow</li>
+                </ul>
+            </div>
+            <div class="skill-group">
+                <div class="skill-group-title">Tools & Methods</div>
+                <ul class="skill-list">
+                    <li>Git / Version Control</li>
+                    <li>Rapid Prototyping & Machining</li>
+                    <li>Hardware Diagnostics</li>
+                    <li>System Verification</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div>© 2026 Louis Lin · Built with GitHub Pages</div>
+        <div class="links">
+            <a href="https://github.com/Louis-Lin06" target="_blank">GitHub</a>
+            <a href="mailto:contact@louislin.dev">Email</a>
+            <a href="#">LinkedIn</a>
+        </div>
+    </footer>
+</div>
+
 </body>
 </html>
