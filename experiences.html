@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Experiences | Louis Lin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* Global Styles & Variables */
+        :root {
+            --bg-page: #ffffff;
+            --bg-surface: #f9fafb;
+            --text-main: #111827;
+            --text-muted: #6b7280;
+            --border: #e5e7eb;
+            --border-hover: #d1d5db;
+            --blue-accent: #3b82f6;
+            --purple-accent: #8b5cf6;
+            --focus-ring: #8b5cf6;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg-page); color: var(--text-main); line-height: 1.6; display: flex; flex-direction: column; min-height: 100vh; }
+        :focus:not(:focus-visible) { outline: none; }
+        :focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 3px; border-radius: 4px; }
+        
+        /* Navigation (Same as Home) */
+        nav { position: sticky; top: 0; background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); z-index: 100; }
+        .nav-container { max-width: 1000px; margin: 0 auto; padding: 1rem 1.5rem; display: flex; justify-content: space-between; align-items: center; }
+        .nav-brand { font-weight: 600; font-size: 1.1rem; text-decoration: none; color: var(--text-main); }
+        .nav-links { display: flex; gap: 2rem; align-items: center; }
+        .nav-links a { text-decoration: none; color: var(--text-muted); font-size: 0.9rem; font-weight: 500; transition: color 0.2s; }
+        .nav-links a:hover, .nav-links a.active { color: var(--text-main); }
+        .btn-linkedin { background-color: var(--blue-accent); color: white !important; padding: 0.5rem 1rem; border-radius: 6px; font-weight: 500; text-decoration: none; }
+        
+        /* Layout */
+        main { flex: 1; max-width: 1000px; margin: 0 auto; padding: 5rem 1.5rem; width: 100%; }
+        .page-header { margin-bottom: 4rem; border-bottom: 1px solid var(--border); padding-bottom: 2rem; }
+        h1 { font-size: 2.5rem; font-weight: 600; letter-spacing: -0.03em; margin-bottom: 0.5rem; }
+        
+        /* Split View Grid */
+        .split-grid { display: grid; grid-template-columns: 1fr; gap: 4rem; }
+        @media (min-width: 768px) { .split-grid { grid-template-columns: 1fr 1fr; } }
+        
+        /* Job Items */
+        .job-item { margin-bottom: 3rem; position: relative; padding-left: 1.5rem; border-left: 2px solid var(--border); }
+        .job-item::before { content: ''; position: absolute; left: -6px; top: 6px; width: 10px; height: 10px; border-radius: 50%; background-color: var(--purple-accent); }
+        .job-title { font-size: 1.1rem; font-weight: 600; color: var(--text-main); }
+        .job-meta { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.75rem; font-weight: 500; }
+        .job-desc { font-size: 0.95rem; color: var(--text-muted); }
+        
+        /* Resume Viewer */
+        .resume-panel { background: var(--bg-surface); padding: 2rem; border-radius: 12px; border: 1px solid var(--border); display: flex; flex-direction: column; gap: 1.5rem; }
+        .pdf-viewer { width: 100%; height: 500px; border: 1px solid var(--border); border-radius: 6px; background-color: white; }
+        .btn-download { display: inline-flex; justify-content: center; width: 100%; padding: 0.75rem; background-color: var(--text-main); color: white; text-decoration: none; border-radius: 6px; font-weight: 500; transition: background-color 0.2s; }
+        .btn-download:hover { background-color: #000000; }
+        
+        /* Footer */
+        footer { border-top: 1px solid var(--border); padding: 2rem 1.5rem; margin-top: auto; }
+        .footer-content { max-width: 1000px; margin: 0 auto; display: flex; justify-content: space-between; color: var(--text-muted); font-size: 0.85rem; }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">Louis Lin</a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="experiences.html" class="active">Experiences</a>
+                <a href="projects.html">Projects</a>
+                <a href="contact.html">Contact</a>
+                <a href="https://linkedin.com/in/yourprofile" target="_blank" class="btn-linkedin">LinkedIn</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <div class="page-header">
+            <h1>Professional Experience</h1>
+            <p style="color: var(--text-muted);">Engineering internships and technical operations.</p>
+        </div>
+
+        <div class="split-grid">
+            <!-- Left Column: History -->
+            <div class="history-column">
+                
+                <div class="job-item" id="hygea">
+                    <div class="job-title">Mechanical Engineering Intern</div>
+                    <div class="job-meta">Hygea Medical Technology | Beijing, China · Incoming Sept 2026</div>
+                    <p class="job-desc">Joining the engineering group to support mechanical development, precision hardware validation, and medical device system design.</p>
+                </div>
+
+                <div class="job-item" id="niche">
+                    <div class="job-title">Mortgage Assistant & Strategy</div>
+                    <div class="job-meta">Niche Mortgages Group · 2026</div>
+                    <p class="job-desc">Executed financial calculations, bank statement audits for stated income applications, and audited digital workflows.</p>
+                </div>
+
+                <div class="job-item" id="premier">
+                    <div class="job-title">Mechatronics Technician</div>
+                    <div class="job-meta">Premier Healthcare · Previous</div>
+                    <p class="job-desc">Executed mechanical and electrical diagnostics, hardware troubleshooting, and preventive maintenance across complex medical machinery.</p>
+                </div>
+
+            </div>
+
+            <!-- Right Column: Resume Embed -->
+            <div class="resume-column">
+                <div class="resume-panel">
+                    <h3 style="font-size: 1.1rem; font-weight: 600;">Curriculum Vitae</h3>
+                    <!-- Replace "resume.pdf" with your actual file path once uploaded to GitHub -->
+                    <object data="resume.pdf" type="application/pdf" class="pdf-viewer">
+                        <p>Your browser does not support PDF viewing. <a href="resume.pdf">Download the PDF</a>.</p>
+                    </object>
+                    <a href="resume.pdf" download class="btn-download">Download Resume (PDF)</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content"><span>© 2026 Louis Lin</span><span>Built with GitHub Pages</span></div>
+    </footer>
+</body>
+</html>
