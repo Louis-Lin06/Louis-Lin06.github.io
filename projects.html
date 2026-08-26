@@ -14,8 +14,8 @@
         
         body { 
             font-family: 'Inter', sans-serif; 
-            background-color: var(--bg-page); 
-            background-image: linear-gradient(to right, rgba(186, 230, 253, 0.35) 0%, rgba(255, 255, 255, 0) 15%, rgba(255, 255, 255, 0) 85%, rgba(186, 230, 253, 0.35) 100%);
+            /* Symmetric Navy Blue Gradient */
+            background: linear-gradient(to right, rgba(30, 58, 138, 0.45) 0%, #ffffff 20%, #ffffff 80%, rgba(30, 58, 138, 0.45) 100%);
             background-attachment: fixed;
             color: var(--text-main); 
             line-height: 1.6; 
@@ -28,13 +28,14 @@
         :focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 3px; border-radius: 4px; }
         
         /* Navigation */
-        nav { position: sticky; top: 0; background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); z-index: 100; }
+        nav { position: sticky; top: 0; background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); z-index: 100; }
         .nav-container { max-width: 1000px; margin: 0 auto; padding: 1rem 1.5rem; display: flex; justify-content: space-between; align-items: center; position: relative; }
         .nav-brand { font-weight: 600; font-size: 1.1rem; text-decoration: none; color: var(--text-main); }
         .nav-links { display: flex; gap: 2rem; align-items: center; }
         .nav-links a { text-decoration: none; color: var(--text-muted); font-size: 0.9rem; font-weight: 500; transition: color 0.2s; }
         .nav-links a:hover, .nav-links a.active { color: var(--text-main); }
-        .btn-linkedin { background-color: var(--blue-accent); color: white !important; padding: 0.5rem 1rem; border-radius: 6px; font-weight: 500; }
+        .btn-linkedin { background-color: var(--blue-accent); color: white !important; padding: 0.5rem 1rem; border-radius: 6px; font-weight: 500; transition: opacity 0.2s ease, transform 0.2s ease; }
+        .btn-linkedin:hover { opacity: 0.9; transform: translateY(-1px); }
         
         .mobile-menu-btn { display: none; background: none; border: none; font-size: 1.5rem; color: var(--text-main); cursor: pointer; }
         .mobile-toc-btn { display: none; }
@@ -58,9 +59,9 @@
         h1 { font-size: 2.5rem; font-weight: 600; letter-spacing: -0.03em; margin-bottom: 0.5rem; }
         
         .project-section { margin-bottom: 6rem; scroll-margin-top: 100px; }
-        .project-image-placeholder { width: 100%; aspect-ratio: 16/9; background-color: var(--bg-surface); border: 1px dashed var(--border); border-radius: 12px; margin-bottom: 2rem; display: flex; align-items: center; justify-content: center; color: var(--text-muted); font-size: 0.9rem; }
+        .project-image-placeholder { width: 100%; aspect-ratio: 16/9; background-color: rgba(249, 250, 251, 0.8); backdrop-filter: blur(8px); border: 1px dashed var(--border); border-radius: 12px; margin-bottom: 2rem; display: flex; align-items: center; justify-content: center; color: var(--text-muted); font-size: 0.9rem; }
         .project-meta { display: flex; gap: 1rem; margin-bottom: 1rem; flex-wrap: wrap; }
-        .tag { font-size: 0.75rem; background: var(--bg-surface); border: 1px solid var(--border); padding: 0.2rem 0.6rem; border-radius: 4px; color: var(--text-muted); font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; }
+        .tag { font-size: 0.75rem; background: rgba(249, 250, 251, 0.8); border: 1px solid var(--border); padding: 0.2rem 0.6rem; border-radius: 4px; color: var(--text-muted); font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; }
         h2 { font-size: 1.75rem; font-weight: 600; margin-bottom: 1rem; }
         .project-details { font-size: 1rem; color: var(--text-muted); max-width: 800px; }
         
