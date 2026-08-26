@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            var(--bg-page): #ffffff;
+            --bg-page: #ffffff;
             --bg-surface: #f9fafb;
             --text-main: #111827;
             --text-muted: #6b7280;
@@ -22,7 +22,19 @@
 
         html { scroll-behavior: smooth; }
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Inter', sans-serif; background-color: var(--bg-page); color: var(--text-main); line-height: 1.6; display: flex; flex-direction: column; min-height: 100vh; }
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: var(--bg-page); 
+            background-image: linear-gradient(to right, rgba(186, 230, 253, 0.35) 0%, rgba(255, 255, 255, 0) 15%, rgba(255, 255, 255, 0) 85%, rgba(186, 230, 253, 0.35) 100%);
+            background-attachment: fixed;
+            color: var(--text-main); 
+            line-height: 1.6; 
+            display: flex; 
+            flex-direction: column; 
+            min-height: 100vh; 
+        }
+        
         :focus:not(:focus-visible) { outline: none; }
         :focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 3px; border-radius: 4px; }
 
@@ -30,11 +42,9 @@
         nav { position: sticky; top: 0; background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); z-index: 100; }
         .nav-container { max-width: 1000px; margin: 0 auto; padding: 1rem 1.5rem; display: flex; justify-content: space-between; align-items: center; position: relative; }
         .nav-brand { font-weight: 600; font-size: 1.1rem; text-decoration: none; color: var(--text-main); }
-        
         .nav-links { display: flex; gap: 2rem; align-items: center; }
         .nav-links a { text-decoration: none; color: var(--text-muted); font-size: 0.9rem; font-weight: 500; transition: color 0.2s ease; }
         .nav-links a:hover, .nav-links a.active { color: var(--text-main); }
-        
         .btn-linkedin { background-color: var(--blue-accent); color: white !important; padding: 0.5rem 1rem; border-radius: 6px; font-weight: 500; transition: opacity 0.2s ease; }
         .btn-linkedin:hover { opacity: 0.9; }
 
@@ -47,7 +57,7 @@
         h1 { font-size: clamp(2.5rem, 5vw, 3.5rem); font-weight: 600; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 1.5rem; }
         .hero p { font-size: clamp(1.1rem, 2vw, 1.25rem); color: var(--text-muted); line-height: 1.6; }
 
-        /* Gantt Timeline Section (Kept exact same as previous) */
+        /* Gantt Timeline Section */
         .timeline-section { background-color: var(--bg-surface); border: 1px solid var(--border); border-radius: 12px; padding: 3rem 0; margin-bottom: 6rem; }
         .timeline-header { padding: 0 2rem; margin-bottom: 2rem; display: flex; justify-content: space-between; align-items: flex-end; }
         .timeline-header h2 { font-size: 1.25rem; font-weight: 600; }
@@ -150,7 +160,6 @@
     </footer>
 
     <script>
-        // Mobile Menu Toggle
         document.querySelector('.mobile-menu-btn').addEventListener('click', () => {
             document.querySelector('.nav-links').classList.toggle('active');
         });
