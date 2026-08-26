@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Projects | Louis Lin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* Global Styles & Variables */
+        :root {
+            --bg-page: #ffffff;
+            --bg-surface: #f9fafb;
+            --text-main: #111827;
+            --text-muted: #6b7280;
+            --border: #e5e7eb;
+            --blue-accent: #3b82f6;
+            --focus-ring: #8b5cf6;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg-page); color: var(--text-main); line-height: 1.6; display: flex; flex-direction: column; min-height: 100vh; }
+        :focus:not(:focus-visible) { outline: none; }
+        :focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 3px; border-radius: 4px; }
+        
+        /* Navigation */
+        nav { position: sticky; top: 0; background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); z-index: 100; }
+        .nav-container { max-width: 1000px; margin: 0 auto; padding: 1rem 1.5rem; display: flex; justify-content: space-between; align-items: center; }
+        .nav-brand { font-weight: 600; font-size: 1.1rem; text-decoration: none; color: var(--text-main); }
+        .nav-links { display: flex; gap: 2rem; align-items: center; }
+        .nav-links a { text-decoration: none; color: var(--text-muted); font-size: 0.9rem; font-weight: 500; }
+        .nav-links a:hover, .nav-links a.active { color: var(--text-main); }
+        .btn-linkedin { background-color: var(--blue-accent); color: white !important; padding: 0.5rem 1rem; border-radius: 6px; font-weight: 500; text-decoration: none; }
+        
+        /* Layout */
+        main { flex: 1; max-width: 1000px; margin: 0 auto; padding: 5rem 1.5rem; width: 100%; }
+        .page-header { margin-bottom: 4rem; border-bottom: 1px solid var(--border); padding-bottom: 2rem; }
+        h1 { font-size: 2.5rem; font-weight: 600; letter-spacing: -0.03em; margin-bottom: 0.5rem; }
+        
+        /* Projects Grid */
+        .project-section { margin-bottom: 6rem; }
+        .project-image-placeholder { width: 100%; aspect-ratio: 16/9; background-color: var(--bg-surface); border: 1px dashed var(--border); border-radius: 12px; margin-bottom: 2rem; display: flex; align-items: center; justify-content: center; color: var(--text-muted); font-size: 0.9rem; }
+        
+        .project-meta { display: flex; gap: 1rem; margin-bottom: 1rem; flex-wrap: wrap; }
+        .tag { font-size: 0.75rem; background: var(--bg-surface); border: 1px solid var(--border); padding: 0.2rem 0.6rem; border-radius: 4px; color: var(--text-muted); font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; }
+        
+        h2 { font-size: 1.75rem; font-weight: 600; margin-bottom: 1rem; }
+        .project-details { font-size: 1rem; color: var(--text-muted); max-width: 800px; }
+        
+        footer { border-top: 1px solid var(--border); padding: 2rem 1.5rem; margin-top: auto; }
+        .footer-content { max-width: 1000px; margin: 0 auto; display: flex; justify-content: space-between; color: var(--text-muted); font-size: 0.85rem; }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">Louis Lin</a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="experiences.html">Experiences</a>
+                <a href="projects.html" class="active">Projects</a>
+                <a href="contact.html">Contact</a>
+                <a href="https://linkedin.com/in/yourprofile" target="_blank" class="btn-linkedin">LinkedIn</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <div class="page-header">
+            <h1>Featured Systems</h1>
+            <p style="color: var(--text-muted);">Mechanical design, embedded firmware, and circuit analysis.</p>
+        </div>
+
+        <section class="project-section" id="exo">
+            <div class="project-image-placeholder">[ Image Placeholder: Upload CAD Renders Here ]</div>
+            <div class="project-meta">
+                <span class="tag">System Integration</span>
+                <span class="tag">SolidWorks</span>
+            </div>
+            <h2>Powered Exoskeleton System (EXO)</h2>
+            <p class="project-details">Mechanical Team Lead for the UW Biomechatronics club. Directed CAD modeling and oversaw mechanical integration. Validated simple combined stress calculations on load-bearing brackets, verifying a theoretical limit of 2.37 kips (excluding concentration factors), and correctly modeled structural frame beams under tension.</p>
+        </section>
+
+        <section class="project-section" id="myoelectric">
+            <div class="project-image-placeholder">[ Image Placeholder: Upload Prototype Photos Here ]</div>
+            <div class="project-meta">
+                <span class="tag">Arduino C++</span>
+                <span class="tag">FDM 3D Printing</span>
+            </div>
+            <h2>Tendon-Driven Myoelectric Hand</h2>
+            <p class="project-details">Engineered an anthropomorphic 5-digit prosthetic prototype. Developed the embedded firmware via Arduino Uno, drafted the electrical signal processing chain documentation, and optimized the mechanical tolerances for the 3D-printed joints to ensure smooth tendon routing.</p>
+        </section>
+
+        <section class="project-section" id="circuits">
+            <div class="project-meta">
+                <span class="tag">Nodal Analysis</span>
+                <span class="tag">SPICE Simulation</span>
+            </div>
+            <h2>Precision Analog Circuit Design</h2>
+            <p class="project-details">Designed and simulated full-wave bridge rectifier networks and sensor filtering topologies. Applied strict nodal analysis frameworks—enforcing standard conventions where entering current is positive and leaving current is negative—and verified correct physical diode orientations for unblocked current paths.</p>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content"><span>© 2026 Louis Lin</span><span>Built with GitHub Pages</span></div>
+    </footer>
+</body>
+</html>
