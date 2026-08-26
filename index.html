@@ -4,10 +4,218 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Louis Lin | Engineering Portfolio</title>
+    <style>
+        :root {
+            --bg-primary: #fafafa;
+            --text-main: #111111;
+            --text-muted: #666666;
+            --border-color: #eaeaea;
+            --card-bg: #ffffff;
+            --accent: #000000;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 3rem 1.5rem;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 720px;
+            margin: 0 auto;
+        }
+
+        header {
+            margin-bottom: 4rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            letter-spacing: -0.03em;
+            margin-bottom: 0.5rem;
+        }
+
+        p.lead {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        section {
+            margin-bottom: 4rem;
+        }
+
+        h2 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.5rem;
+        }
+
+        .about-text {
+            color: var(--text-main);
+            font-size: 1.05rem;
+        }
+
+        .grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+            transition: box-shadow 0.2s ease, transform 0.2s ease;
+        }
+
+        .card:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+            transform: translateY(-2px);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 0.25rem;
+        }
+
+        .card-title {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .card-date {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .card-subtitle {
+            color: var(--text-main);
+            font-size: 0.95rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        ul.tech-list {
+            list-style-type: none;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        ul.tech-list li {
+            position: relative;
+            padding-left: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        ul.tech-list li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--text-muted);
+        }
+
+        a {
+            color: var(--accent);
+            text-decoration: none;
+            border-bottom: 1px solid var(--border-color);
+            transition: border-color 0.2s ease;
+        }
+
+        a:hover {
+            border-bottom-color: var(--accent);
+        }
+    </style>
 </head>
 <body>
-    <h1>Welcome to my Engineering Portfolio</h1>
-    <p>Hi, I am Louis. I specialize in mechatronics, system integration, and biomedical engineering.</p>
-    <p>Site is currently under construction!</p>
+    <div class="container">
+        <header>
+            <h1>Louis Lin</h1>
+            <p class="lead">Biomedical Engineering, University of Waterloo</p>
+        </header>
+
+        <section>
+            <h2>About</h2>
+            <p class="about-text">
+                Engineering student with a 3.7 GPA specializing in advanced mechatronics, system integration, and analog circuit design. Passionate about pushing hardware limits, from calculating precise tolerances for FDM 3D printing to maintaining disciplined consistency in both technical projects and competitive athletics.
+            </p>
+        </section>
+
+        <section>
+            <h2>Experience & Leadership</h2>
+            <div class="grid">
+                
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-title">Incoming Mechanical Engineering Intern</span>
+                        <span class="card-date">Sept 2026</span>
+                    </div>
+                    <div class="card-subtitle">Hygea Medical Technology | Beijing</div>
+                    <ul class="tech-list">
+                        <li>Preparing for comprehensive mechanical engineering and design roles.</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-title">Mechanical Team Lead</span>
+                        <span class="card-date">Present</span>
+                    </div>
+                    <div class="card-subtitle">UW Biomechatronics Club – EXO Project</div>
+                    <ul class="tech-list">
+                        <li>Directing CAD modeling and overseeing mechanical system integration for a powered exoskeleton prototype.</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-title">Mechatronics Role</span>
+                        <span class="card-date">Previous</span>
+                    </div>
+                    <div class="card-subtitle">Premier Healthcare</div>
+                    <ul class="tech-list">
+                        <li>Troubleshot and maintained machinery, ensuring reliable operation of critical hardware systems.</li>
+                    </ul>
+                </div>
+
+            </div>
+        </section>
+
+        <section>
+            <h2>Selected Projects</h2>
+            <div class="grid">
+                
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-title">Myoelectric Prosthetic Hand Prototype</span>
+                    </div>
+                    <div class="card-subtitle">Academic Team Project</div>
+                    <ul class="tech-list">
+                        <li>Engineered a tendon-driven prototype utilizing an Arduino Uno.</li>
+                        <li>Developed technical firmware and drafted comprehensive electrical processing chain documentation.</li>
+                    </ul>
+                </div>
+
+            </div>
+        </section>
+
+    </div>
 </body>
 </html>
