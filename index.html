@@ -73,7 +73,8 @@
         }
         
         .hero-content h1 { 
-            font-size: clamp(2.25rem, 4.5vw, 3.25rem); 
+            /* Slightly reduced max font size (3rem instead of 3.25rem) to ensure fit */
+            font-size: clamp(2rem, 4vw, 3rem); 
             font-weight: 600; 
             letter-spacing: -0.03em; 
             line-height: 1.1; 
@@ -177,7 +178,8 @@
         <!-- Redesigned Hero Section -->
         <div class="hero">
             <div class="hero-content">
-                <h1>Building Hardware for<br>Biomedical Applications.</h1>
+                <!-- Using non-breaking space (&nbsp;) to glue Biomedical and Applications together -->
+                <h1>Building Hardware for<br>Biomedical&nbsp;Applications.</h1>
                 <div class="hero-text">
                     <p>I’m Louis, a Biomedical Engineering student at the University of Waterloo with a strong interest in medical devices and hands-on engineering. I enjoy taking an idea from CAD to a physical prototype and figuring out how to make it work, especially when the solution isn’t immediately obvious.</p>
                     
@@ -187,7 +189,6 @@
                 </div>
             </div>
             
-            <!-- Updated to exactly match your GitHub upload -->
             <img src="Index page Profile photo.JPG" alt="Louis Lin" class="hero-image">
         </div>
 
