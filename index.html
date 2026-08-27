@@ -21,7 +21,10 @@
             --blue-accent: #0ea5e9;   /* Lighter, brighter Sky Blue for Projects */
             --linkedin-blue: #3b82f6; /* Original standard Blue for LinkedIn button */
             --purple-accent: #7c3aed; /* Deep Purple for Employment */
-            --job-bg: #f5f3ff;        /* Soft contrasting background for label */
+            
+            /* Track Label Backgrounds */
+            --proj-bg: #f0f9ff;       /* Soft contrasting blue background for Projects label */
+            --job-bg: #f5f3ff;        /* Soft contrasting purple background for Employment label */
             
             /* Utilities */
             --focus-ring: #8b5cf6;
@@ -108,8 +111,7 @@
         /* Gantt Timeline Section */
         .timeline-section { background-color: rgba(249, 250, 251, 0.6); backdrop-filter: blur(8px); border: 1px solid var(--border); border-radius: 12px; padding: 3rem 0; margin-bottom: 6rem; }
         .timeline-header { padding: 0 2rem; margin-bottom: 2rem; display: flex; justify-content: space-between; align-items: flex-end; }
-        .timeline-header h2 { font-size: 1.25rem; font-weight: 600; }
-        .timeline-legend { display: flex; gap: 1.5rem; font-size: 0.85rem; }
+        .timeline-header h2 { font-size: 1.25rem; font-weight: 600; margin-bottom: 0; }
 
         /* Scroll Wrapper */
         .gantt-scroll-wrapper { overflow-x: auto; overscroll-behavior-x: contain; padding: 0 2rem 2rem 2rem; scrollbar-width: thin; }
@@ -128,14 +130,23 @@
         /* Track Divider with Contrasting Background and Sticky Text */
         .track-label { 
             grid-column: 1 / 37; 
-            background-color: var(--job-bg);
-            border-top: 1px solid #ddd6fe;
-            border-bottom: 1px solid #ddd6fe;
-            margin-top: 1rem;
-            margin-bottom: 0.5rem;
             display: flex;
             align-items: center;
             padding: 0;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .track-label.blue {
+            background-color: var(--proj-bg);
+            border-top: 1px solid #bae6fd;
+            border-bottom: 1px solid #bae6fd;
+        }
+
+        .track-label.purple {
+            background-color: var(--job-bg);
+            border-top: 1px solid #ddd6fe;
+            border-bottom: 1px solid #ddd6fe;
         }
 
         .track-label span {
@@ -146,9 +157,11 @@
             text-transform: uppercase;
             letter-spacing: 0.08em;
             font-weight: 700;
-            color: var(--purple-accent);
             z-index: 5;
         }
+
+        .track-label.blue span { color: var(--blue-accent); }
+        .track-label.purple span { color: var(--purple-accent); }
 
         /* Gantt Bars */
         .gantt-bar { position: relative; z-index: 2; padding: 0.75rem 1rem; border-radius: 6px; text-decoration: none; display: flex; flex-direction: column; justify-content: center; transition: transform 0.2s ease, filter 0.2s ease; box-shadow: 0 1px 3px rgba(0,0,0,0.1); margin: 0 2px; }
@@ -220,10 +233,7 @@
         <section class="timeline-section">
             <div class="timeline-header">
                 <h2>My Engineering Progression</h2>
-                <div class="timeline-legend">
-                    <span style="color: var(--blue-accent); font-weight: 600;">■ Projects</span>
-                    <span style="color: var(--purple-accent); font-weight: 600; margin-left: 1rem;">■ Employment</span>
-                </div>
+                <!-- Legend removed completely as requested -->
             </div>
 
             <div class="gantt-scroll-wrapper" id="timelineScroll">
@@ -252,56 +262,61 @@
                     <div class="gantt-month" style="grid-column: 34; grid-row: 2;">Oct</div><div class="gantt-month" style="grid-column: 35; grid-row: 2;">Nov</div><div class="gantt-month" style="grid-column: 36; grid-row: 2;">Dec</div>
 
                     <!-- PROJECTS TRACK -->
+                    <!-- Sticky Projects Label -->
+                    <div class="track-label blue" style="grid-row: 3;">
+                        <span>Projects</span>
+                    </div>
+
                     <!-- EXO: Jul 2025 (col 19) to Present (col 37) -->
-                    <a href="projects.html#exo" class="gantt-bar bar-project" style="grid-column: 21 / 37; grid-row: 3;">
+                    <a href="projects.html#exo" class="gantt-bar bar-project" style="grid-column: 21 / 37; grid-row: 4;">
                         <span class="bar-title">EXO Lower-Body Exoskeleton</span>
                         <span class="bar-subtitle">Mechanical Team Lead</span>
                     </a>
 
                     <!-- EMG Prosthetic: May 2026 (col 29) to end of Aug 2026/start of Sep (col 33) -->
-                    <a href="projects.html#emg-hand" class="gantt-bar bar-project" style="grid-column: 29 / 33; grid-row: 4;">
+                    <a href="projects.html#emg-hand" class="gantt-bar bar-project" style="grid-column: 29 / 33; grid-row: 5;">
                         <span class="bar-title">EMG Prosthetic Hand</span>
                         <span class="bar-subtitle">Custom PCBs & Signal Filtering</span>
                     </a>
 
                     <!-- Robotic Hand Support: Sep 2024 (col 9) to May 2025 (col 17) -->
-                    <a href="projects.html#hand-support" class="gantt-bar bar-project" style="grid-column: 9 / 17; grid-row: 3;">
+                    <a href="projects.html#hand-support" class="gantt-bar bar-project" style="grid-column: 9 / 17; grid-row: 4;">
                         <span class="bar-title">Robotic Hand Support</span>
                         <span class="bar-subtitle">MyoWare Biosensors</span>
                     </a>
 
                     <!-- Adaptive Paddleboard: Sep 2024 (col 9) to Dec 2024 (col 13) -->
-                    <a href="projects.html#paddleboard" class="gantt-bar bar-project" style="grid-column: 9 / 13; grid-row: 4;">
+                    <a href="projects.html#paddleboard" class="gantt-bar bar-project" style="grid-column: 9 / 13; grid-row: 5;">
                         <span class="bar-title">Adaptive Paddleboard</span>
                         <span class="bar-subtitle">For Kids with Cerebral Palsy</span>
                     </a>
 
                     <!-- EMPLOYMENT TRACK -->
-                    <!-- Sticky Track Label -->
-                    <div class="track-label" style="grid-row: 7;">
+                    <!-- Sticky Employment Label -->
+                    <div class="track-label purple" style="grid-row: 6;">
                         <span>Professional Experience</span>
                     </div>
 
                     <!-- Premier Healthcare: May 2024 (col 5) to Aug 2024 (col 9) -->
-                    <a href="experiences.html#premier" class="gantt-bar bar-job" style="grid-column: 5 / 9; grid-row: 8;">
+                    <a href="experiences.html#premier" class="gantt-bar bar-job" style="grid-column: 5 / 9; grid-row: 7;">
                         <span class="bar-title">Premier Healthcare</span>
                         <span class="bar-subtitle">Medical Machinery Intern</span>
                     </a>
 
                     <!-- AirBoss of America: May 2025 (col 17) to Aug 2025 (col 21) -->
-                    <a href="experiences.html#airboss" class="gantt-bar bar-job" style="grid-column: 17 / 21; grid-row: 8;">
+                    <a href="experiences.html#airboss" class="gantt-bar bar-job" style="grid-column: 17 / 21; grid-row: 7;">
                         <span class="bar-title">AirBoss of America</span>
                         <span class="bar-subtitle">Production Operations Specialist</span>
                     </a>
                     
                     <!-- Jan-May 2026 Placeholder: Jan 2026 (col 25) to start of May 2026 (col 29) -->
-                    <a href="experiences.html#placeholder" class="gantt-bar bar-job" style="grid-column: 25 / 29; grid-row: 8;">
+                    <a href="experiences.html#placeholder" class="gantt-bar bar-job" style="grid-column: 25 / 29; grid-row: 7;">
                         <span class="bar-title">[Company Name]</span>
                         <span class="bar-subtitle">[Job Title]</span>
                     </a>
 
                     <!-- Hygea Medical: Sep 2026 (col 33) to Present (col 37) -->
-                    <a href="experiences.html#hygea" class="gantt-bar bar-job" style="grid-column: 33 / 37; grid-row: 8;">
+                    <a href="experiences.html#hygea" class="gantt-bar bar-job" style="grid-column: 33 / 37; grid-row: 7;">
                         <span class="bar-title">Hygea Medical</span>
                         <span class="bar-subtitle">Engineering Intern</span>
                     </a>
