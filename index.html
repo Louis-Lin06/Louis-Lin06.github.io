@@ -112,18 +112,18 @@
         /* Scroll Wrapper */
         .gantt-scroll-wrapper { overflow-x: auto; overscroll-behavior-x: contain; padding: 0 2rem 2rem 2rem; scrollbar-width: thin; }
 
-        /* The Grid System: 12 columns = 3 Years (4 quarters per year) */
-        .gantt-grid { display: grid; grid-template-columns: repeat(12, minmax(80px, 1fr)); gap: 1rem 0; min-width: 900px; position: relative; }
+        /* The Grid System: 16 columns = 4 Years (4 quarters per year) */
+        .gantt-grid { display: grid; grid-template-columns: repeat(16, minmax(100px, 1fr)); gap: 1rem 0; min-width: 1200px; position: relative; }
 
         /* Time Axis (X-Axis) */
         .gantt-axis { display: contents; }
         .gantt-year { border-bottom: 2px solid var(--border); padding-bottom: 0.5rem; font-size: 0.9rem; font-weight: 600; color: var(--text-main); text-align: left; padding-left: 0.5rem; margin-bottom: 1rem; }
 
         /* Vertical Grid Lines */
-        .gantt-grid::before { content: ''; position: absolute; top: 2.5rem; bottom: 0; left: 0; right: 0; background-image: linear-gradient(to right, var(--border) 1px, transparent 1px); background-size: calc(100% / 12) 100%; pointer-events: none; opacity: 0.5; }
+        .gantt-grid::before { content: ''; position: absolute; top: 2.5rem; bottom: 0; left: 0; right: 0; background-image: linear-gradient(to right, var(--border) 1px, transparent 1px); background-size: calc(100% / 16) 100%; pointer-events: none; opacity: 0.5; }
 
         /* Track Divider */
-        .track-label { grid-column: 1 / 13; border-bottom: 1px dashed var(--border-hover); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); padding-top: 1.5rem; margin-bottom: 0.5rem; }
+        .track-label { grid-column: 1 / 17; border-bottom: 1px dashed var(--border-hover); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); padding-top: 1.5rem; margin-bottom: 0.5rem; }
 
         /* Gantt Bars */
         .gantt-bar { position: relative; z-index: 2; padding: 0.75rem 1rem; border-radius: 6px; text-decoration: none; display: flex; flex-direction: column; justify-content: center; transition: transform 0.2s ease, filter 0.2s ease; box-shadow: 0 1px 3px rgba(0,0,0,0.1); margin: 0 2px; }
@@ -204,11 +204,12 @@
             <div class="gantt-scroll-wrapper">
                 <div class="gantt-grid">
                     
-                    <!-- Time Axis: 3 Years (Grid columns 1-4, 5-8, 9-12) -->
+                    <!-- Time Axis: 4 Years (Grid columns 1-4, 5-8, 9-12, 13-16) -->
                     <div class="gantt-axis">
                         <div class="gantt-year" style="grid-column: 1 / 5">2024</div>
                         <div class="gantt-year" style="grid-column: 5 / 9">2025</div>
                         <div class="gantt-year" style="grid-column: 9 / 13">2026</div>
+                        <div class="gantt-year" style="grid-column: 13 / 17">2027</div>
                     </div>
 
                     <!-- PROJECTS TRACK -->
@@ -245,13 +246,13 @@
                         <span class="bar-subtitle">Production Operations Specialist</span>
                     </a>
 
-                    <!-- Placeholder for Jan-May 2026 Experience -->
+                    <!-- Jan-May 2026 Experience -->
                     <a href="experiences.html#placeholder" class="gantt-bar bar-job" style="grid-column: 9 / 11; grid-row: 7;">
-                        <span class="bar-title">Roche</span>
-                        <span class="bar-subtitle">Pharma Technical (Quality) Intern</span>
+                        <span class="bar-title">[Company Name]</span>
+                        <span class="bar-subtitle">[Job Title]</span>
                     </a>
 
-                    <a href="experiences.html#hygea" class="gantt-bar bar-job" style="grid-column: 12.5 / 13; grid-row: 7;">
+                    <a href="experiences.html#hygea" class="gantt-bar bar-job" style="grid-column: 11 / 13; grid-row: 7;">
                         <span class="bar-title">Hygea Medical</span>
                         <span class="bar-subtitle">Engineering Intern</span>
                     </a>
