@@ -63,6 +63,10 @@
         .btn-download:hover { opacity: 0.9; transform: translateY(-2px); }
         .btn-download svg { width: 1.25rem; height: 1.25rem; }
 
+        /* Year Divider inside the timeline */
+        .year-header { font-size: 1.5rem; font-weight: 700; color: var(--text-main); padding-left: 1.5rem; border-left: 2px solid var(--border); position: relative; padding-bottom: 1.5rem; }
+        .year-header::before { content: ''; position: absolute; left: -7px; top: 6px; width: 12px; height: 12px; border-radius: 50%; background-color: var(--bg-page); border: 2px solid var(--text-main); }
+
         .job-section { margin-bottom: 4rem; scroll-margin-top: 100px; position: relative; padding-left: 1.5rem; border-left: 2px solid var(--border); }
         .job-section::before { content: ''; position: absolute; left: -6px; top: 6px; width: 10px; height: 10px; border-radius: 50%; background-color: var(--purple-accent); }
         .job-title { font-size: 1.25rem; font-weight: 600; color: var(--text-main); }
@@ -157,6 +161,9 @@
 
             <div class="history-column">
                 
+                <!-- 2026 HEADER -->
+                <div class="year-header">2026</div>
+
                 <!-- HYGEA MEDICAL -->
                 <section class="job-section" id="hygea">
                     <div class="job-title">[Job Title 4]</div>
@@ -182,6 +189,9 @@
                     </div>
                 </section>
 
+                <!-- 2025 HEADER -->
+                <div class="year-header">2025</div>
+
                 <!-- AIRBOSS -->
                 <section class="job-section" id="airboss">
                     <div class="job-title">[Job Title 2]</div>
@@ -193,6 +203,9 @@
                         </ul>
                     </div>
                 </section>
+
+                <!-- 2024 HEADER -->
+                <div class="year-header">2024</div>
 
                 <!-- PREMIER HEALTHCARE -->
                 <section class="job-section" id="premier">
