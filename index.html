@@ -195,14 +195,14 @@
         <!-- Multi-Year Gantt Timeline -->
         <section class="timeline-section">
             <div class="timeline-header">
-                <h2>My Engineering Progression</h2>
+                <h2>Engineering Progression</h2>
                 <div class="timeline-legend">
                     <span style="color: var(--blue-accent); font-weight: 600;">■ Projects</span>
                     <span style="color: var(--purple-accent); font-weight: 600; margin-left: 1rem;">■ Employment</span>
                 </div>
             </div>
 
-            <div class="gantt-scroll-wrapper">
+            <div class="gantt-scroll-wrapper" id="timelineScroll">
                 <div class="gantt-grid">
                     
                     <!-- Time Axis: Years (Row 1) -->
@@ -297,6 +297,14 @@
         // Mobile Menu Toggle
         document.querySelector('.mobile-menu-btn').addEventListener('click', () => {
             document.querySelector('.nav-links').classList.toggle('active');
+        });
+
+        // Auto-scroll timeline to the right (Present / 2026) on page load
+        window.addEventListener('load', () => {
+            const wrapper = document.getElementById('timelineScroll');
+            if (wrapper) {
+                wrapper.scrollLeft = wrapper.scrollWidth;
+            }
         });
     </script>
 
