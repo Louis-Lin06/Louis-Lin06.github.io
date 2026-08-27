@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* Palette: Bright white with Purple and Blue accents */
+            /* Palette: Bright white with distinct track colors */
             --bg-page: #ffffff;
             --bg-surface: #f9fafb;
             --text-main: #111827;
@@ -17,10 +17,9 @@
             --border: #e5e7eb;
             --border-hover: #d1d5db;
             
-            /* Accents & Contrast */
-            --blue-accent: #2563eb;   /* Richer blue for Projects */
-            --purple-accent: #7c3aed; /* Deeper purple for Employment */
-            --job-bg: #f5f3ff;        /* Light subtle tint background for Employment track */
+            /* High-Contrast Track Accents */
+            --blue-accent: #2563eb;   /* Vibrant Blue for Projects */
+            --purple-accent: #7c3aed; /* Distinct Deep Purple for Employment */
             
             /* Utilities */
             --focus-ring: #8b5cf6;
@@ -119,37 +118,13 @@
         /* Time Axis (X-Axis) */
         .gantt-axis { display: contents; }
         .gantt-year { border-bottom: 2px solid var(--border); padding-bottom: 0.5rem; font-size: 0.95rem; font-weight: 600; color: var(--text-main); text-align: left; padding-left: 0.5rem; margin-bottom: 0.25rem; }
-        .gantt-month { font-size: 0.7rem; font-weight: 500; color: var(--text-muted); text-align: center; text-transform: uppercase; margin-bottom: 1.5rem; }
+        .gantt-month { font-size: 0.7rem; font-weight: 500; color: var(--text-muted); text-align: center; text-transform: uppercase; margin-bottom: 1rem; }
 
         /* Vertical Grid Lines */
         .gantt-grid::before { content: ''; position: absolute; top: 4.5rem; bottom: 0; left: 0; right: 0; background-image: linear-gradient(to right, var(--border) 1px, transparent 1px); background-size: calc(100% / 36) 100%; pointer-events: none; opacity: 0.5; }
 
-        /* High-Contrast Employment Track Container (Replaces the dashed line with a clean professional grouping box) */
-        .employment-group {
-            grid-column: 1 / 37;
-            grid-row: 6 / 9;
-            background-color: var(--job-bg);
-            border-top: 2px solid #ddd6fe;
-            border-bottom: 2px solid #ddd6fe;
-            border-radius: 8px;
-            padding: 1rem 0 1.5rem 0;
-            margin-top: 1rem;
-            display: grid;
-            grid-template-columns: repeat(36, minmax(45px, 1fr));
-            gap: 1rem 0;
-            align-items: center;
-        }
-
-        .employment-label {
-            grid-column: 1 / 37;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            font-weight: 700;
-            color: var(--purple-accent);
-            padding-left: 0.75rem;
-            margin-bottom: 0.25rem;
-        }
+        /* Track Divider */
+        .track-label { grid-column: 1 / 37; border-bottom: none; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); padding-top: 1.5rem; margin-bottom: 0.5rem; }
 
         /* Gantt Bars */
         .gantt-bar { position: relative; z-index: 2; padding: 0.75rem 1rem; border-radius: 6px; text-decoration: none; display: flex; flex-direction: column; justify-content: center; transition: transform 0.2s ease, filter 0.2s ease; box-shadow: 0 1px 3px rgba(0,0,0,0.1); margin: 0 2px; }
@@ -157,7 +132,7 @@
         .bar-title { font-size: 0.9rem; font-weight: 600; margin-bottom: 0.2rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         .bar-subtitle { font-size: 0.75rem; opacity: 0.9; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
-        /* Track Colors */
+        /* Track Colors with Distinct Contrast */
         .bar-project { background-color: var(--blue-accent); color: white; border-left: 4px solid #1d4ed8; }
         .bar-job { background-color: var(--purple-accent); color: white; border-left: 4px solid #5b21b6; }
 
@@ -203,6 +178,7 @@
         <!-- Redesigned Hero Section -->
         <div class="hero">
             <div class="hero-content">
+                <!-- Using non-breaking space (&nbsp;) to glue Biomedical and Applications together -->
                 <h1>Building Hardware for<br>Biomedical&nbsp;Applications.</h1>
                 <div class="hero-text">
                     <p>I’m Louis, a Biomedical Engineering student at the University of Waterloo with a strong interest in medical devices and hands-on engineering. I enjoy taking an idea from CAD to a physical prototype and figuring out how to make it work, especially when the solution isn’t immediately obvious.</p>
@@ -251,60 +227,58 @@
                     <div class="gantt-month" style="grid-column: 31; grid-row: 2;">Jul</div><div class="gantt-month" style="grid-column: 32; grid-row: 2;">Aug</div><div class="gantt-month" style="grid-column: 33; grid-row: 2;">Sep</div>
                     <div class="gantt-month" style="grid-column: 34; grid-row: 2;">Oct</div><div class="gantt-month" style="grid-column: 35; grid-row: 2;">Nov</div><div class="gantt-month" style="grid-column: 36; grid-row: 2;">Dec</div>
 
-                    <!-- PROJECTS TRACK (Blue Theme) -->
-                    <!-- EXO Lower-Body Exoskeleton (Row 3) -->
+                    <!-- PROJECTS TRACK -->
+                    <!-- EXO: Jul 2025 (col 19) to Present (col 37) -->
                     <a href="projects.html#exo" class="gantt-bar bar-project" style="grid-column: 21 / 37; grid-row: 3;">
                         <span class="bar-title">EXO Lower-Body Exoskeleton</span>
                         <span class="bar-subtitle">Mechanical Team Lead</span>
                     </a>
 
-                    <!-- EMG Prosthetic Hand (Shares Row 3) -->
-                    <a href="projects.html#emg-hand" class="gantt-bar bar-project" style="grid-column: 25 / 29; grid-row: 3;">
+                    <!-- EMG Prosthetic: May 2026 (col 29) to end of Aug 2026/start of Sep (col 33) -->
+                    <a href="projects.html#emg-hand" class="gantt-bar bar-project" style="grid-column: 29 / 33; grid-row: 4;">
                         <span class="bar-title">EMG Prosthetic Hand</span>
-                        <span class="bar-subtitle">Custom PCBs & Filtering</span>
+                        <span class="bar-subtitle">Custom PCBs & Signal Filtering</span>
                     </a>
 
-                    <!-- Robotic Hand Support (Row 4) -->
-                    <a href="projects.html#hand-support" class="gantt-bar bar-project" style="grid-column: 9 / 17; grid-row: 4;">
+                    <!-- Robotic Hand Support: Sep 2024 (col 9) to May 2025 (col 17) -->
+                    <a href="projects.html#hand-support" class="gantt-bar bar-project" style="grid-column: 9 / 17; grid-row: 3;">
                         <span class="bar-title">Robotic Hand Support</span>
                         <span class="bar-subtitle">MyoWare Biosensors</span>
                     </a>
 
-                    <!-- Adaptive Paddleboard (Shares Row 4) -->
-                    <a href="projects.html#paddleboard" class="gantt-bar bar-project" style="grid-column: 3 / 8; grid-row: 4;">
+                    <!-- Adaptive Paddleboard: Sep 2024 (col 9) to Dec 2024 (col 13) -->
+                    <a href="projects.html#paddleboard" class="gantt-bar bar-project" style="grid-column: 9 / 13; grid-row: 4;">
                         <span class="bar-title">Adaptive Paddleboard</span>
-                        <span class="bar-subtitle">For Kids with CP</span>
+                        <span class="bar-subtitle">For Kids with Cerebral Palsy</span>
                     </a>
 
 
-                    <!-- EMPLOYMENT TRACK (Grouped inside a high-contrast tinted container box, no dashed line) -->
-                    <div class="employment-group">
-                        <div class="employment-label">Professional Experience</div>
+                    <!-- EMPLOYMENT TRACK -->
+                    <div class="track-label" style="grid-row: 7;">Professional Experience</div>
 
-                        <!-- Premier Healthcare -->
-                        <a href="experiences.html#premier" class="gantt-bar bar-job" style="grid-column: 5 / 9; grid-row: 2;">
-                            <span class="bar-title">Premier Healthcare</span>
-                            <span class="bar-subtitle">Medical Machinery Intern</span>
-                        </a>
+                    <!-- Premier Healthcare: May 2024 (col 5) to Aug 2024 (col 9) -->
+                    <a href="experiences.html#premier" class="gantt-bar bar-job" style="grid-column: 5 / 9; grid-row: 8;">
+                        <span class="bar-title">Premier Healthcare</span>
+                        <span class="bar-subtitle">Medical Machinery Intern</span>
+                    </a>
 
-                        <!-- AirBoss of America -->
-                        <a href="experiences.html#airboss" class="gantt-bar bar-job" style="grid-column: 17 / 21; grid-row: 2;">
-                            <span class="bar-title">AirBoss of America</span>
-                            <span class="bar-subtitle">Production Operations Specialist</span>
-                        </a>
-                        
-                        <!-- Roche -->
-                        <a href="experiences.html#roche" class="gantt-bar bar-job" style="grid-column: 25 / 29; grid-row: 2;">
-                            <span class="bar-title">Roche</span>
-                            <span class="bar-subtitle">Pharma Quality Technical Intern</span>
-                        </a>
+                    <!-- AirBoss of America: May 2025 (col 17) to Aug 2025 (col 21) -->
+                    <a href="experiences.html#airboss" class="gantt-bar bar-job" style="grid-column: 17 / 21; grid-row: 8;">
+                        <span class="bar-title">AirBoss of America</span>
+                        <span class="bar-subtitle">Production Operations Specialist</span>
+                    </a>
+                    
+                    <!-- Jan-May 2026 Placeholder: Jan 2026 (col 25) to start of May 2026 (col 29) -->
+                    <a href="experiences.html#roche" class="gantt-bar bar-job" style="grid-column: 25 / 29; grid-row: 8;">
+                        <span class="bar-title">Roche</span>
+                        <span class="bar-subtitle">Pharma Quality Technical Intern</span>
+                    </a>
 
-                        <!-- Hygea Medical -->
-                        <a href="experiences.html#hygea" class="gantt-bar bar-job" style="grid-column: 33 / 37; grid-row: 2;">
-                            <span class="bar-title">Hygea Medical</span>
-                            <span class="bar-subtitle">Engineering Intern</span>
-                        </a>
-                    </div>
+                    <!-- Hygea Medical: Sep 2026 (col 33) to Present (col 37) -->
+                    <a href="experiences.html#hygea" class="gantt-bar bar-job" style="grid-column: 33 / 37; grid-row: 8;">
+                        <span class="bar-title">Hygea Medical</span>
+                        <span class="bar-subtitle">Engineering Intern</span>
+                    </a>
 
                 </div>
             </div>
