@@ -62,13 +62,19 @@
         .job-section::before { content: ''; position: absolute; left: -6px; top: 6px; width: 10px; height: 10px; border-radius: 50%; background-color: var(--purple-accent); }
         .job-title { font-size: 1.25rem; font-weight: 600; color: var(--text-main); }
         .job-meta { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem; font-weight: 500; }
-        .job-desc { font-size: 1rem; color: var(--text-muted); max-width: 700px; }
         
-        /* Resume Viewer */
-        .resume-panel { margin-top: 6rem; background: rgba(249, 250, 251, 0.8); backdrop-filter: blur(8px); padding: 2rem; border-radius: 12px; border: 1px solid var(--border); display: flex; flex-direction: column; gap: 1.5rem; scroll-margin-top: 100px; }
-        .pdf-viewer { width: 100%; height: 600px; border: 1px solid var(--border); border-radius: 6px; background-color: white; }
-        .btn-download { display: inline-flex; justify-content: center; width: 100%; max-width: 300px; padding: 0.75rem; background-color: var(--text-main); color: white; text-decoration: none; border-radius: 6px; font-weight: 500; transition: background-color 0.2s; }
-        .btn-download:hover { background-color: #000000; }
+        /* Job Description Bullets */
+        .job-desc { font-size: 1rem; color: var(--text-muted); max-width: 750px; }
+        .job-desc ul { margin-left: 1.25rem; margin-top: 0.5rem; }
+        .job-desc li { margin-bottom: 0.5rem; }
+
+        /* Certifications Grid */
+        .cert-panel { margin-top: 6rem; scroll-margin-top: 100px; }
+        .cert-panel h3 { font-size: 1.5rem; font-weight: 600; margin-bottom: 1.5rem; }
+        .cert-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1.5rem; }
+        .cert-card { background: rgba(249, 250, 251, 0.8); backdrop-filter: blur(8px); padding: 1.5rem; border-radius: 8px; border: 1px solid var(--border); }
+        .cert-title { font-weight: 600; color: var(--text-main); margin-bottom: 0.25rem; }
+        .cert-issuer { font-size: 0.85rem; color: var(--text-muted); }
 
         footer { border-top: 1px solid var(--border); padding: 2rem 1.5rem; margin-top: auto; }
         .footer-content { max-width: 1000px; margin: 0 auto; display: flex; justify-content: space-between; color: var(--text-muted); font-size: 0.85rem; }
@@ -79,7 +85,6 @@
             .nav-links { display: none; flex-direction: column; width: 100%; position: absolute; top: 100%; left: 0; background: rgba(255,255,255,0.98); border-bottom: 1px solid var(--border); padding: 1.5rem; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
             .nav-links.active { display: flex; }
             .page-wrapper { grid-template-columns: 1fr; gap: 2rem; }
-            .btn-download { max-width: 100%; }
 
             .mobile-toc-btn { display: flex; align-items: center; justify-content: center; gap: 0.5rem; position: fixed; bottom: 1.5rem; right: 1.5rem; background-color: var(--text-main); color: white; border: none; padding: 0.75rem 1.25rem; border-radius: 99px; font-weight: 600; font-size: 0.9rem; z-index: 90; box-shadow: 0 4px 12px rgba(0,0,0,0.2); cursor: pointer; transition: transform 0.2s; }
             .mobile-toc-btn:active { transform: scale(0.95); }
@@ -99,7 +104,7 @@
 <body>
     <nav>
         <div class="nav-container">
-            <a href="index.html" class="nav-brand">Louis Lin</a>
+            <a href="index.html" class="nav-brand">Louis Lin | Engineering Portfolio</a>
             <button class="mobile-menu-btn" aria-label="Toggle menu">☰</button>
             <div class="nav-links">
                 <a href="index.html">Home</a>
@@ -119,12 +124,14 @@
             <div class="toc-title">Contents <button class="toc-close-btn">×</button></div>
             <ul class="toc-list">
                 <li class="toc-year-label">2026</li>
-                <li><a href="#hygea" class="toc-link">Hygea Medical Tech</a></li>
-                <li><a href="#niche" class="toc-link">Niche Mortgages</a></li>
-                <li class="toc-year-label">Previous</li>
-                <li><a href="#premier" class="toc-link">Premier Healthcare</a></li>
+                <li><a href="#hygea" class="toc-link">[Company 4]</a></li>
+                <li><a href="#placeholder" class="toc-link">[Company 3]</a></li>
+                <li class="toc-year-label">2025</li>
+                <li><a href="#airboss" class="toc-link">[Company 2]</a></li>
+                <li class="toc-year-label">2024</li>
+                <li><a href="#premier" class="toc-link">[Company 1]</a></li>
                 <li class="toc-year-label">Documents</li>
-                <li><a href="#resume" class="toc-link">Curriculum Vitae</a></li>
+                <li><a href="#certs" class="toc-link">Certifications</a></li>
             </ul>
         </aside>
 
@@ -135,32 +142,81 @@
             </div>
 
             <div class="history-column">
+                
+                <!-- HYGEA MEDICAL -->
                 <section class="job-section" id="hygea">
-                    <div class="job-title">Mechanical Engineering Intern</div>
-                    <div class="job-meta">Hygea Medical Technology | Beijing, China · Incoming Sept 2026</div>
-                    <p class="job-desc">Joining the engineering group to support mechanical development, precision hardware validation, and medical device system design.</p>
+                    <div class="job-title">[Job Title 4]</div>
+                    <div class="job-meta">[Company 4] | [Location 4] · [Dates 4]</div>
+                    <div class="job-desc">
+                        <ul>
+                            <li>[Action verb] [specific technical task] resulting in [measurable outcome or technical improvement].</li>
+                            <li>[Action verb] [specific technical task] resulting in [measurable outcome or technical improvement].</li>
+                        </ul>
+                    </div>
                 </section>
 
-                <section class="job-section" id="niche">
-                    <div class="job-title">Mortgage Assistant & Strategy</div>
-                    <div class="job-meta">Niche Mortgages Group · 2026</div>
-                    <p class="job-desc">Executed financial calculations, bank statement audits for stated income applications, and audited digital workflows.</p>
+                <!-- THE PLACEHOLDER SECTION -->
+                <section class="job-section" id="placeholder">
+                    <div class="job-title">[Job Title 3]</div>
+                    <div class="job-meta">[Company 3] | [Location 3] · [Dates 3]</div>
+                    <div class="job-desc">
+                        <ul>
+                            <li>[Action verb] [specific technical task] resulting in [measurable outcome or technical improvement].</li>
+                            <li>[Action verb] [specific technical task] resulting in [measurable outcome or technical improvement].</li>
+                            <li>[Action verb] [specific technical task] resulting in [measurable outcome or technical improvement].</li>
+                        </ul>
+                    </div>
                 </section>
 
+                <!-- AIRBOSS -->
+                <section class="job-section" id="airboss">
+                    <div class="job-title">[Job Title 2]</div>
+                    <div class="job-meta">[Company 2] | [Location 2] · [Dates 2]</div>
+                    <div class="job-desc">
+                        <ul>
+                            <li>[Action verb] [specific technical task] resulting in [measurable outcome or technical improvement].</li>
+                            <li>[Action verb] [specific technical task] resulting in [measurable outcome or technical improvement].</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- PREMIER HEALTHCARE -->
                 <section class="job-section" id="premier">
-                    <div class="job-title">Mechatronics Technician</div>
-                    <div class="job-meta">Premier Healthcare · Previous</div>
-                    <p class="job-desc">Executed mechanical and electrical diagnostics, hardware troubleshooting, and preventive maintenance across complex medical machinery.</p>
+                    <div class="job-title">[Job Title 1]</div>
+                    <div class="job-meta">[Company 1] | [Location 1] · [Dates 1]</div>
+                    <div class="job-desc">
+                        <ul>
+                            <li>[Action verb] [specific technical task] resulting in [measurable outcome or technical improvement].</li>
+                            <li>[Action verb] [specific technical task] resulting in [measurable outcome or technical improvement].</li>
+                        </ul>
+                    </div>
                 </section>
+
             </div>
 
-            <section class="resume-panel" id="resume">
-                <h3 style="font-size: 1.25rem; font-weight: 600;">Curriculum Vitae</h3>
-                <object data="resume.pdf" type="application/pdf" class="pdf-viewer">
-                    <p>Your browser does not support PDF viewing. <a href="resume.pdf">Download the PDF</a>.</p>
-                </object>
-                <a href="resume.pdf" download class="btn-download">Download Resume (PDF)</a>
+            <!-- CERTIFICATIONS SECTION -->
+            <section class="cert-panel" id="certs">
+                <h3>Licenses & Certifications</h3>
+                <div class="cert-grid">
+                    <div class="cert-card">
+                        <div class="cert-title">[Certification Name]</div>
+                        <div class="cert-issuer">[Issuing Organization]</div>
+                    </div>
+                    <div class="cert-card">
+                        <div class="cert-title">[Certification Name]</div>
+                        <div class="cert-issuer">[Issuing Organization]</div>
+                    </div>
+                    <div class="cert-card">
+                        <div class="cert-title">[Certification Name]</div>
+                        <div class="cert-issuer">[Issuing Organization]</div>
+                    </div>
+                    <div class="cert-card">
+                        <div class="cert-title">[Certification Name]</div>
+                        <div class="cert-issuer">[Issuing Organization]</div>
+                    </div>
+                </div>
             </section>
+            
         </main>
     </div>
 
@@ -186,7 +242,7 @@
         
         tocLinks.forEach(link => { link.addEventListener('click', () => { if (window.innerWidth <= 768) toggleTOC(); }); });
 
-        const sections = document.querySelectorAll('.job-section, .resume-panel');
+        const sections = document.querySelectorAll('.job-section, .cert-panel');
         window.addEventListener('scroll', () => {
             let current = '';
             sections.forEach(section => { if (scrollY >= (section.offsetTop - 150)) current = section.getAttribute('id'); });
