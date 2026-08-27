@@ -17,10 +17,10 @@
             --border: #e5e7eb;
             --border-hover: #d1d5db;
             
-            /* High-Contrast Accents */
-            --blue-accent: #2563eb;   /* Vibrant Blue for Projects */
-            --purple-accent: #7c3aed; /* Distinct Deep Purple for Employment */
-            --job-bg: #f5f3ff;        /* Contrasting soft purple tint background for Employment track */
+            /* Accents */
+            --blue-accent: #0ea5e9;   /* Lighter, brighter Sky Blue for Projects */
+            --purple-accent: #7c3aed; /* Deep Purple for Employment */
+            --job-bg: #f5f3ff;        /* Soft contrasting background for label */
             
             /* Utilities */
             --focus-ring: #8b5cf6;
@@ -124,24 +124,29 @@
         /* Vertical Grid Lines */
         .gantt-grid::before { content: ''; position: absolute; top: 4.5rem; bottom: 0; left: 0; right: 0; background-image: linear-gradient(to right, var(--border) 1px, transparent 1px); background-size: calc(100% / 36) 100%; pointer-events: none; opacity: 0.5; }
 
-        /* Track Divider / Sticky Label with Contrasting Background */
+        /* Track Divider with Contrasting Background and Sticky Text */
         .track-label { 
             grid-column: 1 / 37; 
-            font-size: 0.8rem; 
-            text-transform: uppercase; 
-            letter-spacing: 0.08em; 
-            font-weight: 700; 
-            color: var(--purple-accent); 
-            padding: 0.6rem 1rem; 
-            margin-top: 1.5rem; 
             background-color: var(--job-bg);
-            border-top: 2px solid #ddd6fe;
-            border-bottom: 2px solid #ddd6fe;
-            border-radius: 6px;
+            border-top: 1px solid #ddd6fe;
+            border-bottom: 1px solid #ddd6fe;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            padding: 0;
+        }
+
+        .track-label span {
             position: sticky;
-            left: 0;
+            left: 0; /* Keeps the text glued to the left edge of the scroll window */
+            padding: 0.6rem 1rem;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            font-weight: 700;
+            color: var(--purple-accent);
             z-index: 5;
-            box-shadow: 2px 0 5px rgba(0,0,0,0.03);
         }
 
         /* Gantt Bars */
@@ -150,8 +155,8 @@
         .bar-title { font-size: 0.9rem; font-weight: 600; margin-bottom: 0.2rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         .bar-subtitle { font-size: 0.75rem; opacity: 0.9; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
-        /* Track Colors with Distinct Contrast */
-        .bar-project { background-color: var(--blue-accent); color: white; border-left: 4px solid #1d4ed8; }
+        /* Track Colors */
+        .bar-project { background-color: var(--blue-accent); color: white; border-left: 4px solid #0369a1; }
         .bar-job { background-color: var(--purple-accent); color: white; border-left: 4px solid #5b21b6; }
 
         /* Footer */
@@ -272,7 +277,10 @@
 
 
                     <!-- EMPLOYMENT TRACK -->
-                    <div class="track-label" style="grid-row: 7;">Professional Experience</div>
+                    <!-- Notice the added span tag inside this label to handle the sticky movement! -->
+                    <div class="track-label" style="grid-row: 7;">
+                        <span>Professional Experience</span>
+                    </div>
 
                     <!-- Premier Healthcare: May 2024 (col 5) to Aug 2024 (col 9) -->
                     <a href="experiences.html#premier" class="gantt-bar bar-job" style="grid-column: 5 / 9; grid-row: 8;">
