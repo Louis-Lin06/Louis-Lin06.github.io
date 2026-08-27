@@ -62,10 +62,45 @@
         /* Layout */
         main { flex: 1; max-width: 1000px; margin: 0 auto; padding: 5rem 1.5rem; width: 100%; }
         
-        /* Hero Section */
-        .hero { margin-bottom: 6rem; max-width: 700px; }
-        h1 { font-size: clamp(2.5rem, 5vw, 3.5rem); font-weight: 600; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 1.5rem; }
-        .hero p { font-size: clamp(1.1rem, 2vw, 1.25rem); color: var(--text-muted); line-height: 1.6; }
+        /* --- Redesigned Hero Section --- */
+        .hero { 
+            margin-bottom: 6rem; 
+            display: grid; 
+            grid-template-columns: 1fr 320px; /* Text on left, 320px image on right */
+            gap: 4rem; 
+            align-items: center; 
+            width: 100%;
+        }
+        
+        .hero-content h1 { 
+            font-size: clamp(2.25rem, 4.5vw, 3.25rem); 
+            font-weight: 600; 
+            letter-spacing: -0.03em; 
+            line-height: 1.1; 
+            margin-bottom: 1.5rem; 
+        }
+        
+        .hero-text p { 
+            font-size: 1.05rem; 
+            color: var(--text-muted); 
+            line-height: 1.7; 
+            margin-bottom: 1.25rem; 
+        }
+        
+        .hero-text p:last-child {
+            margin-bottom: 0; /* Removes extra space after the last paragraph */
+        }
+
+        /* Profile Image Styling */
+        .hero-image {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            border-radius: 20px;
+            background-color: var(--border); /* Gray background if image doesn't load */
+            box-shadow: 0 10px 30px -10px rgba(30, 58, 138, 0.2); /* Soft navy shadow */
+            border: 1px solid var(--border);
+        }
 
         /* Gantt Timeline Section */
         .timeline-section { background-color: rgba(249, 250, 251, 0.6); backdrop-filter: blur(8px); border: 1px solid var(--border); border-radius: 12px; padding: 3rem 0; margin-bottom: 6rem; }
@@ -109,7 +144,12 @@
             .nav-links { display: none; flex-direction: column; width: 100%; position: absolute; top: 100%; left: 0; background: rgba(255, 255, 255, 0.98); border-bottom: 1px solid var(--border); padding: 1.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
             .nav-links.active { display: flex; }
             .btn-linkedin { text-align: center; width: 100%; }
-            h1 { font-size: 2.25rem; }
+            
+            /* Mobile Hero Adjustments */
+            .hero { grid-template-columns: 1fr; gap: 2.5rem; }
+            .hero-image { max-width: 280px; margin: 0 auto; order: -1; } /* Moves the image to the top on phones */
+            .hero-content h1 { text-align: center; font-size: 2.25rem; }
+            
             .timeline-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
         }
     </style>
@@ -133,15 +173,21 @@
 
     <!-- Main Content -->
     <main>
-        <!-- Hero Section -->
+        <!-- Redesigned Hero Section -->
         <div class="hero">
-            <h1>Building Hardware for Biomedical Applications.</h1>
-            <p> I’m Louis, a Biomedical Engineering student at the University of Waterloo with a strong interest in medical devices and hands-on engineering. I enjoy taking an idea from CAD to a physical prototype and figuring out how to make it work, especially when the solution isn’t immediately obvious.
-
-My experience spans mechanical design, electronics, and software. I’ve designed and built mechanical systems, worked with PCBs and circuits, written firmware for motors and EMG-based systems, and developed software and web applications. Through these projects, I’ve learned to troubleshoot problems across both hardware and software and to adapt when things don’t work the way I expected.
-
-What I enjoy most about engineering is the freedom to approach a problem in different ways. There isn’t always one right answer, and I like experimenting, building, testing, and refining until I find an approach that works. This portfolio is a collection of projects that reflect that process, from an EMG-controlled prosthetic hand to an ongoing lower-body exoskeleton and the hardware and software I’ve built along the way.
-</p>
+            <div class="hero-content">
+                <h1>Building Hardware for Biomedical Applications.</h1>
+                <div class="hero-text">
+                    <p>I’m Louis, a Biomedical Engineering student at the University of Waterloo with a strong interest in medical devices and hands-on engineering. I enjoy taking an idea from CAD to a physical prototype and figuring out how to make it work, especially when the solution isn’t immediately obvious.</p>
+                    
+                    <p>My experience spans mechanical design, electronics, and software. I’ve designed and built mechanical systems, worked with PCBs and circuits, written firmware for motors and EMG-based systems, and developed software and web applications. Through these projects, I’ve learned to troubleshoot problems across both hardware and software and to adapt when things don’t work the way I expected.</p>
+                    
+                    <p>What I enjoy most about engineering is the freedom to approach a problem in different ways. There isn’t always one right answer, and I like experimenting, building, testing, and refining until I find an approach that works. This portfolio is a collection of projects that reflect that process, from an EMG-controlled prosthetic hand to an ongoing lower-body exoskeleton and the hardware and software I’ve built along the way.</p>
+                </div>
+            </div>
+            
+            <!-- Replace 'profile.jpg' with the actual filename of your photo in your GitHub repo -->
+            <img src="profile.jpg" alt="Louis Lin" class="hero-image">
         </div>
 
         <!-- Multi-Year Gantt Timeline -->
