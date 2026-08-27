@@ -112,18 +112,19 @@
         /* Scroll Wrapper */
         .gantt-scroll-wrapper { overflow-x: auto; overscroll-behavior-x: contain; padding: 0 2rem 2rem 2rem; scrollbar-width: thin; }
 
-        /* The Grid System: 16 columns = 4 Years (4 quarters per year) */
-        .gantt-grid { display: grid; grid-template-columns: repeat(16, minmax(100px, 1fr)); gap: 1rem 0; min-width: 1200px; position: relative; }
+        /* The Grid System: 36 columns = 3 Years (12 months per year) */
+        .gantt-grid { display: grid; grid-template-columns: repeat(36, minmax(45px, 1fr)); gap: 1rem 0; min-width: 1650px; position: relative; }
 
         /* Time Axis (X-Axis) */
         .gantt-axis { display: contents; }
-        .gantt-year { border-bottom: 2px solid var(--border); padding-bottom: 0.5rem; font-size: 0.9rem; font-weight: 600; color: var(--text-main); text-align: left; padding-left: 0.5rem; margin-bottom: 1rem; }
+        .gantt-year { border-bottom: 2px solid var(--border); padding-bottom: 0.5rem; font-size: 0.95rem; font-weight: 600; color: var(--text-main); text-align: left; padding-left: 0.5rem; margin-bottom: 0.25rem; }
+        .gantt-month { font-size: 0.7rem; font-weight: 500; color: var(--text-muted); text-align: center; text-transform: uppercase; margin-bottom: 1rem; }
 
         /* Vertical Grid Lines */
-        .gantt-grid::before { content: ''; position: absolute; top: 2.5rem; bottom: 0; left: 0; right: 0; background-image: linear-gradient(to right, var(--border) 1px, transparent 1px); background-size: calc(100% / 16) 100%; pointer-events: none; opacity: 0.5; }
+        .gantt-grid::before { content: ''; position: absolute; top: 4.5rem; bottom: 0; left: 0; right: 0; background-image: linear-gradient(to right, var(--border) 1px, transparent 1px); background-size: calc(100% / 36) 100%; pointer-events: none; opacity: 0.5; }
 
         /* Track Divider */
-        .track-label { grid-column: 1 / 17; border-bottom: 1px dashed var(--border-hover); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); padding-top: 1.5rem; margin-bottom: 0.5rem; }
+        .track-label { grid-column: 1 / 37; border-bottom: 1px dashed var(--border-hover); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); padding-top: 1.5rem; margin-bottom: 0.5rem; }
 
         /* Gantt Bars */
         .gantt-bar { position: relative; z-index: 2; padding: 0.75rem 1rem; border-radius: 6px; text-decoration: none; display: flex; flex-direction: column; justify-content: center; transition: transform 0.2s ease, filter 0.2s ease; box-shadow: 0 1px 3px rgba(0,0,0,0.1); margin: 0 2px; }
@@ -194,7 +195,7 @@
         <!-- Multi-Year Gantt Timeline -->
         <section class="timeline-section">
             <div class="timeline-header">
-                <h2>My Progression</h2>
+                <h2>Engineering Progression</h2>
                 <div class="timeline-legend">
                     <span style="color: var(--blue-accent); font-weight: 600;">■ Projects</span>
                     <span style="color: var(--purple-accent); font-weight: 600; margin-left: 1rem;">■ Employment</span>
@@ -204,55 +205,71 @@
             <div class="gantt-scroll-wrapper">
                 <div class="gantt-grid">
                     
-                    <!-- Time Axis: 4 Years (Grid columns 1-4, 5-8, 9-12, 13-16) -->
-                    <div class="gantt-axis">
-                        <div class="gantt-year" style="grid-column: 1 / 5">2024</div>
-                        <div class="gantt-year" style="grid-column: 5 / 9">2025</div>
-                        <div class="gantt-year" style="grid-column: 9 / 13">2026</div>
-                        <div class="gantt-year" style="grid-column: 13 / 17">2027</div>
-                    </div>
+                    <!-- Time Axis: Years (Row 1) -->
+                    <div class="gantt-year" style="grid-column: 1 / 13; grid-row: 1;">2024</div>
+                    <div class="gantt-year" style="grid-column: 13 / 25; grid-row: 1;">2025</div>
+                    <div class="gantt-year" style="grid-column: 25 / 37; grid-row: 1;">2026</div>
+                    
+                    <!-- Time Axis: Months (Row 2) -->
+                    <!-- 2024 -->
+                    <div class="gantt-month" style="grid-column: 1; grid-row: 2;">Jan</div><div class="gantt-month" style="grid-column: 2; grid-row: 2;">Feb</div><div class="gantt-month" style="grid-column: 3; grid-row: 2;">Mar</div>
+                    <div class="gantt-month" style="grid-column: 4; grid-row: 2;">Apr</div><div class="gantt-month" style="grid-column: 5; grid-row: 2;">May</div><div class="gantt-month" style="grid-column: 6; grid-row: 2;">Jun</div>
+                    <div class="gantt-month" style="grid-column: 7; grid-row: 2;">Jul</div><div class="gantt-month" style="grid-column: 8; grid-row: 2;">Aug</div><div class="gantt-month" style="grid-column: 9; grid-row: 2;">Sep</div>
+                    <div class="gantt-month" style="grid-column: 10; grid-row: 2;">Oct</div><div class="gantt-month" style="grid-column: 11; grid-row: 2;">Nov</div><div class="gantt-month" style="grid-column: 12; grid-row: 2;">Dec</div>
+                    <!-- 2025 -->
+                    <div class="gantt-month" style="grid-column: 13; grid-row: 2;">Jan</div><div class="gantt-month" style="grid-column: 14; grid-row: 2;">Feb</div><div class="gantt-month" style="grid-column: 15; grid-row: 2;">Mar</div>
+                    <div class="gantt-month" style="grid-column: 16; grid-row: 2;">Apr</div><div class="gantt-month" style="grid-column: 17; grid-row: 2;">May</div><div class="gantt-month" style="grid-column: 18; grid-row: 2;">Jun</div>
+                    <div class="gantt-month" style="grid-column: 19; grid-row: 2;">Jul</div><div class="gantt-month" style="grid-column: 20; grid-row: 2;">Aug</div><div class="gantt-month" style="grid-column: 21; grid-row: 2;">Sep</div>
+                    <div class="gantt-month" style="grid-column: 22; grid-row: 2;">Oct</div><div class="gantt-month" style="grid-column: 23; grid-row: 2;">Nov</div><div class="gantt-month" style="grid-column: 24; grid-row: 2;">Dec</div>
+                    <!-- 2026 -->
+                    <div class="gantt-month" style="grid-column: 25; grid-row: 2;">Jan</div><div class="gantt-month" style="grid-column: 26; grid-row: 2;">Feb</div><div class="gantt-month" style="grid-column: 27; grid-row: 2;">Mar</div>
+                    <div class="gantt-month" style="grid-column: 28; grid-row: 2;">Apr</div><div class="gantt-month" style="grid-column: 29; grid-row: 2;">May</div><div class="gantt-month" style="grid-column: 30; grid-row: 2;">Jun</div>
+                    <div class="gantt-month" style="grid-column: 31; grid-row: 2;">Jul</div><div class="gantt-month" style="grid-column: 32; grid-row: 2;">Aug</div><div class="gantt-month" style="grid-column: 33; grid-row: 2;">Sep</div>
+                    <div class="gantt-month" style="grid-column: 34; grid-row: 2;">Oct</div><div class="gantt-month" style="grid-column: 35; grid-row: 2;">Nov</div><div class="gantt-month" style="grid-column: 36; grid-row: 2;">Dec</div>
 
                     <!-- PROJECTS TRACK -->
-                    <a href="projects.html#exo" class="gantt-bar bar-project" style="grid-column: 7 / 13; grid-row: 2;">
+                    <!-- EXO: Jul 2025 (col 19) to Present (col 37) -->
+                    <a href="projects.html#exo" class="gantt-bar bar-project" style="grid-column: 19 / 37; grid-row: 3;">
                         <span class="bar-title">EXO Lower-Body Exoskeleton</span>
                         <span class="bar-subtitle">Mechanical Team Lead</span>
                     </a>
 
-                    <a href="projects.html#emg-hand" class="gantt-bar bar-project" style="grid-column: 9 / 12; grid-row: 3;">
+                    <!-- EMG Prosthetic: Jan 2026 (col 25) to Aug 2026 (col 33) -->
+                    <a href="projects.html#emg-hand" class="gantt-bar bar-project" style="grid-column: 25 / 33; grid-row: 4;">
                         <span class="bar-title">EMG Prosthetic Hand</span>
                         <span class="bar-subtitle">Custom PCBs & Signal Filtering</span>
                     </a>
 
-                    <a href="projects.html#hand-support" class="gantt-bar bar-project" style="grid-column: 3 / 9; grid-row: 4;">
+                    <!-- Robotic Hand Support: Jul 2024 (col 7) to Dec 2025 (col 25) -->
+                    <a href="projects.html#hand-support" class="gantt-bar bar-project" style="grid-column: 7 / 25; grid-row: 5;">
                         <span class="bar-title">Robotic Hand Support</span>
                         <span class="bar-subtitle">MyoWare Biosensors</span>
                     </a>
 
-                    <a href="projects.html#paddleboard" class="gantt-bar bar-project" style="grid-column: 3 / 5; grid-row: 5;">
+                    <!-- Adaptive Paddleboard: Jul 2024 (col 7) to Dec 2024 (col 13) -->
+                    <a href="projects.html#paddleboard" class="gantt-bar bar-project" style="grid-column: 7 / 13; grid-row: 6;">
                         <span class="bar-title">Adaptive Paddleboard</span>
                         <span class="bar-subtitle">For Kids with Cerebral Palsy</span>
                     </a>
 
-                    <!-- EMPLOYMENT TRACK -->
-                    <div class="track-label" style="grid-row: 6;">Professional Experience</div>
 
-                    <a href="experiences.html#premier" class="gantt-bar bar-job" style="grid-column: 2 / 4; grid-row: 7;">
+                    <!-- EMPLOYMENT TRACK -->
+                    <div class="track-label" style="grid-row: 7;">Professional Experience</div>
+
+                    <!-- Premier Healthcare: May 2024 (col 5) to Aug 2024 (col 9) -->
+                    <a href="experiences.html#premier" class="gantt-bar bar-job" style="grid-column: 5 / 9; grid-row: 8;">
                         <span class="bar-title">Premier Healthcare</span>
                         <span class="bar-subtitle">Medical Machinery Intern</span>
                     </a>
 
-                    <a href="experiences.html#airboss" class="gantt-bar bar-job" style="grid-column: 6 / 7; grid-row: 7;">
+                    <!-- AirBoss of America: May 2025 (col 17) to Aug 2025 (col 21) -->
+                    <a href="experiences.html#airboss" class="gantt-bar bar-job" style="grid-column: 17 / 21; grid-row: 8;">
                         <span class="bar-title">AirBoss of America</span>
                         <span class="bar-subtitle">Production Operations Specialist</span>
                     </a>
 
-                    <!-- Jan-May 2026 Experience -->
-                    <a href="experiences.html#placeholder" class="gantt-bar bar-job" style="grid-column: 9 /10 ; grid-row: 7;">
-                        <span class="bar-title">[Company Name]</span>
-                        <span class="bar-subtitle">[Job Title]</span>
-                    </a>
-
-                    <a href="experiences.html#hygea" class="gantt-bar bar-job" style="grid-column: 12 / 13; grid-row: 7;">
+                    <!-- Hygea Medical: Aug 2026 (col 32) to Present (col 37) -->
+                    <a href="experiences.html#hygea" class="gantt-bar bar-job" style="grid-column: 32 / 37; grid-row: 8;">
                         <span class="bar-title">Hygea Medical</span>
                         <span class="bar-subtitle">Engineering Intern</span>
                     </a>
