@@ -375,6 +375,27 @@
             sections.forEach(section => { if (scrollY >= (section.offsetTop - 150)) current = section.getAttribute('id'); });
             tocLinks.forEach(link => { link.classList.remove('active'); if (link.getAttribute('href') === `#${current}`) link.classList.add('active'); });
         });
+        // Carousel functionality
+        const carousels = document.querySelectorAll('.carousel-container');
+        carousels.forEach(carousel => {
+            const track = carousel.querySelector('.carousel-track');
+            const prevBtn = carousel.querySelector('.prev');
+            const nextBtn = carousel.querySelector('.next');
+            const slide = carousel.querySelector('.carousel-slide'); // Targets a single slide for precise width
+
+            if (track && prevBtn && nextBtn && slide) {
+                prevBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    // Calculates the exact width of your photo so it scrolls perfectly to the next one
+                    track.scrollBy({ left: -slide.clientWidth, behavior: 'smooth' });
+                });
+
+                nextBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    track.scrollBy({ left: slide.clientWidth, behavior: 'smooth' });
+                });
+            }
+        });
     </script>
 </body>
 </html>
