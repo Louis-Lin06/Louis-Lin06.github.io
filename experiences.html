@@ -112,10 +112,10 @@
             .toc-link { padding-left: 0.75rem; border-left: 2px solid transparent; padding-top: 0.25rem; padding-bottom: 0.25rem; font-size: 1rem; margin-left: 0; }
             .toc-year-label { padding-left: 0.75rem; font-size: 0.85rem; margin-top: 1.5rem; color: var(--text-main); }
         }
-        /* Carousel Styles - Single Item Album Scroll */
+       /* Carousel Styles - Single Item Album Scroll */
         .carousel-container { 
             position: relative; 
-            max-width: 550px; /* Keeps the album at a readable, specific size */
+            max-width: 550px; /* Keeps the album at a specific, readable size */
             margin-top: 2rem; 
             margin-left: 1.25rem; 
             border-radius: 8px; 
@@ -150,7 +150,7 @@
             width: 100%; 
             height: 350px; 
             object-fit: contain; /* Ensures 100% of the image is visible without cropping */
-            background-color: #1a1a1a; /* Dark backdrop for a cinematic album feel */
+            background-color: #1a1a1a; /* Dark cinematic backdrop for the uncropped edges */
         }
         
         .carousel-caption { 
@@ -180,7 +180,7 @@
             font-size: 1.2rem; 
             box-shadow: 0 4px 6px rgba(0,0,0,0.1); 
             transition: all 0.2s; 
-            z-index: 2; 
+            z-index: 10; /* Ensures the buttons sit on top of the images and register clicks */
         }
         
         .carousel-btn:hover { 
@@ -298,24 +298,24 @@
                             <li>Translated complex product specifications for Varian microspheres into clear technical briefings to educate clients on their targeted applications in cancer therapies.</li>
                         </ul>
                         <!-- ALBUM SCROLL FEATURE -->
-                        <div class="carousel-container">
-                            <button class="carousel-btn prev" aria-label="Previous image">❮</button>
-                            <button class="carousel-btn next" aria-label="Next image">❯</button>
-                            <div class="carousel-track">
-                                <div class="carousel-slide">
-                                    <img src="Premier Photo 1.png" alt="Surgery Photo 1">
-                                    <div class="carousel-caption">Behind the scenes of a surgical operation.</div>
-                                </div>
-                                <div class="carousel-slide">
-                                    <img src="Premier Photo 2.png" alt="Surgery Photo 2">
-                                    <div class="carousel-caption">Monitoring real-time patient analytics.</div>
-                                </div>
-                                <div class="carousel-slide">
-                                    <img src="Premier Photo 3.png" alt="Surgery Photo 3">
-                                    <div class="carousel-caption">Setting up and calibrating the V-PROBE system.</div>
-                                </div>
-                            </div>
-                        </div>
+<div class="carousel-container">
+    <button class="carousel-btn prev" aria-label="Previous image">❮</button>
+    <button class="carousel-btn next" aria-label="Next image">❯</button>
+    <div class="carousel-track">
+        <div class="carousel-slide">
+            <img src="Premier Photo 1.png" alt="Surgery Photo 1">
+            <div class="carousel-caption">Behind the scenes of a surgical operation.</div>
+        </div>
+        <div class="carousel-slide">
+            <img src="Premier Photo 2.png" alt="Surgery Photo 2">
+            <div class="carousel-caption">Behind the scenes</div>
+        </div>
+        <div class="carousel-slide">
+            <img src="Premier Photo 3.png" alt="Surgery Photo 3">
+            <div class="carousel-caption">Setting up</div>
+        </div>
+    </div>
+</div>
                     </div>
                 </section>
 
