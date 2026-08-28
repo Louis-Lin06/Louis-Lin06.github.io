@@ -181,6 +181,11 @@
             box-shadow: 0 4px 6px rgba(0,0,0,0.1); 
             transition: all 0.2s; 
             z-index: 10; /* Ensures the buttons sit on top of the images and register clicks */
+            
+        }
+        .carousel-btn.hidden { 
+            opacity: 0; 
+            pointer-events: none; 
         }
         
         .carousel-btn:hover { 
@@ -375,18 +380,35 @@
             sections.forEach(section => { if (scrollY >= (section.offsetTop - 150)) current = section.getAttribute('id'); });
             tocLinks.forEach(link => { link.classList.remove('active'); if (link.getAttribute('href') === `#${current}`) link.classList.add('active'); });
         });
-        // Carousel functionality
+       // Carousel functionality
         const carousels = document.querySelectorAll('.carousel-container');
         carousels.forEach(carousel => {
             const track = carousel.querySelector('.carousel-track');
             const prevBtn = carousel.querySelector('.prev');
             const nextBtn = carousel.querySelector('.next');
-            const slide = carousel.querySelector('.carousel-slide'); // Targets a single slide for precise width
+            const slide = carousel.querySelector('.carousel-slide');
 
             if (track && prevBtn && nextBtn && slide) {
+                
+                // Function to check scroll position and hide/show buttons
+                const updateButtonVisibility = () => {
+                    // Hide 'prev' button if at the very beginning
+                    if (track.scrollLeft <= 0) {
+                        prevBtn.classList.add('hidden');
+                    } else {
+                        prevBtn.classList.remove('hidden');
+                    }
+
+                    // Hide 'next' button if at the very end (using Math.ceil to account for fractional pixels)
+                    if (Math.ceil(track.scrollLeft + track.clientWidth) >= track.scrollWidth) {
+                        nextBtn.classList.add('hidden');
+                    } else {
+                        nextBtn.classList.remove('hidden');
+                    }
+                };
+
                 prevBtn.addEventListener('click', (e) => {
                     e.preventDefault();
-                    // Calculates the exact width of your photo so it scrolls perfectly to the next one
                     track.scrollBy({ left: -slide.clientWidth, behavior: 'smooth' });
                 });
 
@@ -394,6 +416,12 @@
                     e.preventDefault();
                     track.scrollBy({ left: slide.clientWidth, behavior: 'smooth' });
                 });
+
+                // Listen for any scrolling (manual swipes or button clicks) to update the arrows
+                track.addEventListener('scroll', updateButtonVisibility);
+
+                // Run immediately on page load to hide the left arrow on image 1
+                updateButtonVisibility();
             }
         });
     </script>
