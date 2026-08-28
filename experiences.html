@@ -112,6 +112,84 @@
             .toc-link { padding-left: 0.75rem; border-left: 2px solid transparent; padding-top: 0.25rem; padding-bottom: 0.25rem; font-size: 1rem; margin-left: 0; }
             .toc-year-label { padding-left: 0.75rem; font-size: 0.85rem; margin-top: 1.5rem; color: var(--text-main); }
         }
+        /* Carousel Styles - Single Item Album Scroll */
+        .carousel-container { 
+            position: relative; 
+            max-width: 550px; /* Keeps the album at a readable, specific size */
+            margin-top: 2rem; 
+            margin-left: 1.25rem; 
+            border-radius: 8px; 
+            overflow: hidden; 
+            border: 1px solid var(--border); 
+            background: var(--bg-surface); 
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        
+        .carousel-track { 
+            display: flex; 
+            overflow-x: auto; 
+            scroll-snap-type: x mandatory; 
+            scrollbar-width: none; /* Hides scrollbar in Firefox */
+            -ms-overflow-style: none; /* Hides scrollbar in IE/Edge */
+            scroll-behavior: smooth; 
+        }
+        
+        .carousel-track::-webkit-scrollbar { 
+            display: none; /* Hides scrollbar in Chrome/Safari */
+        }
+        
+        .carousel-slide { 
+            flex: 0 0 100%; /* Forces exactly ONE image to show at a time */
+            width: 100%; 
+            scroll-snap-align: center; 
+            display: flex; 
+            flex-direction: column; 
+        }
+        
+        .carousel-slide img { 
+            width: 100%; 
+            height: 350px; 
+            object-fit: contain; /* Ensures 100% of the image is visible without cropping */
+            background-color: #1a1a1a; /* Dark backdrop for a cinematic album feel */
+        }
+        
+        .carousel-caption { 
+            padding: 1rem; 
+            font-size: 0.9rem; 
+            color: var(--text-main); 
+            text-align: center; 
+            font-weight: 500; 
+            background: var(--bg-surface);
+            border-top: 1px solid var(--border);
+        }
+        
+        .carousel-btn { 
+            position: absolute; 
+            top: calc(50% - 2.5rem); /* Centered on the image, ignoring the caption */
+            transform: translateY(-50%); 
+            background: rgba(255, 255, 255, 0.9); 
+            border: 1px solid var(--border); 
+            color: var(--text-main); 
+            width: 40px; 
+            height: 40px; 
+            border-radius: 50%; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            cursor: pointer; 
+            font-size: 1.2rem; 
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1); 
+            transition: all 0.2s; 
+            z-index: 2; 
+        }
+        
+        .carousel-btn:hover { 
+            background: var(--text-main); 
+            color: white; 
+        }
+        
+        .carousel-btn.prev { left: 0.75rem; }
+        .carousel-btn.next { right: 0.75rem; }
     </style>
 </head>
 <body>
@@ -230,11 +308,11 @@
                                 </div>
                                 <div class="carousel-slide">
                                     <img src="Premier Photo 2.png" alt="Surgery Photo 2">
-                                    <div class="carousel-caption">Behind the scenes</div>
+                                    <div class="carousel-caption">Monitoring real-time patient analytics.</div>
                                 </div>
                                 <div class="carousel-slide">
                                     <img src="Premier Photo 3.png" alt="Surgery Photo 3">
-                                    <div class="carousel-caption">Setting up</div>
+                                    <div class="carousel-caption">Setting up and calibrating the V-PROBE system.</div>
                                 </div>
                             </div>
                         </div>
