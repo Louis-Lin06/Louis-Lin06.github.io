@@ -124,7 +124,26 @@
 
         /* Time Axis (X-Axis) */
         .gantt-axis { display: contents; }
-        .gantt-year { border-bottom: 2px solid var(--border); padding-bottom: 0.5rem; font-size: 0.95rem; font-weight: 600; color: var(--text-main); text-align: left; padding-left: 0.5rem; margin-bottom: 0.25rem; }
+        
+        .gantt-year { 
+            border-bottom: 2px solid var(--border); 
+            padding-bottom: 0.5rem; 
+            margin-bottom: 0.25rem; 
+        }
+        
+        /* Sticky Year Text */
+        .gantt-year span {
+            position: sticky;
+            left: 0.5rem; 
+            font-size: 0.95rem; 
+            font-weight: 600; 
+            color: var(--text-main); 
+            background: rgba(249, 250, 251, 0.9); 
+            padding: 0.1rem 0.5rem;
+            border-radius: 4px;
+            z-index: 5;
+        }
+
         .gantt-month { font-size: 0.7rem; font-weight: 500; color: var(--text-muted); text-align: center; text-transform: uppercase; margin-bottom: 1rem; }
 
         /* Vertical Grid Lines */
@@ -154,14 +173,14 @@
 
         .track-label span {
             position: sticky;
-            left: 0; /* Keeps the text glued to the left edge of the scroll window */
+            left: 0; 
             padding: 0.6rem 1rem;
             font-size: 0.8rem;
             text-transform: uppercase;
             letter-spacing: 0.08em;
             font-weight: 700;
             z-index: 5;
-            backdrop-filter: blur(4px); /* subtle blur effect on mobile */
+            backdrop-filter: blur(4px); 
         }
 
         .track-label.blue span { color: var(--blue-accent); }
@@ -254,15 +273,15 @@
         <section class="timeline-section">
             <div class="timeline-header">
                 <h2>My Engineering Progression</h2>
-                <div class="swipe-hint">Swipe to explore <span>➔</span></div>
+                <div class="swipe-hint">Swipe to explore <span>←</span></div>
             </div>
 
             <div class="gantt-scroll-wrapper" id="timelineScroll">
                 <div class="gantt-grid">
                     
-                    <div class="gantt-year" style="grid-column: 1 / 13; grid-row: 1;">2024</div>
-                    <div class="gantt-year" style="grid-column: 13 / 25; grid-row: 1;">2025</div>
-                    <div class="gantt-year" style="grid-column: 25 / 37; grid-row: 1;">2026</div>
+                    <div class="gantt-year" style="grid-column: 1 / 13; grid-row: 1;"><span>2024</span></div>
+                    <div class="gantt-year" style="grid-column: 13 / 25; grid-row: 1;"><span>2025</span></div>
+                    <div class="gantt-year" style="grid-column: 25 / 37; grid-row: 1;"><span>2026</span></div>
                     
                     <div class="gantt-month" style="grid-column: 1; grid-row: 2;">Jan</div><div class="gantt-month" style="grid-column: 2; grid-row: 2;">Feb</div><div class="gantt-month" style="grid-column: 3; grid-row: 2;">Mar</div>
                     <div class="gantt-month" style="grid-column: 4; grid-row: 2;">Apr</div><div class="gantt-month" style="grid-column: 5; grid-row: 2;">May</div><div class="gantt-month" style="grid-column: 6; grid-row: 2;">Jun</div>
@@ -315,44 +334,4 @@
                         <span class="bar-subtitle">Production Operations Specialist</span>
                     </a>
                     
-                    <a href="experiences.html#roche" class="gantt-bar bar-job" style="grid-column: 25 / 29; grid-row: 7;">
-                        <span class="bar-title">Roche</span>
-                        <span class="bar-subtitle">Pharma Technical (Quality) Intern</span>
-                    </a>
-
-                    <a href="experiences.html#hygea" class="gantt-bar bar-job" style="grid-column: 33 / 37; grid-row: 7;">
-                        <span class="bar-title">Hygea Medical</span>
-                        <span class="bar-subtitle">Mechanical Engineering Intern</span>
-                    </a>
-
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <div class="footer-content">
-            <span>© 2026 Louis Lin</span>
-            <span>Built with GitHub Pages</span>
-        </div>
-    </footer>
-
-    <script>
-        // Mobile Menu Toggle
-        document.querySelector('.mobile-menu-btn').addEventListener('click', () => {
-            document.querySelector('.nav-links').classList.toggle('active');
-        });
-
-        // Auto-scroll timeline to the right (Present / 2026) on page load with a slight delay for mobile rendering
-        window.addEventListener('load', () => {
-            const wrapper = document.getElementById('timelineScroll');
-            if (wrapper) {
-                setTimeout(() => {
-                    wrapper.scrollLeft = wrapper.scrollWidth;
-                }, 100); // 100ms delay ensures CSS grid has fully loaded on mobile devices before jumping
-            }
-        });
-    </script>
-
-</body>
-</html>
+                    <a href="experiences.html#roche
