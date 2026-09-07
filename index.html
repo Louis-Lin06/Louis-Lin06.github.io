@@ -273,7 +273,7 @@
         <section class="timeline-section">
             <div class="timeline-header">
                 <h2>My Engineering Progression</h2>
-                <div class="swipe-hint">Swipe to explore <span>←</span></div>
+                <div class="swipe-hint">Swipe to explore <span>➔</span></div>
             </div>
 
             <div class="gantt-scroll-wrapper" id="timelineScroll">
@@ -334,4 +334,44 @@
                         <span class="bar-subtitle">Production Operations Specialist</span>
                     </a>
                     
-                    <a href="experiences.html#roche
+                    <a href="experiences.html#roche" class="gantt-bar bar-job" style="grid-column: 25 / 29; grid-row: 7;">
+                        <span class="bar-title">Roche</span>
+                        <span class="bar-subtitle">Pharma Technical (Quality) Intern</span>
+                    </a>
+
+                    <a href="experiences.html#hygea" class="gantt-bar bar-job" style="grid-column: 33 / 37; grid-row: 7;">
+                        <span class="bar-title">Hygea Medical</span>
+                        <span class="bar-subtitle">Mechanical Engineering Intern</span>
+                    </a>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <span>© 2026 Louis Lin</span>
+            <span>Built with GitHub Pages</span>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        document.querySelector('.mobile-menu-btn').addEventListener('click', () => {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+
+        // Auto-scroll timeline to the right (Present / 2026) on page load with a slight delay for mobile rendering
+        window.addEventListener('load', () => {
+            const wrapper = document.getElementById('timelineScroll');
+            if (wrapper) {
+                setTimeout(() => {
+                    wrapper.scrollLeft = wrapper.scrollWidth;
+                }, 100); // 100ms delay ensures CSS grid has fully loaded on mobile devices before jumping
+            }
+        });
+    </script>
+
+</body>
+</html>
