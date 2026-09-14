@@ -29,6 +29,12 @@
             flex-direction: column; 
             min-height: 100vh; 
         }
+
+        /* Stops background scrolling when modal is open */
+        body.modal-open {
+            overflow: hidden;
+            height: 100vh;
+        }
         
         :focus:not(:focus-visible) { outline: none; }
         :focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 3px; border-radius: 4px; }
@@ -69,14 +75,16 @@
         .btn-download:hover { opacity: 0.9; transform: translateY(-2px); }
         .btn-download svg { width: 1.25rem; height: 1.25rem; }
 
-        /* Resume Modal Styles */
+        /* Resume Modal Styles - iOS Optimized */
         .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(17, 24, 39, 0.75); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); display: flex; align-items: center; justify-content: center; z-index: 1000; opacity: 0; pointer-events: none; transition: opacity 0.2s ease; }
         .modal-overlay.active { opacity: 1; pointer-events: auto; }
         .modal-content { background: var(--bg-page); width: 95%; max-width: 900px; height: 85vh; border-radius: 12px; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1); transform: translateY(20px); transition: transform 0.2s ease; }
         .modal-overlay.active .modal-content { transform: translateY(0); }
         .modal-header { padding: 1rem 1.5rem; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; background: var(--bg-surface); }
-        .modal-body { flex: 1; width: 100%; background: #e5e7eb; position: relative; }
-        .modal-body iframe { width: 100%; height: 100%; border: none; position: relative; z-index: 2; }
+        
+        /* Enables mobile momentum scrolling specifically inside the PDF viewer */
+        .modal-body { flex: 1; width: 100%; background: #e5e7eb; position: relative; overflow: auto; -webkit-overflow-scrolling: touch; }
+        .modal-body iframe { width: 100%; height: 100%; min-height: 80vh; border: none; position: relative; z-index: 2; display: block; }
         .placeholder-text { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: var(--text-muted); font-weight: 500; z-index: 1; text-align: center; padding: 0 20px; }
 
         /* Year Divider inside the timeline */
@@ -280,7 +288,7 @@
                     <div class="job-desc">
                         <ul>
                             <li>Engineered Python simulations to model theoretical ice ball growth geometries within tissue phantoms, calculating surrounding power dissipation and evaluating phase-change thermodynamics.</li>
-                            <li>Conducted comparative performance testing on current-generation cryogenic needles in gelatin phantoms to evaluate freezing efficiency, internal temperature gradients, and maximum volumetric size</li>
+                            <li>Conducted comparative performance testing on current-generation cryogenic needles in gelatin phantoms to evaluate freezing efficiency, internal temperature gradients, and maximum volumetric size.</li>
                             <li>Analyzed experimental thermodynamic data to formulate heat loss equations and determine the effective treatment volume of cryogenic devices, establishing baseline metrics to guide future hardware optimizations.</li>
                         </ul>
                     </div>
@@ -436,7 +444,8 @@
             </div>
             <div class="modal-body">
                 <div class="placeholder-text">Loading PDF...</div>
-                <iframe src="Louis Lin Resume - Technical.pdf" title="Louis Lin Resume"></iframe>
+                <!-- Appended #view=FitH to encourage mobile browsers to fit the width automatically -->
+                <iframe src="Louis Lin Resume - Technical.pdf#view=FitH" title="Louis Lin Resume"></iframe>
             </div>
         </div>
     </div>
@@ -507,16 +516,26 @@
             }
         });
 
-        // Resume Modal Functionality
+        // Resume Modal Functionality - Updated to lock background scroll
         const resumeModal = document.getElementById('resumeModal');
         const openBtn = document.getElementById('openResumeModal');
         const closeBtn = document.getElementById('closeResumeModal');
 
-        openBtn.addEventListener('click', () => resumeModal.classList.add('active'));
-        closeBtn.addEventListener('click', () => resumeModal.classList.remove('active'));
+        const openModal = () => {
+            resumeModal.classList.add('active');
+            document.body.classList.add('modal-open'); // Locks the background
+        };
+
+        const closeModal = () => {
+            resumeModal.classList.remove('active');
+            document.body.classList.remove('modal-open'); // Unlocks the background
+        };
+
+        openBtn.addEventListener('click', openModal);
+        closeBtn.addEventListener('click', closeModal);
         
-        resumeModal.addEventListener('click', (e) => { if (e.target === resumeModal) resumeModal.classList.remove('active'); });
-        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') resumeModal.classList.remove('active'); });
+        resumeModal.addEventListener('click', (e) => { if (e.target === resumeModal) closeModal(); });
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
     </script>
 </body>
 </html>
