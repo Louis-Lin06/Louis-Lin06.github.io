@@ -30,12 +30,6 @@
             min-height: 100vh; 
         }
 
-        /* Stops background scrolling when modal is open */
-        body.modal-open {
-            overflow: hidden;
-            height: 100vh;
-        }
-        
         :focus:not(:focus-visible) { outline: none; }
         :focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 3px; border-radius: 4px; }
         
@@ -75,16 +69,35 @@
         .btn-download:hover { opacity: 0.9; transform: translateY(-2px); }
         .btn-download svg { width: 1.25rem; height: 1.25rem; }
 
-        /* Resume Modal Styles - iOS Optimized */
-        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(17, 24, 39, 0.75); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); display: flex; align-items: center; justify-content: center; z-index: 1000; opacity: 0; pointer-events: none; transition: opacity 0.2s ease; }
+        /* Resume Modal Styles - Centered Fix for iPads */
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(17, 24, 39, 0.75); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); display: flex; align-items: center; justify-content: center; z-index: 1000; opacity: 0; pointer-events: none; transition: opacity 0.2s ease; overscroll-behavior: contain; }
         .modal-overlay.active { opacity: 1; pointer-events: auto; }
         .modal-content { background: var(--bg-page); width: 95%; max-width: 900px; height: 85vh; border-radius: 12px; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1); transform: translateY(20px); transition: transform 0.2s ease; }
         .modal-overlay.active .modal-content { transform: translateY(0); }
-        .modal-header { padding: 1rem 1.5rem; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; background: var(--bg-surface); }
+        .modal-header { padding: 1rem 1.5rem; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; background: var(--bg-surface); z-index: 10; }
         
-        /* Enables mobile momentum scrolling specifically inside the PDF viewer */
-        .modal-body { flex: 1; width: 100%; background: #e5e7eb; position: relative; overflow: auto; -webkit-overflow-scrolling: touch; }
-        .modal-body iframe { width: 100%; height: 100%; min-height: 80vh; border: none; position: relative; z-index: 2; display: block; }
+        .modal-body { flex: 1; width: 100%; background: #e5e7eb; position: relative; overflow: hidden; }
+        
+        /* Centering the iframe specifically to fix iOS Safari left-alignment */
+        .iframe-wrapper { 
+            position: absolute; top: 0; left: 0; right: 0; bottom: 0; 
+            overflow-y: auto; overflow-x: hidden; 
+            -webkit-overflow-scrolling: touch; 
+            display: flex; 
+            justify-content: center; 
+        }
+        
+        /* Capping the iframe at 850px forces it to center within the gray wrapper */
+        .iframe-wrapper iframe { 
+            width: 100%; 
+            max-width: 850px; 
+            height: 100%; 
+            border: none; 
+            display: block; 
+            background: white;
+            box-shadow: 0 0 15px rgba(0,0,0,0.05);
+        }
+        
         .placeholder-text { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: var(--text-muted); font-weight: 500; z-index: 1; text-align: center; padding: 0 20px; }
 
         /* Year Divider inside the timeline */
@@ -210,6 +223,10 @@
             .job-desc ul { margin-left: 1rem; }
             
             .btn-download { width: 100%; padding: 0.85rem; }
+
+            /* Forces Modal to occupy entire screen on mobile for max PDF space */
+            .modal-content { width: 100%; height: 100dvh; max-height: 100dvh; border-radius: 0; }
+            .modal-header { padding: 1rem; }
 
             .carousel-container { width: 100%; max-width: 100%; min-width: 0; margin-left: 0; border-radius: 6px; }
             .carousel-slide img { height: 220px; }
@@ -444,8 +461,10 @@
             </div>
             <div class="modal-body">
                 <div class="placeholder-text">Loading PDF...</div>
-                <!-- Appended #view=FitH to encourage mobile browsers to fit the width automatically -->
-                <iframe src="Louis Lin Resume - Technical.pdf#view=FitH" title="Louis Lin Resume"></iframe>
+                <!-- Iframe wrapper uses Flexbox to perfectly center the PDF internally -->
+                <div class="iframe-wrapper">
+                    <iframe src="Louis Lin Resume - Technical.pdf#view=FitH" title="Louis Lin Resume"></iframe>
+                </div>
             </div>
         </div>
     </div>
@@ -516,19 +535,26 @@
             }
         });
 
-        // Resume Modal Functionality - Updated to lock background scroll
+        // Resume Modal Functionality - Guaranteed iOS Background Lock
         const resumeModal = document.getElementById('resumeModal');
         const openBtn = document.getElementById('openResumeModal');
         const closeBtn = document.getElementById('closeResumeModal');
+        let scrollPosition = 0;
 
         const openModal = () => {
+            scrollPosition = window.scrollY;
+            document.body.style.position = 'fixed';
+            document.body.style.top = `-${scrollPosition}px`;
+            document.body.style.width = '100%';
             resumeModal.classList.add('active');
-            document.body.classList.add('modal-open'); // Locks the background
         };
 
         const closeModal = () => {
             resumeModal.classList.remove('active');
-            document.body.classList.remove('modal-open'); // Unlocks the background
+            document.body.style.position = '';
+            document.body.style.top = '';
+            document.body.style.width = '';
+            window.scrollTo(0, scrollPosition);
         };
 
         openBtn.addEventListener('click', openModal);
