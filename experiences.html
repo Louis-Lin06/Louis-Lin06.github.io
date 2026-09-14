@@ -22,6 +22,7 @@
             display: flex; 
             flex-direction: column; 
             min-height: 100vh; 
+            overflow-x: hidden; /* Prevents entire page from sliding side-to-side on mobile */
         }
         
         :focus:not(:focus-visible) { outline: none; }
@@ -58,10 +59,20 @@
         .page-header { margin-bottom: 4rem; border-bottom: 1px solid var(--border); padding-bottom: 2rem; display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 1.5rem; }
         .page-header-text h1 { font-size: 2.5rem; font-weight: 600; letter-spacing: -0.03em; margin-bottom: 0.5rem; }
         
-        /* Download Resume Button */
-        .btn-download { display: inline-flex; align-items: center; gap: 0.5rem; background-color: var(--text-main); color: white !important; padding: 0.75rem 1.5rem; border-radius: 8px; font-weight: 500; font-size: 0.95rem; text-decoration: none; transition: opacity 0.2s, transform 0.2s; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        /* Modal & Resume Buttons */
+        .btn-download { display: inline-flex; justify-content: center; align-items: center; gap: 0.5rem; background-color: var(--text-main); color: white !important; padding: 0.75rem 1.5rem; border-radius: 8px; font-weight: 500; font-size: 0.95rem; text-decoration: none; transition: opacity 0.2s, transform 0.2s; box-shadow: 0 4px 6px rgba(0,0,0,0.1); cursor: pointer; border: none; }
         .btn-download:hover { opacity: 0.9; transform: translateY(-2px); }
         .btn-download svg { width: 1.25rem; height: 1.25rem; }
+
+        /* Resume Modal Styles */
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(17, 24, 39, 0.75); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); display: flex; align-items: center; justify-content: center; z-index: 1000; opacity: 0; pointer-events: none; transition: opacity 0.2s ease; }
+        .modal-overlay.active { opacity: 1; pointer-events: auto; }
+        .modal-content { background: var(--bg-page); width: 95%; max-width: 900px; height: 85vh; border-radius: 12px; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1); transform: translateY(20px); transition: transform 0.2s ease; }
+        .modal-overlay.active .modal-content { transform: translateY(0); }
+        .modal-header { padding: 1rem 1.5rem; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; background: var(--bg-surface); }
+        .modal-body { flex: 1; width: 100%; background: #e5e7eb; position: relative; }
+        .modal-body iframe { width: 100%; height: 100%; border: none; position: relative; z-index: 2; }
+        .placeholder-text { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: var(--text-muted); font-weight: 500; z-index: 1; text-align: center; padding: 0 20px; }
 
         /* Year Divider inside the timeline */
         .year-header { font-size: 1.5rem; font-weight: 700; color: var(--text-main); padding-left: 1.5rem; border-left: 2px solid var(--border); position: relative; padding-bottom: 1.5rem; }
@@ -75,9 +86,93 @@
         .job-role { font-size: 0.95rem; color: var(--text-muted); margin-bottom: 1rem; font-weight: 500; }
         
         /* Job Description Bullets */
-        .job-desc { font-size: 1rem; color: var(--text-muted); max-width: 750px; }
+        .job-desc { font-size: 1rem; color: var(--text-muted); max-width: 750px; word-wrap: break-word; }
         .job-desc ul { margin-left: 1.25rem; margin-top: 0.5rem; }
         .job-desc li { margin-bottom: 0.5rem; }
+
+        /* Carousel Styles - Single Item Album Scroll */
+        .carousel-container { 
+            position: relative; 
+            max-width: 550px; 
+            margin-top: 2rem; 
+            margin-left: 1.25rem; 
+            border-radius: 8px; 
+            overflow: hidden; 
+            border: 1px solid var(--border); 
+            background: var(--bg-surface); 
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        
+        .carousel-track { 
+            display: flex; 
+            overflow-x: auto; 
+            scroll-snap-type: x mandatory; 
+            scrollbar-width: none; 
+            -ms-overflow-style: none; 
+            scroll-behavior: smooth; 
+        }
+        
+        .carousel-track::-webkit-scrollbar { 
+            display: none; 
+        }
+        
+        .carousel-slide { 
+            flex: 0 0 100%; 
+            width: 100%; 
+            scroll-snap-align: center; 
+            display: flex; 
+            flex-direction: column; 
+        }
+        
+        .carousel-slide img { 
+            width: 100%; 
+            height: 350px; 
+            object-fit: contain; 
+            background-color: #1a1a1a; 
+        }
+        
+        .carousel-caption { 
+            padding: 1rem; 
+            font-size: 0.9rem; 
+            color: var(--text-main); 
+            text-align: center; 
+            font-weight: 500; 
+            background: var(--bg-surface);
+            border-top: 1px solid var(--border);
+        }
+        
+        .carousel-btn { 
+            position: absolute; 
+            top: calc(50% - 2.5rem); 
+            transform: translateY(-50%); 
+            background: rgba(255, 255, 255, 0.9); 
+            border: 1px solid var(--border); 
+            color: var(--text-main); 
+            width: 40px; 
+            height: 40px; 
+            border-radius: 50%; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            cursor: pointer; 
+            font-size: 1.2rem; 
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1); 
+            transition: all 0.2s; 
+            z-index: 10; 
+        }
+        
+        .carousel-btn.hidden { 
+            opacity: 0; 
+            pointer-events: none; 
+        }
+        
+        .carousel-btn:hover { 
+            background: var(--text-main); 
+            color: white; 
+        }
+        
+        .carousel-btn.prev { left: 0.75rem; }
+        .carousel-btn.next { right: 0.75rem; }
 
         /* Certifications Grid */
         .cert-panel { margin-top: 6rem; scroll-margin-top: 100px; }
@@ -95,9 +190,23 @@
             .mobile-menu-btn { display: block; }
             .nav-links { display: none; flex-direction: column; width: 100%; position: absolute; top: 100%; left: 0; background: rgba(255,255,255,0.98); border-bottom: 1px solid var(--border); padding: 1.5rem; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
             .nav-links.active { display: flex; }
-            .page-wrapper { grid-template-columns: 1fr; gap: 2rem; }
             
-            .page-header { flex-direction: column; align-items: flex-start; }
+            /* Squeeze the grid to 1 column and shrink outer padding */
+            .page-wrapper { grid-template-columns: 1fr; gap: 2rem; padding: 2rem 1rem; }
+            
+            /* Text sizing fixes to stop cutoff */
+            .page-header { flex-direction: column; align-items: flex-start; gap: 1.25rem; }
+            .page-header-text h1 { font-size: 2rem; line-height: 1.2; }
+            .job-company { font-size: 1.15rem; line-height: 1.3; margin-bottom: 0.25rem; }
+            .job-role { font-size: 0.85rem; line-height: 1.4; }
+            .job-desc { font-size: 0.95rem; }
+            
+            /* Make the download button span full width so it's a huge touch target */
+            .btn-download { width: 100%; }
+
+            /* Crucial: Pull the carousel flush left and stop it from overflowing the screen */
+            .carousel-container { margin-left: 0; width: 100%; max-width: 100%; }
+            .carousel-slide img { height: 250px; } /* Slightly shorter images so they fit nicely */
 
             .mobile-toc-btn { display: flex; align-items: center; justify-content: center; gap: 0.5rem; position: fixed; bottom: 1.5rem; right: 1.5rem; background-color: var(--text-main); color: white; border: none; padding: 0.75rem 1.25rem; border-radius: 99px; font-weight: 600; font-size: 0.9rem; z-index: 90; box-shadow: 0 4px 12px rgba(0,0,0,0.2); cursor: pointer; transition: transform 0.2s; }
             .mobile-toc-btn:active { transform: scale(0.95); }
@@ -112,89 +221,6 @@
             .toc-link { padding-left: 0.75rem; border-left: 2px solid transparent; padding-top: 0.25rem; padding-bottom: 0.25rem; font-size: 1rem; margin-left: 0; }
             .toc-year-label { padding-left: 0.75rem; font-size: 0.85rem; margin-top: 1.5rem; color: var(--text-main); }
         }
-       /* Carousel Styles - Single Item Album Scroll */
-        .carousel-container { 
-            position: relative; 
-            max-width: 550px; /* Keeps the album at a specific, readable size */
-            margin-top: 2rem; 
-            margin-left: 1.25rem; 
-            border-radius: 8px; 
-            overflow: hidden; 
-            border: 1px solid var(--border); 
-            background: var(--bg-surface); 
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-        }
-        
-        .carousel-track { 
-            display: flex; 
-            overflow-x: auto; 
-            scroll-snap-type: x mandatory; 
-            scrollbar-width: none; /* Hides scrollbar in Firefox */
-            -ms-overflow-style: none; /* Hides scrollbar in IE/Edge */
-            scroll-behavior: smooth; 
-        }
-        
-        .carousel-track::-webkit-scrollbar { 
-            display: none; /* Hides scrollbar in Chrome/Safari */
-        }
-        
-        .carousel-slide { 
-            flex: 0 0 100%; /* Forces exactly ONE image to show at a time */
-            width: 100%; 
-            scroll-snap-align: center; 
-            display: flex; 
-            flex-direction: column; 
-        }
-        
-        .carousel-slide img { 
-            width: 100%; 
-            height: 350px; 
-            object-fit: contain; /* Ensures 100% of the image is visible without cropping */
-            background-color: #1a1a1a; /* Dark cinematic backdrop for the uncropped edges */
-        }
-        
-        .carousel-caption { 
-            padding: 1rem; 
-            font-size: 0.9rem; 
-            color: var(--text-main); 
-            text-align: center; 
-            font-weight: 500; 
-            background: var(--bg-surface);
-            border-top: 1px solid var(--border);
-        }
-        
-        .carousel-btn { 
-            position: absolute; 
-            top: calc(50% - 2.5rem); /* Centered on the image, ignoring the caption */
-            transform: translateY(-50%); 
-            background: rgba(255, 255, 255, 0.9); 
-            border: 1px solid var(--border); 
-            color: var(--text-main); 
-            width: 40px; 
-            height: 40px; 
-            border-radius: 50%; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            cursor: pointer; 
-            font-size: 1.2rem; 
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1); 
-            transition: all 0.2s; 
-            z-index: 10; /* Ensures the buttons sit on top of the images and register clicks */
-            
-        }
-        .carousel-btn.hidden { 
-            opacity: 0; 
-            pointer-events: none; 
-        }
-        
-        .carousel-btn:hover { 
-            background: var(--text-main); 
-            color: white; 
-        }
-        
-        .carousel-btn.prev { left: 0.75rem; }
-        .carousel-btn.next { right: 0.75rem; }
     </style>
 </head>
 <body>
@@ -237,11 +263,12 @@
                     <h1>Professional Experience</h1>
                     <p style="color: var(--text-muted);">Engineering internships and technical operations.</p>
                 </div>
-                <!-- REMEMBER: Change 'Louis_Lin_Resume.pdf' to match the actual file you upload to GitHub -->
-                <a href="Louis_Lin_Resume.pdf" target="_blank" class="btn-download">
-                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v12m0 0l-4-4m4 4l4-4M5 20h14"></path></svg>
-                    Download Resume
-                </a>
+                
+                <!-- This button opens the popup instead of downloading instantly -->
+                <button id="openResumeModal" class="btn-download">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+                    Preview Resume
+                </button>
             </div>
 
             <div class="history-column">
@@ -256,12 +283,11 @@
                     <div class="job-desc">
                         <ul>
                             <li>Incoming in September</li>
-                            <li></li>
                         </ul>
                     </div>
                 </section>
 
-               <!-- ROCHE -->
+                <!-- ROCHE -->
                 <section class="job-section" id="roche">
                     <div class="job-company">Roche</div>
                     <div class="job-role">Pharma Technical (Quality) Intern | Mississauga, Canada · Jan 2026 - Apr 2026</div>
@@ -272,7 +298,7 @@
                             <li>Developed an automated JavaScript API pipeline bridging Google Sheets and Monday.com, eliminating manual data entry latency and instantly processing 15+ daily project tracking updates.</li>
                             <li>Authored standardized operating procedures (SOPs) and visual video walkthroughs to automate technical onboarding, significantly reducing the learning curve for incoming engineering cohorts.</li>
                         </ul>
-                  <!-- ALBUM SCROLL FEATURE -->
+                        <!-- ALBUM SCROLL FEATURE -->
                         <div class="carousel-container">
                             <button class="carousel-btn prev" aria-label="Previous image">❮</button>
                             <button class="carousel-btn next" aria-label="Next image">❯</button>
@@ -305,7 +331,7 @@
                 <!-- 2025 HEADER -->
                 <div class="year-header">2025</div>
 
-               <!-- AIRBOSS -->
+                <!-- AIRBOSS -->
                 <section class="job-section" id="airboss">
                     <div class="job-company">AirBoss of America</div>
                     <div class="job-role">Production Operation Specialist | Kitchener, Canada · May 2025 - Aug 2025</div>
@@ -350,30 +376,30 @@
                             <li>Translated complex product specifications for Varian microspheres into clear technical briefings to educate clients on their targeted applications in cancer therapies.</li>
                         </ul>
                         <!-- ALBUM SCROLL FEATURE -->
-<div class="carousel-container">
-    <button class="carousel-btn prev" aria-label="Previous image">❮</button>
-    <button class="carousel-btn next" aria-label="Next image">❯</button>
-    <div class="carousel-track">
-        <div class="carousel-slide">
-            <img src="Premier Photo 1.png" alt="Surgery Photo 1">
-            <div class="carousel-caption">Behind the scenes of a surgical operation.</div>
-        </div>
-        <div class="carousel-slide">
-            <img src="Premier Photo 2.png" alt="Surgery Photo 2">
-            <div class="carousel-caption">Behind the scenes</div>
-        </div>
-        <div class="carousel-slide">
-            <img src="Premier Photo 3.png" alt="Surgery Photo 3">
-            <div class="carousel-caption">Setting up</div>
-        </div>
-    </div>
-</div>
+                        <div class="carousel-container">
+                            <button class="carousel-btn prev" aria-label="Previous image">❮</button>
+                            <button class="carousel-btn next" aria-label="Next image">❯</button>
+                            <div class="carousel-track">
+                                <div class="carousel-slide">
+                                    <img src="Premier Photo 1.png" alt="Surgery Photo 1">
+                                    <div class="carousel-caption">Behind the scenes of a surgical operation.</div>
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src="Premier Photo 2.png" alt="Surgery Photo 2">
+                                    <div class="carousel-caption">Behind the scenes</div>
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src="Premier Photo 3.png" alt="Surgery Photo 3">
+                                    <div class="carousel-caption">Setting up</div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </section>
 
             </div>
 
-           <!-- CERTIFICATIONS SECTION -->
+            <!-- CERTIFICATIONS SECTION -->
             <section class="cert-panel" id="certs">
                 <h3>Licenses & Certifications</h3>
                 <div class="cert-grid">
@@ -397,6 +423,26 @@
             </section>
             
         </main>
+    </div>
+
+    <!-- Resume Preview Modal -->
+    <div class="modal-overlay" id="resumeModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 style="font-size: 1.1rem; margin: 0;">Resume Preview</h2>
+                <div style="display: flex; gap: 1rem; align-items: center;">
+                    <!-- The actual download link inside the popup -->
+                    <a href="Louis_Lin_Resume.pdf" download class="btn-linkedin" style="padding: 0.4rem 1rem; text-decoration: none; font-size: 0.85rem;">Download PDF</a>
+                    <button id="closeResumeModal" style="background: none; border: none; font-size: 1.75rem; cursor: pointer; color: var(--text-muted); line-height: 1;">&times;</button>
+                </div>
+            </div>
+            <div class="modal-body">
+                <!-- Fallback text while you are working on the resume -->
+                <div class="placeholder-text">Resume PDF will render here once uploaded.</div>
+                <!-- The iframe that displays the PDF -->
+                <iframe src="Louis_Lin_Resume.pdf" title="Louis Lin Resume"></iframe>
+            </div>
+        </div>
     </div>
 
     <footer>
@@ -427,7 +473,8 @@
             sections.forEach(section => { if (scrollY >= (section.offsetTop - 150)) current = section.getAttribute('id'); });
             tocLinks.forEach(link => { link.classList.remove('active'); if (link.getAttribute('href') === `#${current}`) link.classList.add('active'); });
         });
-       // Carousel functionality
+        
+        // Carousel functionality
         const carousels = document.querySelectorAll('.carousel-container');
         carousels.forEach(carousel => {
             const track = carousel.querySelector('.carousel-track');
@@ -471,6 +518,18 @@
                 updateButtonVisibility();
             }
         });
+
+        // Resume Modal Functionality
+        const resumeModal = document.getElementById('resumeModal');
+        const openBtn = document.getElementById('openResumeModal');
+        const closeBtn = document.getElementById('closeResumeModal');
+
+        openBtn.addEventListener('click', () => resumeModal.classList.add('active'));
+        closeBtn.addEventListener('click', () => resumeModal.classList.remove('active'));
+        
+        // Close if clicking outside the window or pressing Escape
+        resumeModal.addEventListener('click', (e) => { if (e.target === resumeModal) resumeModal.classList.remove('active'); });
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') resumeModal.classList.remove('active'); });
     </script>
 </body>
 </html>
