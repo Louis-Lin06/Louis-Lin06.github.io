@@ -78,7 +78,10 @@
         .carousel-track { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; -ms-overflow-style: none; scroll-behavior: smooth; }
         .carousel-track::-webkit-scrollbar { display: none; }
         .carousel-slide { flex: 0 0 100%; width: 100%; scroll-snap-align: center; display: flex; flex-direction: column; }
-        .carousel-slide img { width: 100%; height: 350px; object-fit: contain; background-color: #1a1a1a; }
+        
+        /* Updated fixed desktop heights for images and videos, matching background */
+        .carousel-slide img, .carousel-slide video { width: 100%; height: 350px; object-fit: contain; background-color: var(--bg-surface); }
+        
         .carousel-caption { padding: 1rem; font-size: 0.9rem; color: var(--text-main); text-align: center; font-weight: 500; background: var(--bg-surface); border-top: 1px solid var(--border); }
         
         .carousel-btn { position: absolute; top: calc(50% - 2.5rem); transform: translateY(-50%); background: rgba(255, 255, 255, 0.9); border: 1px solid var(--border); color: var(--text-main); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 1.2rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: all 0.2s; z-index: 10; }
@@ -111,8 +114,11 @@
             .project-desc { font-size: 0.95rem; }
             .project-desc ul { margin-left: 1rem; }
 
+            /* Updated Mobile Media query logic for smooth image & video scaling */
             .carousel-container { width: 100%; max-width: 100%; min-width: 0; margin-left: 0; border-radius: 6px; }
-            .carousel-slide img { height: 220px; }
+            .carousel-slide { justify-content: flex-end; }
+            .carousel-slide img, .carousel-slide video { height: auto; max-height: 50vh; object-fit: contain; width: 100%; background-color: transparent; }
+            .carousel-caption { margin-top: auto; }
 
             .mobile-toc-btn { display: flex; align-items: center; justify-content: center; gap: 0.5rem; position: fixed; bottom: 1.5rem; right: 1.5rem; background-color: var(--text-main); color: white; border: none; padding: 0.75rem 1.25rem; border-radius: 99px; font-weight: 600; font-size: 0.9rem; z-index: 90; box-shadow: 0 4px 12px rgba(0,0,0,0.2); cursor: pointer; transition: transform 0.2s; }
             .mobile-toc-btn:active { transform: scale(0.95); }
