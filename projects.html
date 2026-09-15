@@ -51,11 +51,16 @@
         .toc-link { text-decoration: none; color: var(--text-muted); font-size: 0.95rem; padding-left: 1rem; border-left: 2px solid transparent; margin-left: -2px; transition: all 0.2s; display: block; }
         .toc-link:hover { color: var(--text-main); }
         .toc-link.active { color: var(--blue-accent); font-weight: 600; border-left-color: var(--blue-accent); }
+        .toc-year-label { font-size: 0.75rem; font-weight: 600; color: var(--text-muted); padding-left: 1rem; margin-top: 1rem; }
         .toc-close-btn { display: none; }
 
         /* Main Content */
         .page-header { margin-bottom: 4rem; border-bottom: 1px solid var(--border); padding-bottom: 2rem; }
         .page-header h1 { font-size: 2.5rem; font-weight: 600; letter-spacing: -0.03em; margin-bottom: 0.5rem; }
+
+        /* Year Divider inside the timeline */
+        .year-header { font-size: 1.5rem; font-weight: 700; color: var(--text-main); padding-left: 1.5rem; border-left: 2px solid var(--border); position: relative; padding-bottom: 1.5rem; }
+        .year-header::before { content: ''; position: absolute; left: -7px; top: 6px; width: 12px; height: 12px; border-radius: 50%; background-color: var(--bg-page); border: 2px solid var(--text-main); }
 
         .project-section { margin-bottom: 5rem; scroll-margin-top: 100px; position: relative; padding-left: 1.5rem; border-left: 2px solid var(--border); }
         .project-section::before { content: ''; position: absolute; left: -6px; top: 6px; width: 10px; height: 10px; border-radius: 50%; background-color: var(--blue-accent); }
@@ -95,6 +100,7 @@
             .page-wrapper { grid-template-columns: minmax(0, 1fr); gap: 2rem; padding: 2rem 1.5rem; width: 100%; }
             main { min-width: 0; width: 100%; max-width: 100%; }
             
+            .history-column { min-width: 0; width: 100%; padding-left: 0.5rem; }
             .project-section { min-width: 0; width: 100%; padding-left: 1.25rem; }
             .project-desc { min-width: 0; width: 100%; }
             
@@ -119,6 +125,7 @@
             .toc-close-btn { display: block; background: none; border: none; font-size: 1.5rem; line-height: 1; cursor: pointer; color: var(--text-muted); }
             .toc-list { border-left: none; }
             .toc-link { padding-left: 0.75rem; border-left: 2px solid transparent; padding-top: 0.25rem; padding-bottom: 0.25rem; font-size: 1rem; margin-left: 0; }
+            .toc-year-label { padding-left: 0.75rem; font-size: 0.85rem; margin-top: 1.5rem; color: var(--text-main); }
         }
     </style>
 </head>
@@ -144,9 +151,12 @@
         <aside>
             <div class="toc-title">Projects <button class="toc-close-btn">×</button></div>
             <ul class="toc-list">
+                <li class="toc-year-label">2026</li>
                 <li><a href="#exo" class="toc-link">Lower-Body Exoskeleton</a></li>
                 <li><a href="#emg-hand" class="toc-link">EMG Prosthetic Hand</a></li>
+                <li class="toc-year-label">2025</li>
                 <li><a href="#hand-support" class="toc-link">Robotic Hand Support</a></li>
+                <li class="toc-year-label">2024</li>
                 <li><a href="#paddleboard" class="toc-link">Adaptive Paddleboard</a></li>
             </ul>
         </aside>
@@ -157,92 +167,107 @@
                 <p style="color: var(--text-muted);">Hardware design, firmware development, and prototyping.</p>
             </div>
 
-            <!-- EXOSKELETON -->
-            <section class="project-section" id="exo">
-                <div class="project-title">Lower-Body Exoskeleton</div>
-                <div class="project-meta">Mechanical Team Lead · UW Biomechatronics Club · Sept 2024 - Present</div>
-                <div class="project-tech">SolidWorks • Arduino • 3D Printing • Systems Integration</div>
-                <div class="project-desc">
-                    <ul>
-                        <li>Leading the Mechanical Subteam in the design and early-stage development of a lower-body exoskeleton for the ACE 2026 Competition, drafting CAD models for a custom cycloidal gearbox and planning mechanical systems with safety and modularity in mind.</li>
-                        <li>Applied skills from previous robotic hand projects, including 3D printing, assembly, and integration of mechanical components, to develop reliable prototypes and ensure seamless hardware functionality.</li>
-                        <li>Coordinating with other subteam leads and leveraging Arduino and biosensor experience to guide system integration, iterative design, and multidisciplinary collaboration.</li>
-                    </ul>
+            <div class="history-column">
+                
+                <!-- 2026 HEADER -->
+                <div class="year-header">2026</div>
 
-                    <!-- Placeholder for Carousel -->
-                    <div class="carousel-container">
-                        <button class="carousel-btn prev" aria-label="Previous image">❮</button>
-                        <button class="carousel-btn next" aria-label="Next image">❯</button>
-                        <div class="carousel-track">
-                            <div class="carousel-slide">
-                                <img src="exo-photo1.jpg" alt="Exoskeleton CAD Model">
-                                <div class="carousel-caption">Drafting the custom cycloidal gearbox in SolidWorks.</div>
-                            </div>
-                            <div class="carousel-slide">
-                                <img src="exo-photo2.jpg" alt="Team assembly">
-                                <div class="carousel-caption">Mechanical subteam prototype assembly.</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+                <!-- EXOSKELETON (PRESENT) -->
+                <section class="project-section" id="exo">
+                    <div class="project-title">Lower-Body Exoskeleton</div>
+                    <div class="project-meta">Mechanical Team Lead · UW Biomechatronics Club · Sept 2024 - Present</div>
+                    <div class="project-tech">SolidWorks • Arduino • 3D Printing • Systems Integration</div>
+                    <div class="project-desc">
+                        <ul>
+                            <li>Leading the Mechanical Subteam in the design and early-stage development of a lower-body exoskeleton for the ACE 2026 Competition, drafting CAD models for a custom cycloidal gearbox and planning mechanical systems with safety and modularity in mind.</li>
+                            <li>Applied skills from previous robotic hand projects, including 3D printing, assembly, and integration of mechanical components, to develop reliable prototypes and ensure seamless hardware functionality.</li>
+                            <li>Coordinating with other subteam leads and leveraging Arduino and biosensor experience to guide system integration, iterative design, and multidisciplinary collaboration.</li>
+                        </ul>
 
-            <!-- EMG PROSTHETIC HAND -->
-            <section class="project-section" id="emg-hand">
-                <div class="project-title">EMG Controlled Prosthetic Hand</div>
-                <div class="project-meta">Independent Hardware Project · May 2026 - Aug 2026</div>
-                <div class="project-tech">C++ • Arduino Uno • Custom PCBs • Signal Filtering</div>
-                <div class="project-desc">
-                    <ul>
-                        <li>Engineered a tendon-driven, myoelectric prosthetic hand prototype using forearm sensors to translate muscle signals into mechanical actuation.</li>
-                        <li>Programmed an Arduino Uno microcontroller in C++ to process sensor inputs and drive a continuous rotation servo for dynamic grip control.</li>
-                        <li>Drafted circuit schematics and technical documentation to validate firmware and hardware integration.</li>
-                    </ul>
-
-                    <!-- Placeholder for Carousel -->
-                    <div class="carousel-container">
-                        <button class="carousel-btn prev" aria-label="Previous image">❮</button>
-                        <button class="carousel-btn next" aria-label="Next image">❯</button>
-                        <div class="carousel-track">
-                            <div class="carousel-slide">
-                                <img src="emg-photo1.jpg" alt="Prosthetic Hand Prototype">
-                                <div class="carousel-caption">Tendon-driven mechanical actuation testing.</div>
-                            </div>
-                            <div class="carousel-slide">
-                                <img src="emg-photo2.jpg" alt="Arduino Circuit">
-                                <div class="carousel-caption">Arduino Uno and signal filtering setup.</div>
+                        <!-- Placeholder for Carousel -->
+                        <div class="carousel-container">
+                            <button class="carousel-btn prev" aria-label="Previous image">❮</button>
+                            <button class="carousel-btn next" aria-label="Next image">❯</button>
+                            <div class="carousel-track">
+                                <div class="carousel-slide">
+                                    <img src="exo-photo1.jpg" alt="Exoskeleton CAD Model">
+                                    <div class="carousel-caption">Drafting the custom cycloidal gearbox in SolidWorks.</div>
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src="exo-photo2.jpg" alt="Team assembly">
+                                    <div class="carousel-caption">Mechanical subteam prototype assembly.</div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </section>
+                </section>
 
-            <!-- ROBOTIC HAND SUPPORT -->
-            <section class="project-section" id="hand-support">
-                <div class="project-title">Robotic Hand Support Mechanism</div>
-                <div class="project-meta">Academic Design Project · Sept 2024 - April 2025</div>
-                <div class="project-tech">MyoWare Biosensors • Hardware Validation • Mechanics</div>
-                <div class="project-desc">
-                    <ul>
-                        <li>[Bullet point 1 detailing the scale, design requirements, and engineering execution].</li>
-                        <li>[Bullet point 2 highlighting troubleshooting, sensors used, or physical prototyping].</li>
-                        <li>[Bullet point 3 summarizing the final result and testing outcomes].</li>
-                    </ul>
-                </div>
-            </section>
+                <!-- EMG PROSTHETIC HAND -->
+                <section class="project-section" id="emg-hand">
+                    <div class="project-title">EMG Controlled Prosthetic Hand</div>
+                    <div class="project-meta">Independent Hardware Project · May 2026 - Aug 2026</div>
+                    <div class="project-tech">C++ • Arduino Uno • Custom PCBs • Signal Filtering</div>
+                    <div class="project-desc">
+                        <ul>
+                            <li>Engineered a tendon-driven, myoelectric prosthetic hand prototype using forearm sensors to translate muscle signals into mechanical actuation.</li>
+                            <li>Programmed an Arduino Uno microcontroller in C++ to process sensor inputs and drive a continuous rotation servo for dynamic grip control.</li>
+                            <li>Drafted circuit schematics and technical documentation to validate firmware and hardware integration.</li>
+                        </ul>
 
-            <!-- ADAPTIVE PADDLEBOARD -->
-            <section class="project-section" id="paddleboard">
-                <div class="project-title">Adaptive Paddleboard</div>
-                <div class="project-meta">Accessible Design for Cerebral Palsy · Sept 2024 - Dec 2024</div>
-                <div class="project-tech">Mechanical Prototyping • Human-Centered Design</div>
-                <div class="project-desc">
-                    <ul>
-                        <li>[Bullet point 1 detailing the mechanical design adaptations required for stability].</li>
-                        <li>[Bullet point 2 detailing the materials used and fabrication process].</li>
-                    </ul>
-                </div>
-            </section>
+                        <!-- Placeholder for Carousel -->
+                        <div class="carousel-container">
+                            <button class="carousel-btn prev" aria-label="Previous image">❮</button>
+                            <button class="carousel-btn next" aria-label="Next image">❯</button>
+                            <div class="carousel-track">
+                                <div class="carousel-slide">
+                                    <img src="emg-photo1.jpg" alt="Prosthetic Hand Prototype">
+                                    <div class="carousel-caption">Tendon-driven mechanical actuation testing.</div>
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src="emg-photo2.jpg" alt="Arduino Circuit">
+                                    <div class="carousel-caption">Arduino Uno and signal filtering setup.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 2025 HEADER -->
+                <div class="year-header">2025</div>
+
+                <!-- ROBOTIC HAND SUPPORT -->
+                <section class="project-section" id="hand-support">
+                    <div class="project-title">Robotic Hand Support Mechanism</div>
+                    <div class="project-meta">Academic Design Project · Sept 2024 - April 2025</div>
+                    <div class="project-tech">MyoWare Biosensors • Hardware Validation • Mechanics</div>
+                    <div class="project-desc">
+                        <ul>
+                            <li>Assembled a functional biomechanical prototype, integrating MyoWare surface electromyography (EMG) sensors with an Arduino Uno to control a unified grasp mechanism.</li>
+                            <li>Drafted circuit schematics and developed foundational firmware to read analog muscle signals, utilizing basic thresholding to trigger a continuous rotation servo.</li>
+                            <li>Compiled technical summaries documenting the electromechanical assembly and system integration process.</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- 2024 HEADER -->
+                <div class="year-header">2024</div>
+
+                <!-- ADAPTIVE PADDLEBOARD -->
+                <section class="project-section" id="paddleboard">
+                    <div class="project-title">Adaptive Paddleboard</div>
+                    <div class="project-meta">Accessible Design for Cerebral Palsy · Sept 2024 - Dec 2024</div>
+                    <div class="project-tech">Mechanical Prototyping • Human-Centered Design</div>
+                    <div class="project-desc">
+                        <ul>
+                            <li>Collaborated with KidsAbility to conduct human factors research, conceptualizing and designing a novel paddleboard support system for teenagers with mild spastic cerebral palsy.</li>
+                            <li>Engineered a kneeling-centric design alternative to traditional seated models, developing an adjustable, cushioned pole framework that improves core engagement, balance, and independent mobility.</li>
+                            <li>Modeled the mechanical framework in SolidWorks, iterating on the design's center of gravity and structural geometry to mitigate capsizing risks and ensure dynamic stability on the water.</li>
+                            <li>Fabricated medium-fidelity physical prototypes utilizing ergonomic foam padding and structural materials to validate boarding ease, safety constraints, and user comfort through practical physical testing.</li>
+                        </ul>
+                    </div>
+                </section>
+
+            </div>
 
         </main>
     </div>
