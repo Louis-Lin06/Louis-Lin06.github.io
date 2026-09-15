@@ -46,7 +46,7 @@
         .page-header h1 { font-size: 3rem; font-weight: 600; letter-spacing: -0.03em; margin-bottom: 1rem; color: var(--text-main); }
         .page-header p { font-size: 1.1rem; color: var(--text-muted); max-width: 500px; margin: 0 auto; }
 
-        /* Contact Grid */
+        /* Contact Grid - Flexbox for perfect centering */
         .contact-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem; width: 100%; max-width: 700px; margin-top: 2rem; }
         
         .contact-card { 
@@ -64,7 +64,6 @@
             color: var(--text-main); 
             transition: all 0.2s ease; 
             box-shadow: 0 4px 6px rgba(0,0,0,0.02);
-            cursor: pointer;
         }
         
         .contact-card:hover { transform: translateY(-3px); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05); border-color: var(--blue-accent); }
@@ -73,7 +72,7 @@
         .contact-icon svg { width: 24px; height: 24px; }
         
         .contact-label { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600; color: var(--text-muted); margin-bottom: 0.25rem; }
-        .contact-value { font-size: 1.1rem; font-weight: 500; word-break: break-word; text-align: center; transition: color 0.2s ease; }
+        .contact-value { font-size: 1.1rem; font-weight: 500; word-break: break-word; text-align: center; }
 
         footer { border-top: 1px solid var(--border); padding: 2rem 1.5rem; margin-top: auto; }
         .footer-content { max-width: 1000px; margin: 0 auto; display: flex; justify-content: space-between; color: var(--text-muted); font-size: 0.85rem; }
@@ -89,6 +88,7 @@
             main { padding: 4rem 1.5rem; }
             .page-header h1 { font-size: 2.25rem; }
             
+            /* Stacks the contact cards vertically on phones */
             .contact-grid { flex-direction: column; align-items: center; }
             .contact-card { width: 100%; max-width: 100%; flex: none; }
         }
@@ -116,8 +116,8 @@
         </div>
 
         <div class="contact-grid">
-            <!-- Personal Email Card with Copy-to-Clipboard Class -->
-            <a href="mailto:louislin06@gmail.com" class="contact-card email-card" data-email="louislin06@gmail.com">
+            <!-- Personal Email Card -->
+            <a href="mailto:louislin06@gmail.com" class="contact-card">
                 <div class="contact-icon">
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
                 </div>
@@ -125,8 +125,8 @@
                 <span class="contact-value">louislin06@gmail.com</span>
             </a>
 
-            <!-- Academic Email Card with Copy-to-Clipboard Class -->
-            <a href="mailto:l229lin@uwaterloo.ca" class="contact-card email-card" data-email="l229lin@uwaterloo.ca">
+            <!-- Academic Email Card -->
+            <a href="mailto:l229lin@uwaterloo.ca" class="contact-card">
                 <div class="contact-icon">
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
                 </div>
@@ -162,32 +162,6 @@
         // Mobile Menu Toggle
         document.querySelector('.mobile-menu-btn').addEventListener('click', () => {
             document.querySelector('.nav-links').classList.toggle('active');
-        });
-
-        // Copy Email to Clipboard Logic
-        document.querySelectorAll('.email-card').forEach(card => {
-            card.addEventListener('click', (e) => {
-                // Extracts the email address directly from the data-email attribute
-                const email = card.getAttribute('data-email');
-                
-                // Copies to clipboard silently
-                navigator.clipboard.writeText(email).then(() => {
-                    // Temporarily visually changes the text so the user knows it worked
-                    const valueSpan = card.querySelector('.contact-value');
-                    const originalText = valueSpan.innerText;
-                    
-                    valueSpan.innerText = "Copied to clipboard!";
-                    valueSpan.style.color = "var(--blue-accent)";
-                    
-                    // Reverts back to the original email address after 2.5 seconds
-                    setTimeout(() => {
-                        valueSpan.innerText = originalText;
-                        valueSpan.style.color = "var(--text-main)";
-                    }, 2500);
-                }).catch(err => {
-                    console.error('Failed to copy text: ', err);
-                });
-            });
         });
     </script>
 </body>
