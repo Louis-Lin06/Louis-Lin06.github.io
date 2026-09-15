@@ -8,15 +8,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --bg-page: #ffffff;
-            --text-main: #111827;
-            --text-muted: #6b7280;
-            --border: #e5e7eb;
-            --blue-accent: #3b82f6;
-            --focus-ring: #8b5cf6;
-        }
+        :root { --bg-page: #ffffff; --bg-surface: #f9fafb; --text-main: #111827; --text-muted: #6b7280; --border: #e5e7eb; --blue-accent: #0ea5e9; --linkedin-blue: #3b82f6; --focus-ring: #0ea5e9; }
         
+        html, body { scroll-behavior: smooth; max-width: 100vw; overflow-x: hidden; width: 100%; }
         * { box-sizing: border-box; margin: 0; padding: 0; }
         
         body { 
@@ -29,47 +23,78 @@
             flex-direction: column; 
             min-height: 100vh; 
         }
-        
+
         :focus:not(:focus-visible) { outline: none; }
         :focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 3px; border-radius: 4px; }
         
         /* Navigation */
         nav { position: sticky; top: 0; background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); z-index: 100; }
         .nav-container { max-width: 1000px; margin: 0 auto; padding: 1rem 1.5rem; display: flex; justify-content: space-between; align-items: center; position: relative; }
-        .nav-brand { font-weight: 600; font-size: 1.1rem; text-decoration: none; color: var(--text-main); }
+        .nav-brand { font-weight: 600; font-size: 1.1rem; text-decoration: none; color: var(--text-main); line-height: 1.3; }
         .nav-links { display: flex; gap: 2rem; align-items: center; }
-        .nav-links a { text-decoration: none; color: var(--text-muted); font-size: 0.9rem; font-weight: 500; transition: color 0.2s ease; }
+        .nav-links a { text-decoration: none; color: var(--text-muted); font-size: 0.9rem; font-weight: 500; transition: color 0.2s; }
         .nav-links a:hover, .nav-links a.active { color: var(--text-main); }
-        .btn-linkedin { background-color: var(--blue-accent); color: white !important; padding: 0.5rem 1rem; border-radius: 6px; font-weight: 500; text-decoration: none; transition: opacity 0.2s ease, transform 0.2s ease; }
+        .btn-linkedin { background-color: var(--linkedin-blue); color: white !important; padding: 0.5rem 1rem; border-radius: 6px; font-weight: 500; transition: opacity 0.2s ease, transform 0.2s ease; }
         .btn-linkedin:hover { opacity: 0.9; transform: translateY(-1px); }
         
         .mobile-menu-btn { display: none; background: none; border: none; font-size: 1.5rem; color: var(--text-main); cursor: pointer; }
 
-        /* Contact Layout */
-        main { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 5rem 1.5rem; text-align: center; }
-        .contact-card { max-width: 500px; background: rgba(249, 250, 251, 0.8); backdrop-filter: blur(8px); padding: 3rem; border-radius: 12px; border: 1px solid var(--border); }
-        h1 { font-size: 2.5rem; font-weight: 600; margin-bottom: 1rem; letter-spacing: -0.03em; }
-        p { font-size: 1.1rem; color: var(--text-muted); margin-bottom: 2.5rem; }
+        /* Page Layout */
+        main { max-width: 800px; margin: 0 auto; padding: 6rem 1.5rem; width: 100%; flex: 1; display: flex; flex-direction: column; align-items: center; text-align: center; }
         
-        .btn-email { display: inline-flex; align-items: center; gap: 0.5rem; background-color: var(--text-main); color: white; padding: 1rem 2rem; border-radius: 8px; font-size: 1.1rem; font-weight: 500; text-decoration: none; transition: background-color 0.2s, transform 0.2s; }
-        .btn-email:hover { background-color: #000000; transform: translateY(-2px); }
+        .page-header { margin-bottom: 3rem; }
+        .page-header h1 { font-size: 3rem; font-weight: 600; letter-spacing: -0.03em; margin-bottom: 1rem; color: var(--text-main); }
+        .page-header p { font-size: 1.1rem; color: var(--text-muted); max-width: 500px; margin: 0 auto; }
+
+        /* Contact Grid */
+        .contact-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; width: 100%; max-width: 700px; margin-top: 2rem; }
         
+        .contact-card { 
+            background: rgba(255, 255, 255, 0.8); 
+            backdrop-filter: blur(8px); 
+            border: 1px solid var(--border); 
+            border-radius: 12px; 
+            padding: 2rem 1.5rem; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            text-decoration: none; 
+            color: var(--text-main); 
+            transition: all 0.2s ease; 
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+        }
+        
+        .contact-card:hover { transform: translateY(-3px); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05); border-color: var(--blue-accent); }
+        
+        .contact-icon { width: 48px; height: 48px; background: var(--bg-surface); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem; color: var(--blue-accent); }
+        .contact-icon svg { width: 24px; height: 24px; }
+        
+        .contact-label { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600; color: var(--text-muted); margin-bottom: 0.25rem; }
+        .contact-value { font-size: 1.1rem; font-weight: 500; }
+
         footer { border-top: 1px solid var(--border); padding: 2rem 1.5rem; margin-top: auto; }
         .footer-content { max-width: 1000px; margin: 0 auto; display: flex; justify-content: space-between; color: var(--text-muted); font-size: 0.85rem; }
 
+        /* Mobile Adjustments */
         @media (max-width: 768px) {
             .mobile-menu-btn { display: block; }
-            .nav-links { display: none; flex-direction: column; width: 100%; position: absolute; top: 100%; left: 0; background: rgba(255, 255, 255, 0.98); border-bottom: 1px solid var(--border); padding: 1.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+            .nav-links { display: none; flex-direction: column; width: 100%; position: absolute; top: 100%; left: 0; background: rgba(255,255,255,0.98); border-bottom: 1px solid var(--border); padding: 1.5rem; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
             .nav-links.active { display: flex; }
-            .btn-linkedin { text-align: center; width: 100%; }
-            .contact-card { padding: 2rem 1rem; border: none; background: transparent; }
+            .nav-brand { font-size: 0.95rem; max-width: 75%; display: block; }
+            .btn-linkedin { width: 100%; text-align: center; }
+
+            main { padding: 4rem 1.5rem; }
+            .page-header h1 { font-size: 2.25rem; }
+            
+            /* Stacks the contact cards vertically on phones */
+            .contact-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
     <nav>
         <div class="nav-container">
-            <a href="index.html" class="nav-brand">Louis Lin</a>
+            <a href="index.html" class="nav-brand">Louis Lin | Engineering Portfolio</a>
             <button class="mobile-menu-btn" aria-label="Toggle menu">☰</button>
             <div class="nav-links">
                 <a href="index.html">Home</a>
@@ -82,10 +107,47 @@
     </nav>
 
     <main>
-        <div class="contact-card">
+        <div class="page-header">
             <h1>Let's Connect</h1>
-            <p>I am actively seeking opportunities in mechanical engineering, system integration, and hardware development. Reach out directly to discuss projects or roles.</p>
-            <a href="mailto:hello@louislin.dev" class="btn-email">Send an Email</a>
+            <p>I'm currently seeking new opportunities in mechanical and biomedical engineering. Feel free to reach out!</p>
+        </div>
+
+        <div class="contact-grid">
+            <!-- Email Card -->
+            <a href="mailto:louislin06@gmail.com" class="contact-card">
+                <div class="contact-icon">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                </div>
+                <span class="contact-label">Email</span>
+                <span class="contact-value">louislin06@gmail.com</span>
+            </a>
+
+            <!-- Phone Card -->
+            <a href="tel:+17787985531" class="contact-card">
+                <div class="contact-icon">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                </div>
+                <span class="contact-label">Phone</span>
+                <span class="contact-value">(778) 798-5531</span>
+            </a>
+
+            <!-- LinkedIn Card -->
+            <a href="https://www.linkedin.com/in/louis-lin-43164a328" target="_blank" class="contact-card">
+                <div class="contact-icon">
+                    <svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                </div>
+                <span class="contact-label">LinkedIn</span>
+                <span class="contact-value">Louis Lin</span>
+            </a>
+
+            <!-- GitHub Card -->
+            <a href="https://github.com/louis-lin06" target="_blank" class="contact-card">
+                <div class="contact-icon">
+                    <svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                </div>
+                <span class="contact-label">GitHub</span>
+                <span class="contact-value">louis-lin06</span>
+            </a>
         </div>
     </main>
 
@@ -94,6 +156,7 @@
     </footer>
 
     <script>
+        // Mobile Menu Toggle
         document.querySelector('.mobile-menu-btn').addEventListener('click', () => {
             document.querySelector('.nav-links').classList.toggle('active');
         });
