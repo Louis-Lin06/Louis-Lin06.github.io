@@ -228,6 +228,7 @@
 
         /* Mobile Adjustments */
         @media (max-width: 1024px) {
+            .nav-container { padding: 1rem; }
             .mobile-menu-btn { display: block; }
             .nav-links { display: none; flex-direction: column; width: 100%; position: absolute; top: 100%; left: 0; background: rgba(255, 255, 255, 0.98); border-bottom: 1px solid var(--border); padding: 1.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
             .nav-links.active { display: flex; }
@@ -237,11 +238,15 @@
             .nav-brand { font-size: 0.95rem; max-width: 75%; display: block; line-height: 1.3; }
             
             /* Mobile Hero Adjustments */
-            main { padding: 3rem 1.5rem; width: 100%; box-sizing: border-box; }
-            .hero { grid-template-columns: 1fr; gap: 2rem; margin-bottom: 4rem; display: flex; flex-direction: column; }
-            .hero-image { max-width: 250px; margin: 0 auto; order: -1; }
-            .hero-content h1 { text-align: center; font-size: 2.25rem; }
-            .hero-text p { font-size: 1rem; text-align: left; }
+            main { padding: 3rem 1rem; width: 100%; box-sizing: border-box; }
+            .hero { grid-template-columns: 1fr; gap: 2rem; margin-bottom: 3rem; display: flex; flex-direction: column; }
+            
+            /* Add dynamic clamp() scaling so text fits perfectly on any screen size */
+            .hero-content h1 { text-align: center; font-size: clamp(1.75rem, 8vw, 2.25rem); }
+            .hero-text p { font-size: 0.95rem; text-align: left; }
+            
+            /* Ensure the image doesn't overflow the container on very tiny phones */
+            .hero-image { max-width: min(100%, 250px); margin: 0 auto; order: -1; }
             
             /* Mobile Timeline Adjustments */
             .timeline-section { padding: 2rem 0; margin-bottom: 4rem; width: 100%; }
@@ -279,7 +284,8 @@
     <main>
         <div class="hero">
             <div class="hero-content">
-                <h1>Building Hardware for<br>Biomedical&nbsp;Applications.</h1>
+                <!-- Removed the non-breaking space (&nbsp;) between Biomedical and Applications so it can wrap naturally -->
+                <h1>Building Hardware for<br>Biomedical Applications.</h1>
                 <div class="hero-text">
                     <p>I’m Louis, a Biomedical Engineering student at the University of Waterloo with a strong interest in medical devices and hands-on engineering. I enjoy taking an idea from CAD to a physical prototype and figuring out how to make it work, especially when the solution isn’t immediately obvious.</p>
                     
@@ -318,7 +324,7 @@
                     <div class="gantt-month" style="grid-column: 31; grid-row: 2;">Jul</div><div class="gantt-month" style="grid-column: 32; grid-row: 2;">Aug</div><div class="gantt-month" style="grid-column: 33; grid-row: 2;">Sep</div>
                     <div class="gantt-month" style="grid-column: 34; grid-row: 2;">Oct</div><div class="gantt-month" style="grid-column: 35; grid-row: 2;">Nov</div><div class="gantt-month" style="grid-column: 36; grid-row: 2;">Dec</div>
 
-                    <!-- SWAPPED: Professional Experience is now on top -->
+                    <!-- Professional Experience -->
                     <div class="track-label purple" style="grid-row: 3;">
                         <span>Professional Experience</span>
                     </div>
@@ -343,7 +349,7 @@
                         <span class="bar-subtitle">Mechanical Engineering Intern</span>
                     </a>
 
-                    <!-- SWAPPED: Projects are now below Experience -->
+                    <!-- Projects -->
                     <div class="track-label blue" style="grid-row: 5;">
                         <span>Projects</span>
                     </div>
@@ -392,7 +398,7 @@
             if (wrapper) {
                 setTimeout(() => {
                     wrapper.scrollLeft = wrapper.scrollWidth;
-                }, 100); // 100ms delay ensures CSS grid has fully loaded on mobile devices before jumping
+                }, 100); 
             }
         });
     </script>
