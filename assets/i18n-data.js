@@ -743,5 +743,11 @@ window.I18N_DATA = {
   "联系方式 | Louis Lin",
   "聯絡方式 | Louis Lin"
  ]
+},
+  files: {
+ "Louis Lin Resume - Technical.pdf": [
+  "Louis Lin Resume - Simplified Chinese.pdf",
+  "Louis Lin Resume - Traditional Chinese.pdf"
+ ]
 }
 };

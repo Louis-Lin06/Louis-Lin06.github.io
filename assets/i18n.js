@@ -11,21 +11,18 @@
     const STORE = 'site-lang';
     const norm = (s) => s.replace(/\s+/g, ' ').trim();
 
-    const read = () => { try { return localStorage.getItem(STORE); } catch { return null; } };
-    const write = (v) => { try { localStorage.setItem(STORE, v); } catch { /* private mode */ } };
+    /* The site always opens in English. A language the visitor picks is kept only for
+       the current visit (sessionStorage), so it carries across pages but not to a new visit. */
+    const read = () => { try { return sessionStorage.getItem(STORE); } catch { return null; } };
+    const write = (v) => { try { sessionStorage.setItem(STORE, v); } catch { /* private mode */ } };
 
     const detect = () => {
         const saved = read();
-        if (LANGS.some(l => l.code === saved)) return saved;
-        const prefs = navigator.languages || [navigator.language || 'en'];
-        for (const p of prefs) {
-            const l = (p || '').toLowerCase();
-            if (/^zh-(tw|hk|mo|hant)/.test(l)) return 'zh-Hant';
-            if (/^zh/.test(l)) return 'zh-Hans';
-            if (/^en/.test(l)) return 'en';
-        }
-        return 'en';
+        return LANGS.some(l => l.code === saved) ? saved : 'en';
     };
+
+    /* Files with a translated version (e.g. the resume): English path -> [Simplified, Traditional] */
+    const FILES = DATA.files || {};
 
     /* ---------- Collect translatable content once (English originals) ---------- */
     const textNodes = [];
@@ -42,6 +39,35 @@
     }
     const keyed = Array.from(document.querySelectorAll('[data-i18n]')).map(el => ({ el, en: el.innerHTML, key: el.dataset.i18n }));
     const titleEn = document.title;
+
+    // Links, embeds and downloads that point at a file with translated versions
+    const fileRefs = [];
+    Object.keys(FILES).forEach(file => {
+        document.querySelectorAll('a[href], iframe[src], object[data]').forEach(el => {
+            if (el.tagName === 'IFRAME' && el.closest('object')) return; // handled with its <object>
+            const attr = el.tagName === 'A' ? 'href' : el.tagName === 'IFRAME' ? 'src' : 'data';
+            const v = el.getAttribute(attr);
+            if (v && v.indexOf(file) === 0) fileRefs.push({ el, attr, en: v, file });
+        });
+    });
+    const swapFiles = (code) => {
+        const i = IDX[code];
+        fileRefs.forEach(r => {
+            const next = code === 'en' ? r.en : r.en.replace(r.file, FILES[r.file][i]);
+            if (r.el.getAttribute(r.attr) === next) return;
+            if (r.el.tagName === 'OBJECT') {
+                // Browsers don't reload an <object> when its data changes, so replace it
+                const clone = r.el.cloneNode(true);
+                clone.setAttribute('data', next);
+                const inner = clone.querySelector('iframe');
+                if (inner) inner.setAttribute('src', next);
+                r.el.replaceWith(clone);
+                r.el = clone;
+            } else {
+                r.el.setAttribute(r.attr, next);
+            }
+        });
+    };
 
     let current = 'en';
 
@@ -61,6 +87,7 @@
             const row = DATA.keyed[r.key];
             r.el.innerHTML = code === 'en' || !row ? r.en : row[i];
         });
+        swapFiles(code);
         const tRow = DATA.titles[titleEn];
         document.title = code === 'en' || !tRow ? titleEn : tRow[i];
         document.documentElement.lang = LANGS.find(l => l.code === code).html;

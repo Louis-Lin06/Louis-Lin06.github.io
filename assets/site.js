@@ -356,7 +356,20 @@
             m.style.left = `${(idx / 36) * 100}%`;
             m.innerHTML = `<span>${tr('__now', 'Now')}</span>`;
             grid.appendChild(m);
-            document.addEventListener('langchange', () => { m.firstChild.textContent = tr('__now', 'Now'); });
+            // Put the label in the gap above the month names and start the line just below them
+            const month = $('.gantt-month', grid);
+            const placeNow = () => {
+                if (!month) return;
+                const pill = m.firstChild;
+                const top = month.offsetTop - pill.offsetHeight - 5;
+                m.style.setProperty('--now-top', `${top}px`);
+                m.style.top = `${top}px`;
+                m.style.setProperty('--line-top', `${month.offsetTop + month.offsetHeight + 4 - top}px`);
+            };
+            placeNow();
+            window.addEventListener('resize', placeNow);
+            window.addEventListener('load', placeNow);
+            document.addEventListener('langchange', () => { m.firstChild.textContent = tr('__now', 'Now'); placeNow(); });
         }
 
         // Start scrolled to the present

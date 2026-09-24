@@ -15,11 +15,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/site.css?v=20260924b">
+    <link rel="stylesheet" href="assets/site.css?v=20260924c">
     <script>
-        /* Hide the page briefly while a saved or browser Chinese preference is applied, to avoid a flash of English */
-        (function () { try { var s = localStorage.getItem('site-lang'); var n = (navigator.language || '').toLowerCase();
-            if (s ? s !== 'en' : n.indexOf('zh') === 0) { var d = document.documentElement; d.classList.add('lang-loading'); setTimeout(function () { d.classList.remove('lang-loading'); }, 1500); } } catch (e) {} })();
+        /* If a Chinese language was picked earlier in this visit, hide the page for a moment while it is applied, to avoid a flash of English */
+        (function () { try { var s = sessionStorage.getItem('site-lang');
+            if (s && s !== 'en') { var d = document.documentElement; d.classList.add('lang-loading'); setTimeout(function () { d.classList.remove('lang-loading'); }, 1500); } } catch (e) {} })();
     </script>
 </head>
 <body>
@@ -344,8 +344,8 @@
         </div>
     </footer>
 
-    <script src="assets/i18n-data.js?v=20260924b"></script>
-    <script src="assets/i18n.js?v=20260924b"></script>
-    <script src="assets/site.js?v=20260924b"></script>
+    <script src="assets/i18n-data.js?v=20260924c"></script>
+    <script src="assets/i18n.js?v=20260924c"></script>
+    <script src="assets/site.js?v=20260924c"></script>
 </body>
 </html>
