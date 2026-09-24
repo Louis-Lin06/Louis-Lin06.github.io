@@ -43,9 +43,8 @@
     // Links, embeds and downloads that point at a file with translated versions
     const fileRefs = [];
     Object.keys(FILES).forEach(file => {
-        document.querySelectorAll('a[href], iframe[src], object[data]').forEach(el => {
-            if (el.tagName === 'IFRAME' && el.closest('object')) return; // handled with its <object>
-            const attr = el.tagName === 'A' ? 'href' : el.tagName === 'IFRAME' ? 'src' : 'data';
+        document.querySelectorAll('a[href]').forEach(el => {
+            const attr = 'href';
             const v = el.getAttribute(attr);
             if (v && v.indexOf(file) === 0) fileRefs.push({ el, attr, en: v, file });
         });
@@ -54,18 +53,7 @@
         const i = IDX[code];
         fileRefs.forEach(r => {
             const next = code === 'en' ? r.en : r.en.replace(r.file, FILES[r.file][i]);
-            if (r.el.getAttribute(r.attr) === next) return;
-            if (r.el.tagName === 'OBJECT') {
-                // Browsers don't reload an <object> when its data changes, so replace it
-                const clone = r.el.cloneNode(true);
-                clone.setAttribute('data', next);
-                const inner = clone.querySelector('iframe');
-                if (inner) inner.setAttribute('src', next);
-                r.el.replaceWith(clone);
-                r.el = clone;
-            } else {
-                r.el.setAttribute(r.attr, next);
-            }
+            if (r.el.getAttribute(r.attr) !== next) r.el.setAttribute(r.attr, next);
         });
     };
 
@@ -123,12 +111,25 @@
         menu.addEventListener('click', (e) => {
             const b = e.target.closest('[data-lang]');
             if (!b) return;
-            apply(b.dataset.lang, { save: true });
             setOpen(false);
             btn.focus();
+            switchTo(b.dataset.lang);
         });
         document.addEventListener('click', (e) => { if (!wrap.contains(e.target)) setOpen(false); });
         document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && wrap.classList.contains('open')) { setOpen(false); btn.focus(); } });
+    };
+
+    // Fade the page text out, swap the language, fade back in
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const root = document.documentElement;
+    const switchTo = (code) => {
+        if (code === current) return;
+        if (reduce) { apply(code, { save: true }); return; }
+        root.classList.add('lang-fading');
+        setTimeout(() => {
+            apply(code, { save: true });
+            requestAnimationFrame(() => requestAnimationFrame(() => root.classList.remove('lang-fading')));
+        }, 160);
     };
 
     function updateSwitcher() {
@@ -146,6 +147,9 @@
     const initial = detect();
     if (initial !== 'en') apply(initial); else { current = 'en'; updateSwitcher(); }
 
-    window.I18N = { t, apply, get lang() { return current; } };
+    // Path of a file (e.g. the resume) in the current language
+    const file = (path) => (current === 'en' || !FILES[path] ? path : FILES[path][IDX[current]]);
+
+    window.I18N = { t, apply, file, get lang() { return current; } };
     document.documentElement.classList.remove('lang-loading');
 })();

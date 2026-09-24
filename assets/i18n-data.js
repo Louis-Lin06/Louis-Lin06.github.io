@@ -3,6 +3,50 @@
    To add or fix a translation, edit the matching line. Text without an entry stays in English. */
 window.I18N_DATA = {
   text: {
+ "Hygea Medical Technology Co., Ltd.": [
+  "海杰亚",
+  "海傑亞"
+ ],
+ "Hygea Medical Technology": [
+  "海杰亚",
+  "海傑亞"
+ ],
+ "Hygea Medical": [
+  "海杰亚",
+  "海傑亞"
+ ],
+ "Hygea": [
+  "海杰亚",
+  "海傑亞"
+ ],
+ "Roche": [
+  "罗氏",
+  "羅氏"
+ ],
+ "AirBoss of America": [
+  "美国艾尔博斯公司",
+  "美國艾爾博斯公司"
+ ],
+ "Airboss of America": [
+  "美国艾尔博斯公司",
+  "美國艾爾博斯公司"
+ ],
+ "AirBoss": [
+  "艾尔博斯",
+  "艾爾博斯"
+ ],
+ "Premier Healthcare Solutions": [
+  "信裕股份有限公司",
+  "信裕股份有限公司"
+ ],
+ "Premier Healthcare": [
+  "信裕",
+  "信裕"
+ ],
+ "Premier": [
+  "信裕",
+  "信裕"
+ ],
  "Skip to content": [
   "跳到正文",
   "跳到正文"
@@ -288,16 +332,16 @@ window.I18N_DATA = {
   "編寫標準操作規程（SOP）和影片操作指南，使技術到職訓練流程化，顯著縮短新一批工程人員的學習週期。"
  ],
  "Attending Roche's Quarterly Townhall": [
-  "参加 Roche 季度全员大会",
-  "參加 Roche 季度全員大會"
+  "参加罗氏季度全员大会",
+  "參加羅氏季度全員大會"
  ],
  "Leader's Summit App that I built": [
   "我开发的领导者峰会应用",
   "我開發的領導者峰會應用程式"
  ],
  "Roche Products that I worked with": [
-  "我参与相关工作的 Roche 产品",
-  "我參與相關工作的 Roche 產品"
+  "我参与相关工作的罗氏产品",
+  "我參與相關工作的羅氏產品"
  ],
  "Susvimo needle used for refilling medicine": [
   "用于补充药物的 Susvimo 针头",
@@ -694,8 +738,8 @@ window.I18N_DATA = {
   "從構想到原型，<br>以及其間的一切。"
  ],
  "home.about.p1": [
-  "我是 Louis，<strong>滑铁卢大学生物医学工程专业的学生</strong>，对医疗器械和动手实践的工程工作有浓厚兴趣。我喜欢把一个想法从 CAD 模型做成实物原型，并想办法让它真正运转起来，尤其是在解决方案并不显而易见的时候。",
-  "我是 Louis，<strong>滑鐵盧大學生物醫學工程專業的學生</strong>，對醫療器材和動手實踐的工程工作有濃厚興趣。我喜歡把一個想法從 CAD 模型做成實物原型，並想辦法讓它真正運轉起來，尤其是在解決方案並不顯而易見的時候。"
+  "我是 Louis 林冠颉，<strong>滑铁卢大学生物医学工程专业的学生</strong>，对医疗器械和动手实践的工程工作有浓厚兴趣。我喜欢把一个想法从 CAD 模型做成实物原型，并想办法让它真正运转起来，尤其是在解决方案并不显而易见的时候。",
+  "我是 Louis 林冠頡，<strong>滑鐵盧大學生物醫學工程專業的學生</strong>，對醫療器材和動手實踐的工程工作有濃厚興趣。我喜歡把一個想法從 CAD 模型做成實物原型，並想辦法讓它真正運轉起來，尤其是在解決方案並不顯而易見的時候。"
  ],
  "home.about.p2": [
   "我的经验涵盖<strong>机械设计、电子和软件</strong>。我设计并制作过机械系统，接触过 PCB 和电路，为电机和基于肌电（EMG）的系统编写过固件，也开发过软件和网页应用。通过这些项目，我学会了在硬件和软件之间排查问题，并在事情不如预期时灵活调整。",

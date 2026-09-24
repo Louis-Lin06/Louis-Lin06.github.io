@@ -325,7 +325,17 @@
     /* ---------- Resume modal ---------- */
     const modal = $('#resumeModal');
     if (modal) {
-        const open = () => { modal.classList.add('active'); lockScroll(); $('#closeResumeModal').focus({ preventScroll: true }); };
+        const holder = $('[data-resume]', modal);
+        const loadResume = () => {
+            if (!holder) return;
+            const base = holder.dataset.resume;
+            const file = window.I18N ? window.I18N.file(base) : base;
+            if (holder.dataset.loaded === file) return;
+            const url = encodeURI(file) + '#view=FitH';
+            holder.innerHTML = `<object data="${url}" type="application/pdf" width="100%" height="100%"><iframe src="${url}" width="100%" height="100%" title="Louis Lin resume"></iframe></object>`;
+            holder.dataset.loaded = file;
+        };
+        const open = () => { loadResume(); modal.classList.add('active'); lockScroll(); $('#closeResumeModal').focus({ preventScroll: true }); };
         const close = () => { if (!modal.classList.contains('active')) return; modal.classList.remove('active'); unlockScroll(); };
         $$('[data-open-resume]').forEach(b => b.addEventListener('click', open));
         $('#closeResumeModal').addEventListener('click', close);
