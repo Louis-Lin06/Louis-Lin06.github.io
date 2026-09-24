@@ -16,6 +16,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/site.css">
+    <script>
+        /* Hide the page briefly while a saved or browser Chinese preference is applied, to avoid a flash of English */
+        (function () { try { var s = localStorage.getItem('site-lang'); var n = (navigator.language || '').toLowerCase();
+            if (s ? s !== 'en' : n.indexOf('zh') === 0) { var d = document.documentElement; d.classList.add('lang-loading'); setTimeout(function () { d.classList.remove('lang-loading'); }, 1500); } } catch (e) {} })();
+    </script>
 </head>
 <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -73,7 +78,7 @@
             <div class="hero-glow" aria-hidden="true"><span></span><span></span></div>
             <div class="container page-header-text">
                 <p class="eyebrow exp fade-up" style="--d:0s">Experience</p>
-                <h1 class="display split">Professional Experience</h1>
+                <h1 class="display split" data-i18n="exp.title">Professional Experience</h1>
                 <p class="lead fade-up" style="--d:.5s">Engineering internships and technical operations.</p>
                 <div class="cta-row fade-up" style="--d:.65s">
                     <button id="openResumeModal" class="btn btn-download" type="button" data-open-resume><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>Preview Resume</button>
@@ -339,6 +344,8 @@
         </div>
     </footer>
 
+    <script src="assets/i18n-data.js"></script>
+    <script src="assets/i18n.js"></script>
     <script src="assets/site.js"></script>
 </body>
 </html>

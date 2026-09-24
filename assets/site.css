@@ -665,3 +665,49 @@ ul { list-style: none; }
 .video-play:hover { transform: scale(1.06); }
 .video-play svg { width: 26px; height: 26px; margin-left: 4px; }
 .gallery-media.needs-play .video-play { display: grid; }
+
+/* ==========================================================================
+   Language switcher + Chinese typography
+   ========================================================================== */
+.lang-loading body { visibility: hidden; }
+
+.gnav-brand { margin-right: auto; }
+.gnav-inner { justify-content: flex-start; }
+.lang-switch { position: relative; flex: none; margin-left: 18px; }
+.lang-btn { display: inline-flex; align-items: center; gap: 5px; height: 30px; padding: 0 10px 0 8px; border-radius: 980px; font-size: 12px; font-weight: 600; color: var(--text); opacity: 0.85; box-shadow: inset 0 0 0 1px var(--line); transition: opacity 0.2s, background 0.2s; }
+.lang-btn:hover, .lang-switch.open .lang-btn { opacity: 1; background: var(--line-soft); }
+.lang-btn svg { width: 15px; height: 15px; }
+.lang-cur { min-width: 1.3em; text-align: center; }
+.lang-menu {
+    position: absolute; right: 0; top: calc(100% + 10px); min-width: 168px; padding: 6px;
+    background: var(--bg); border-radius: 14px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18), inset 0 0 0 1px var(--line-soft);
+    opacity: 0; transform: translateY(-6px) scale(0.98); transform-origin: top right; pointer-events: none; visibility: hidden;
+    transition: opacity 0.2s var(--ease), transform 0.25s var(--ease-out), visibility 0s linear 0.25s;
+}
+.lang-switch.open .lang-menu { opacity: 1; transform: none; pointer-events: auto; visibility: visible; transition: opacity 0.2s var(--ease), transform 0.25s var(--ease-out); }
+.lang-menu button { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 9px 12px; border-radius: 9px; font-size: 14px; color: var(--text); text-align: left; letter-spacing: 0; }
+.lang-menu button:hover { background: var(--line-soft); }
+.lang-menu button svg { width: 15px; height: 15px; color: var(--blue); opacity: 0; }
+.lang-menu button.active { font-weight: 600; }
+.lang-menu button.active svg { opacity: 1; }
+@media (max-width: 833px) {
+    .lang-switch { order: 2; margin-left: 0; }
+    .menu-toggle { order: 3; margin-left: 4px; }
+}
+
+/* Chinese: system CJK fonts, no negative tracking, a little more line height */
+html[lang^="zh"] body {
+    font-family: "SF Pro Display", "SF Pro Text", -apple-system, BlinkMacSystemFont, "Inter", "Helvetica Neue", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+    letter-spacing: 0;
+}
+html[lang="zh-Hant"] body {
+    font-family: "SF Pro Display", "SF Pro Text", -apple-system, BlinkMacSystemFont, "Inter", "Helvetica Neue", "PingFang TC", "Hiragino Sans CNS", "Microsoft JhengHei", "Noto Sans TC", sans-serif;
+}
+html[lang^="zh"] .display, html[lang^="zh"] .headline, html[lang^="zh"] .title-2,
+html[lang^="zh"] .entry-title, html[lang^="zh"] .tile h3, html[lang^="zh"] .timeline-header h2 { letter-spacing: 0.01em; line-height: 1.2; }
+html[lang^="zh"] .lead, html[lang^="zh"] .about-copy p, html[lang^="zh"] .entry-list li, html[lang^="zh"] .skill p { letter-spacing: 0.02em; line-height: 1.75; }
+html[lang^="zh"] .eyebrow, html[lang^="zh"] .track-label span, html[lang^="zh"] .contact-label { letter-spacing: 0.04em; }
+html[lang^="zh"] .gantt-month { text-transform: none; letter-spacing: 0; }
+
+@media (prefers-color-scheme: dark) { .lang-menu { background: #1c1c1e; } }

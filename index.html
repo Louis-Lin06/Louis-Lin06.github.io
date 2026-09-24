@@ -25,6 +25,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="preload" as="image" href="images/index-page-profile-photo.webp">
     <link rel="stylesheet" href="assets/site.css">
+    <script>
+        /* Hide the page briefly while a saved or browser Chinese preference is applied, to avoid a flash of English */
+        (function () { try { var s = localStorage.getItem('site-lang'); var n = (navigator.language || '').toLowerCase();
+            if (s ? s !== 'en' : n.indexOf('zh') === 0) { var d = document.documentElement; d.classList.add('lang-loading'); setTimeout(function () { d.classList.remove('lang-loading'); }, 1500); } } catch (e) {} })();
+    </script>
 </head>
 <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -50,7 +55,7 @@
             <div class="hero-glow" aria-hidden="true"><span></span><span></span></div>
             <div class="container">
                 <p class="eyebrow fade-up" style="--d:0s"><span class="dot"></span>Biomedical Engineering · University of Waterloo</p>
-                <h1 class="display split">Building Hardware for<br><span class="grad-text">Biomedical Applications.</span></h1>
+                <h1 class="display split" data-i18n="home.hero">Building Hardware for<br><span class="grad-text">Biomedical Applications.</span></h1>
                 <p class="lead fade-up" style="--d:.7s">From CAD to a working prototype: mechanical design, electronics, and firmware for medical devices.</p>
                 <div class="cta-row fade-up" style="--d:.85s">
                     <a href="projects.html" class="btn">View projects</a>
@@ -79,10 +84,10 @@
                     </div>
                     <div class="about-copy hero-text">
                         <p class="eyebrow reveal">About</p>
-                        <h2 class="headline reveal">Idea to prototype,<br>and everything between.</h2>
-                        <p class="reveal">I’m Louis, <strong>a Biomedical Engineering student at the University of Waterloo</strong> with a strong interest in medical devices and hands-on engineering. I enjoy taking an idea from CAD to a physical prototype and figuring out how to make it work, especially when the solution isn’t immediately obvious.</p>
-                        <p class="reveal">My experience spans <strong>mechanical design, electronics, and software</strong>. I’ve designed and built mechanical systems, worked with PCBs and circuits, written firmware for motors and EMG-based systems, and developed software and web applications. Through these projects, I’ve learned to troubleshoot problems across both hardware and software and to adapt when things don’t work the way I expected.</p>
-                        <p class="reveal">What I enjoy most about engineering is <strong>the freedom to approach a problem in different ways</strong>. There isn’t always one right answer, and I like experimenting, building, testing, and refining until I find an approach that works. This portfolio is a collection of projects that reflect that process, from an EMG-controlled prosthetic hand to an ongoing lower-body exoskeleton and the hardware and software I’ve built along the way.</p>
+                        <h2 class="headline reveal" data-i18n="home.about.title">Idea to prototype,<br>and everything between.</h2>
+                        <p class="reveal" data-i18n="home.about.p1">I’m Louis, <strong>a Biomedical Engineering student at the University of Waterloo</strong> with a strong interest in medical devices and hands-on engineering. I enjoy taking an idea from CAD to a physical prototype and figuring out how to make it work, especially when the solution isn’t immediately obvious.</p>
+                        <p class="reveal" data-i18n="home.about.p2">My experience spans <strong>mechanical design, electronics, and software</strong>. I’ve designed and built mechanical systems, worked with PCBs and circuits, written firmware for motors and EMG-based systems, and developed software and web applications. Through these projects, I’ve learned to troubleshoot problems across both hardware and software and to adapt when things don’t work the way I expected.</p>
+                        <p class="reveal" data-i18n="home.about.p3">What I enjoy most about engineering is <strong>the freedom to approach a problem in different ways</strong>. There isn’t always one right answer, and I like experimenting, building, testing, and refining until I find an approach that works. This portfolio is a collection of projects that reflect that process, from an EMG-controlled prosthetic hand to an ongoing lower-body exoskeleton and the hardware and software I’ve built along the way.</p>
                     </div>
                 </div>
             </div>
@@ -93,7 +98,7 @@
             <div class="container">
                 <div class="section-head">
                     <p class="eyebrow reveal">What I work across</p>
-                    <h2 class="headline reveal">Three disciplines.<br>One system.</h2>
+                    <h2 class="headline reveal" data-i18n="home.skills.title">Three disciplines.<br>One system.</h2>
                 </div>
                 <div class="skills">
                     <div class="card skill reveal">
@@ -225,6 +230,8 @@
         </div>
     </footer>
 
+    <script src="assets/i18n-data.js"></script>
+    <script src="assets/i18n.js"></script>
     <script src="assets/site.js"></script>
 </body>
 </html>

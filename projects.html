@@ -16,6 +16,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/site.css">
+    <script>
+        /* Hide the page briefly while a saved or browser Chinese preference is applied, to avoid a flash of English */
+        (function () { try { var s = localStorage.getItem('site-lang'); var n = (navigator.language || '').toLowerCase();
+            if (s ? s !== 'en' : n.indexOf('zh') === 0) { var d = document.documentElement; d.classList.add('lang-loading'); setTimeout(function () { d.classList.remove('lang-loading'); }, 1500); } } catch (e) {} })();
+    </script>
 </head>
 <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -69,7 +74,7 @@
             <div class="hero-glow" aria-hidden="true"><span></span><span></span></div>
             <div class="container">
                 <p class="eyebrow proj fade-up" style="--d:0s">Projects</p>
-                <h1 class="display split">Featured Projects</h1>
+                <h1 class="display split" data-i18n="proj.title">Featured Projects</h1>
                 <p class="lead fade-up" style="--d:.5s">Hardware design, firmware development, and prototyping.</p>
                 <div class="facts fade-up" style="--d:.7s">
                     <div class="fact"><b>4</b><span>Projects</span></div>
@@ -297,7 +302,7 @@
 
         <section class="section section-alt cta-band">
             <div class="container">
-                <h2 class="headline reveal">Want the full story<br><span class="grad-text">behind a build?</span></h2>
+                <h2 class="headline reveal" data-i18n="proj.cta">Want the full story<br><span class="grad-text">behind a build?</span></h2>
                 <p class="lead reveal">Happy to walk through design decisions, iterations, and test results.</p>
                 <div class="cta-row reveal">
                     <a href="contact.html" class="btn">Get in touch</a>
@@ -324,6 +329,8 @@
         </div>
     </footer>
 
+    <script src="assets/i18n-data.js"></script>
+    <script src="assets/i18n.js"></script>
     <script src="assets/site.js"></script>
 </body>
 </html>

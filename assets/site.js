@@ -3,6 +3,7 @@
     const $ = (s, r = document) => r.querySelector(s);
     const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const tr = (key, en) => (window.I18N ? window.I18N.t(key, en) : en);
     document.documentElement.classList.remove('no-js');
 
     const icon = {
@@ -261,7 +262,8 @@
             if (!img) return;
             const btn = $('.gallery-media', s);
             const idx = items.length;
-            items.push({ src: img.dataset.full || img.currentSrc || img.src, alt: img.alt, caption: ($('figcaption', s) || {}).textContent || '' });
+            const capEl = $('figcaption', s);
+            items.push({ src: img.dataset.full || img.currentSrc || img.src, alt: img.alt, get caption() { return capEl ? capEl.textContent : ''; } });
             if (btn && btn.tagName === 'BUTTON') {
                 btn.insertAdjacentHTML('beforeend', `<span class="zoom-hint" aria-hidden="true">${icon.zoom}</span>`);
                 btn.addEventListener('click', () => openLB(items, idx, btn));
@@ -352,8 +354,9 @@
             const m = document.createElement('div');
             m.className = 'now-marker';
             m.style.left = `${(idx / 36) * 100}%`;
-            m.innerHTML = '<span>Now</span>';
+            m.innerHTML = `<span>${tr('__now', 'Now')}</span>`;
             grid.appendChild(m);
+            document.addEventListener('langchange', () => { m.firstChild.textContent = tr('__now', 'Now'); });
         }
 
         // Start scrolled to the present
@@ -409,8 +412,8 @@
             ta.remove();
         }
         const old = btn.textContent;
-        btn.textContent = 'Copied';
-        showToast(`${text} copied`);
+        btn.textContent = tr('__copied', 'Copied');
+        showToast(window.I18N && window.I18N.lang !== 'en' ? `${tr('__copied_toast', 'Copied')} ${text}` : `${text} copied`);
         setTimeout(() => { btn.textContent = old; }, 1600);
     }));
 })();

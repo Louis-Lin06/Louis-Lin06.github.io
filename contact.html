@@ -16,6 +16,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/site.css">
+    <script>
+        /* Hide the page briefly while a saved or browser Chinese preference is applied, to avoid a flash of English */
+        (function () { try { var s = localStorage.getItem('site-lang'); var n = (navigator.language || '').toLowerCase();
+            if (s ? s !== 'en' : n.indexOf('zh') === 0) { var d = document.documentElement; d.classList.add('lang-loading'); setTimeout(function () { d.classList.remove('lang-loading'); }, 1500); } } catch (e) {} })();
+    </script>
 </head>
 <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -39,7 +44,7 @@
             <div class="hero-glow" aria-hidden="true"><span></span><span></span></div>
             <div class="container">
                 <p class="eyebrow fade-up" style="--d:0s">Contact</p>
-                <h1 class="display split">Let's <span class="grad-text">Connect</span></h1>
+                <h1 class="display split" data-i18n="contact.title">Let's <span class="grad-text">Connect</span></h1>
                 <p class="lead fade-up" style="--d:.45s">I'm currently seeking new opportunities in mechanical and biomedical engineering. Feel free to reach out!</p>
             </div>
         </section>
@@ -121,6 +126,8 @@
         </div>
     </footer>
 
+    <script src="assets/i18n-data.js"></script>
+    <script src="assets/i18n.js"></script>
     <script src="assets/site.js"></script>
 </body>
 </html>
