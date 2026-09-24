@@ -124,10 +124,25 @@
     const vidIO = new IntersectionObserver((entries) => {
         entries.forEach(en => {
             const v = en.target;
-            if (en.isIntersecting) { const p = v.play(); p && p.catch(() => {}); } else v.pause();
+            if (en.isIntersecting) {
+                const p = v.play();
+                p && p.catch(() => { const w = v.parentElement; if (w) w.classList.add('needs-play'); });
+            } else v.pause();
         });
     }, { threshold: 0.15 });
-    $$('video[autoplay]').forEach(v => vidIO.observe(v));
+    $$('video[autoplay]').forEach(v => {
+        v.muted = true; // required for autoplay on iOS
+        vidIO.observe(v);
+        const wrap = v.parentElement;
+        if (wrap && wrap.classList.contains('is-video')) {
+            const btn = document.createElement('button');
+            btn.type = 'button'; btn.className = 'video-play'; btn.setAttribute('aria-label', 'Play video');
+            btn.innerHTML = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg>';
+            btn.addEventListener('click', () => { v.play().then(() => wrap.classList.remove('needs-play')).catch(() => {}); });
+            wrap.appendChild(btn);
+            v.addEventListener('playing', () => wrap.classList.remove('needs-play'));
+        }
+    });
 
     /* ---------- Lightbox ---------- */
     let lb, lbImg, lbCap, lbCount, lbItems = [], lbIndex = 0, lbReturn = null;

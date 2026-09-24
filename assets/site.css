@@ -649,3 +649,19 @@ ul { list-style: none; }
 
 /* Keep bar labels readable when a long bar is scrolled partly out of view */
 .gantt-bar > span { position: sticky; left: 16px; width: fit-content; max-width: 100%; }
+
+/* Icon-only LinkedIn button */
+.btn-linkedin { width: 30px; height: 30px; padding: 0; justify-content: center; }
+.btn-linkedin svg { width: 14px; height: 14px; }
+@media (max-width: 833px) {
+    .gnav-links a.btn-linkedin { width: 52px; height: 52px; padding: 0; margin-top: 20px; }
+    .gnav-links a.btn-linkedin svg { width: 22px; height: 22px; }
+}
+.gnav-brand { gap: 0; }
+.gnav-brand .sep { margin: 0 9px; }
+
+/* Play button shown only if the browser blocks autoplay */
+.video-play { position: absolute; inset: 0; margin: auto; width: 64px; height: 64px; border-radius: 50%; display: none; place-items: center; background: rgba(0, 0, 0, 0.55); color: #fff; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); transition: transform 0.2s; }
+.video-play:hover { transform: scale(1.06); }
+.video-play svg { width: 26px; height: 26px; margin-left: 4px; }
+.gallery-media.needs-play .video-play { display: grid; }
