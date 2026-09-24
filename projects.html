@@ -1,165 +1,59 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-js has-lnav">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <title>Projects | Louis Lin</title>
+    <meta name="description" content="Hardware design, firmware development, and prototyping: exoskeleton, EMG prosthetic hand, robotic hand support, and adaptive paddleboard.">
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+    <meta property="og:title" content="Projects | Louis Lin">
+    <meta property="og:description" content="Hardware design, firmware development, and prototyping: exoskeleton, EMG prosthetic hand, robotic hand support, and adaptive paddleboard.">
+    <meta property="og:image" content="https://louis-lin06.github.io/social-preview.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <style>
-        :root { --bg-page: #ffffff; --bg-surface: #f9fafb; --text-main: #111827; --text-muted: #6b7280; --border: #e5e7eb; --blue-accent: #0ea5e9; --linkedin-blue: #3b82f6; --focus-ring: #0ea5e9; }
-        
-        html, body { scroll-behavior: smooth; max-width: 100vw; overflow-x: hidden; width: 100%; }
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        
-        body { 
-            font-family: 'Inter', sans-serif; 
-            background: linear-gradient(to right, rgba(30, 58, 138, 0.45) 0%, #ffffff 20%, #ffffff 80%, rgba(30, 58, 138, 0.45) 100%);
-            background-attachment: fixed;
-            color: var(--text-main); 
-            line-height: 1.6; 
-            display: flex; 
-            flex-direction: column; 
-            min-height: 100vh; 
-        }
-
-        :focus:not(:focus-visible) { outline: none; }
-        :focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 3px; border-radius: 4px; }
-        
-        /* Navigation */
-        nav { position: sticky; top: 0; background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); z-index: 100; }
-        .nav-container { max-width: 1000px; margin: 0 auto; padding: 1rem 1.5rem; display: flex; justify-content: space-between; align-items: center; position: relative; }
-        .nav-brand { font-weight: 600; font-size: 1.1rem; text-decoration: none; color: var(--text-main); line-height: 1.3; }
-        .nav-links { display: flex; gap: 2rem; align-items: center; }
-        .nav-links a { text-decoration: none; color: var(--text-muted); font-size: 0.9rem; font-weight: 500; transition: color 0.2s; }
-        .nav-links a:hover, .nav-links a.active { color: var(--text-main); }
-        .btn-linkedin { background-color: var(--linkedin-blue); color: white !important; padding: 0.5rem 1rem; border-radius: 6px; font-weight: 500; transition: opacity 0.2s ease, transform 0.2s ease; }
-        .btn-linkedin:hover { opacity: 0.9; transform: translateY(-1px); }
-        
-        .mobile-menu-btn { display: none; background: none; border: none; font-size: 1.5rem; color: var(--text-main); cursor: pointer; }
-        .mobile-toc-btn { display: none; }
-        .toc-backdrop { display: none; }
-
-        /* Page Layout */
-        .page-wrapper { max-width: 1100px; margin: 0 auto; padding: 4rem 1.5rem; width: 100%; display: grid; grid-template-columns: 220px 1fr; gap: 4rem; align-items: start; flex: 1; }
-        
-        /* Sidebar TOC */
-        aside { position: sticky; top: 100px; z-index: 90; }
-        .toc-title { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600; color: var(--text-muted); margin-bottom: 1rem; }
-        .toc-list { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; border-left: 2px solid var(--border); }
-        .toc-link { text-decoration: none; color: var(--text-muted); font-size: 0.95rem; padding-left: 1rem; border-left: 2px solid transparent; margin-left: -2px; transition: all 0.2s; display: block; }
-        .toc-link:hover { color: var(--text-main); }
-        .toc-link.active { color: var(--blue-accent); font-weight: 600; border-left-color: var(--blue-accent); }
-        .toc-year-label { font-size: 0.75rem; font-weight: 600; color: var(--text-muted); padding-left: 1rem; margin-top: 1rem; }
-        .toc-close-btn { display: none; }
-
-        /* Main Content */
-        .page-header { margin-bottom: 4rem; border-bottom: 1px solid var(--border); padding-bottom: 2rem; }
-        .page-header h1 { font-size: 2.5rem; font-weight: 600; letter-spacing: -0.03em; margin-bottom: 0.5rem; }
-
-        /* Year Divider inside the timeline */
-        .year-header { font-size: 1.5rem; font-weight: 700; color: var(--text-main); padding-left: 1.5rem; border-left: 2px solid var(--border); position: relative; padding-bottom: 1.5rem; }
-        .year-header::before { content: ''; position: absolute; left: -7px; top: 6px; width: 12px; height: 12px; border-radius: 50%; background-color: var(--bg-page); border: 2px solid var(--text-main); }
-
-        .project-section { margin-bottom: 5rem; scroll-margin-top: 100px; position: relative; padding-left: 1.5rem; border-left: 2px solid var(--border); }
-        .project-section::before { content: ''; position: absolute; left: -6px; top: 6px; width: 10px; height: 10px; border-radius: 50%; background-color: var(--blue-accent); }
-        
-        .project-title { font-size: 1.5rem; font-weight: 600; color: var(--text-main); margin-bottom: 0.25rem; }
-        .project-meta { font-size: 0.95rem; color: var(--text-muted); margin-bottom: 1rem; font-weight: 500; }
-        .project-tech { font-size: 0.85rem; font-weight: 600; color: var(--blue-accent); margin-bottom: 1.25rem; text-transform: uppercase; letter-spacing: 0.05em; }
-        
-        .project-desc { font-size: 1rem; color: var(--text-muted); max-width: 750px; overflow-wrap: break-word; word-wrap: break-word; }
-        .project-desc ul { margin-left: 1.25rem; margin-top: 0.5rem; }
-        .project-desc li { margin-bottom: 0.5rem; }
-
-        /* Desktop Carousel Styles */
-        .carousel-container { position: relative; max-width: 550px; margin-top: 2rem; margin-left: 1.25rem; border-radius: 8px; overflow: hidden; border: 1px solid var(--border); background: var(--bg-surface); box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
-        .carousel-track { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; -ms-overflow-style: none; scroll-behavior: smooth; }
-        .carousel-track::-webkit-scrollbar { display: none; }
-        
-        /* Restructured to ensure solid background and clean letterboxing */
-        .carousel-slide { flex: 0 0 100%; width: 100%; scroll-snap-align: center; display: flex; flex-direction: column; background-color: var(--bg-surface); }
-        
-        /* Locked height with dark background creates a professional cinematic letterbox for any aspect ratio */
-        .carousel-slide img, .carousel-slide video { width: 100%; height: 350px; object-fit: contain; background-color: #111827; display: block; margin: 0; }
-        
-        .carousel-caption { padding: 1rem; font-size: 0.9rem; color: var(--text-main); text-align: center; font-weight: 500; background: var(--bg-surface); border-top: 1px solid var(--border); min-height: 60px; display: flex; align-items: center; justify-content: center; }
-        
-        /* Anchored to the exact vertical center of the 350px image, not the whole card */
-        .carousel-btn { position: absolute; top: 175px; transform: translateY(-50%); background: rgba(255, 255, 255, 0.9); border: 1px solid var(--border); color: var(--text-main); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 1.2rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: all 0.2s; z-index: 10; }
-        .carousel-btn.hidden { opacity: 0; pointer-events: none; }
-        .carousel-btn:hover { background: var(--text-main); color: white; }
-        .carousel-btn.prev { left: 0.75rem; }
-        .carousel-btn.next { right: 0.75rem; }
-
-        /* Mobile Adjustments */
-        @media (max-width: 1024px) {
-            .mobile-menu-btn { display: block; }
-            .nav-links { display: none; flex-direction: column; width: 100%; position: absolute; top: 100%; left: 0; background: rgba(255,255,255,0.98); border-bottom: 1px solid var(--border); padding: 1.5rem; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
-            .nav-links.active { display: flex; }
-            .nav-brand { font-size: 0.95rem; max-width: 75%; display: block; }
-
-            .page-wrapper { grid-template-columns: minmax(0, 1fr); gap: 2rem; padding: 2rem 1.5rem; width: 100%; }
-            main { min-width: 0; width: 100%; max-width: 100%; }
-            
-            .history-column { min-width: 0; width: 100%; padding-left: 0.5rem; }
-            .project-section { min-width: 0; width: 100%; padding-left: 1.25rem; }
-            .project-desc { min-width: 0; width: 100%; }
-            
-            .page-header { padding-bottom: 1rem; }
-            .page-header h1 { font-size: 2.1rem; line-height: 1.1; }
-            .project-title { font-size: 1.35rem; line-height: 1.3; }
-            .project-meta { font-size: 0.85rem; }
-            .project-desc { font-size: 0.95rem; }
-            .project-desc ul { margin-left: 1rem; }
-
-            /* Fixed Carousel Mobile Logic */
-            .carousel-container { width: 100%; max-width: 100%; min-width: 0; margin-left: 0; border-radius: 6px; }
-            
-            /* Locks mobile height to prevent stretching, uses dark background to frame perfectly */
-            .carousel-slide img, .carousel-slide video { height: 280px; max-height: 280px; width: 100%; object-fit: contain; background-color: #111827; }
-            
-            /* Pin arrows to the exact center of the 280px image area */
-            .carousel-btn { top: 140px; }
-
-            .mobile-toc-btn { display: flex; align-items: center; justify-content: center; gap: 0.5rem; position: fixed; bottom: 1.5rem; right: 1.5rem; background-color: var(--text-main); color: white; border: none; padding: 0.75rem 1.25rem; border-radius: 99px; font-weight: 600; font-size: 0.9rem; z-index: 90; box-shadow: 0 4px 12px rgba(0,0,0,0.2); cursor: pointer; transition: transform 0.2s; }
-            .mobile-toc-btn:active { transform: scale(0.95); }
-
-            aside { position: fixed; top: auto; bottom: 0; left: 0; width: 100%; background: var(--bg-page); padding: 2rem 1.5rem; border-top-left-radius: 20px; border-top-right-radius: 20px; box-shadow: 0 -4px 20px rgba(0,0,0,0.15); transform: translateY(100%); transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); max-height: 80vh; overflow-y: auto; }
-            aside.active { transform: translateY(0); }
-            .toc-backdrop { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 85; backdrop-filter: blur(2px); }
-            .toc-backdrop.active { display: block; }
-            .toc-title { display: flex; justify-content: space-between; align-items: center; font-size: 1rem; color: var(--text-main); margin-bottom: 1.5rem; }
-            .toc-close-btn { display: block; background: none; border: none; font-size: 1.5rem; line-height: 1; cursor: pointer; color: var(--text-muted); }
-            .toc-list { border-left: none; }
-            .toc-link { padding-left: 0.75rem; border-left: 2px solid transparent; padding-top: 0.25rem; padding-bottom: 0.25rem; font-size: 1rem; margin-left: 0; }
-            .toc-year-label { padding-left: 0.75rem; font-size: 0.85rem; margin-top: 1.5rem; color: var(--text-main); }
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/site.css">
 </head>
 <body>
-    <nav>
-        <div class="nav-container">
-            <a href="index.html" class="nav-brand">Louis Lin | Engineering Portfolio</a>
-            <button class="mobile-menu-btn" aria-label="Toggle menu">☰</button>
-            <div class="nav-links">
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="gnav">
+        <div class="container gnav-inner">
+            <a href="index.html" class="gnav-brand"><img src="favicon.svg" alt="">Louis Lin<span class="sep">|</span><span class="sub">Engineering Portfolio</span></a>
+            <button class="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="site-menu"><span></span><span></span></button>
+            <nav class="gnav-links" id="site-menu" aria-label="Main">
                 <a href="index.html">Home</a>
                 <a href="experiences.html">Experiences</a>
-                <a href="projects.html" class="active">Projects</a>
+                <a href="projects.html" class="active" aria-current="page">Projects</a>
                 <a href="contact.html">Contact</a>
-                <a href="https://www.linkedin.com/in/louis-lin-43164a328" target="_blank" class="btn-linkedin">LinkedIn</a>
+                <a href="https://www.linkedin.com/in/louis-lin-43164a328" target="_blank" rel="noopener" class="btn-linkedin"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 110-4.13 2.06 2.06 0 010 4.13zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>LinkedIn</a>
+            </nav>
+        </div>
+    </header>
+
+    <nav class="lnav" aria-label="Projects sections">
+        <div class="container lnav-inner">
+            <span class="lnav-title">Projects</span>
+            <div class="lnav-links">
+                <a href="#exo">Exoskeleton</a>
+                <a href="#emg-hand">EMG Hand</a>
+                <span class="lnav-sep" aria-hidden="true"></span>
+                <a href="#hand-support">Hand Support</a>
+                <span class="lnav-sep" aria-hidden="true"></span>
+                <a href="#paddleboard">Paddleboard</a>
             </div>
+            <a class="btn btn-sm lnav-cta" href="contact.html">Contact</a>
         </div>
     </nav>
 
-    <button class="mobile-toc-btn">☰ Projects</button>
+    <button class="mobile-toc-btn" aria-expanded="false" aria-controls="toc-sheet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M8 6h13M8 12h13M8 18h13M3.5 6h.01M3.5 12h.01M3.5 18h.01"/></svg>Projects</button>
     <div class="toc-backdrop"></div>
-
-    <div class="page-wrapper">
-        <aside>
-            <div class="toc-title">Projects <button class="toc-close-btn">×</button></div>
-            <ul class="toc-list">
+    <aside class="toc-sheet" id="toc-sheet" aria-label="Projects">
+        <div class="toc-title">Projects <button class="toc-close-btn" aria-label="Close">×</button></div>
+        <ul class="toc-list">
                 <li class="toc-year-label">2026</li>
                 <li><a href="#exo" class="toc-link">Lower-Body Exoskeleton</a></li>
                 <li><a href="#emg-hand" class="toc-link">EMG Prosthetic Hand</a></li>
@@ -167,258 +61,269 @@
                 <li><a href="#hand-support" class="toc-link">Robotic Hand Support</a></li>
                 <li class="toc-year-label">2024</li>
                 <li><a href="#paddleboard" class="toc-link">Adaptive Paddleboard</a></li>
-            </ul>
-        </aside>
+        </ul>
+    </aside>
 
-        <main>
-            <div class="page-header">
-                <h1>Featured Projects</h1>
-                <p style="color: var(--text-muted);">Hardware design, firmware development, and prototyping.</p>
-            </div>
-
-            <div class="history-column">
-                
-                <!-- 2026 HEADER -->
-                <div class="year-header">2026</div>
-
-                <!-- EXOSKELETON (PRESENT) -->
-                <section class="project-section" id="exo">
-                    <div class="project-title">Lower-Body Exoskeleton</div>
-                    <div class="project-meta">Mechanical Team Lead · UW Biomechatronics Club · Sept 2024 - Present</div>
-                    <div class="project-tech">SolidWorks • Arduino • 3D Printing • Systems Integration</div>
-                    <div class="project-desc">
-                        <ul>
-                            <li>Leading the Mechanical Subteam in the design and early-stage development of a lower-body exoskeleton for the ACE 2026 Competition, drafting CAD models for a custom cycloidal gearbox and planning mechanical systems with safety and modularity in mind.</li>
-                            <li>Applied skills from previous robotic hand projects, including 3D printing, assembly, and integration of mechanical components, to develop reliable prototypes and ensure seamless hardware functionality.</li>
-                            <li>Coordinating with other subteam leads and leveraging Arduino and biosensor experience to guide system integration, iterative design, and multidisciplinary collaboration.</li>
-                        </ul>
-
-                        <!-- ALBUM SCROLL FEATURE -->
-                        <div class="carousel-container">
-                            <button class="carousel-btn prev" aria-label="Previous image">❮</button>
-                            <button class="carousel-btn next" aria-label="Next image">❯</button>
-                            <div class="carousel-track">
-                                <div class="carousel-slide">
-                                    <img src="EXO Actuator with motor shell CAD .png" alt="Actuator CAD">
-                                    <div class="carousel-caption">SolidWorks assembly of the custom exoskeleton actuator and motor shell.</div>
-                                </div>
-                                <div class="carousel-slide">
-                                    <img src="EXO CAD of motor contro and motor mount.png" alt="Motor Controller CAD">
-                                    <div class="carousel-caption">CAD modeling of the motor controller housing and motor mount integration.</div>
-                                </div>
-                                <div class="carousel-slide">
-                                    <img src="EXO CAD of Motor controller and motor mount P2.png" alt="Exploded CAD View">
-                                    <div class="carousel-caption">Exploded view detailing the structural mounting plates and internal housing.</div>
-                                </div>
-                                <div class="carousel-slide">
-                                    <img src="EXO Mark 1 P2.png" alt="Mark 1 Frame Fabrication">
-                                    <div class="carousel-caption">Physical fabrication and assembly of the Mark 1 aluminum exoskeleton frame.</div>
-                                </div>
-                                <div class="carousel-slide">
-                                    <img src="EXO Mark 1.png" alt="Mark 1 Fit Testing">
-                                    <div class="carousel-caption">Conducting physical fit and ergonomic testing of the Mark 1 frame.</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <!-- EMG PROSTHETIC HAND -->
-                <section class="project-section" id="emg-hand">
-                    <div class="project-title">EMG Controlled Prosthetic Hand</div>
-                    <div class="project-meta">Independent Hardware Project · May 2026 - Aug 2026</div>
-                    <div class="project-tech">C++ • Arduino Uno • Custom PCBs • Signal Filtering</div>
-                    <div class="project-desc">
-                        <ul>
-                            <li>Engineered a tendon-driven, myoelectric prosthetic hand prototype using forearm sensors to translate muscle signals into mechanical actuation.</li>
-                            <li>Programmed an Arduino Uno microcontroller in C++ to process sensor inputs and drive a continuous rotation servo for dynamic grip control.</li>
-                            <li>Drafted circuit schematics and technical documentation to validate firmware and hardware integration.</li>
-                        </ul>
-
-                        <!-- ALBUM SCROLL FEATURE -->
-                        <div class="carousel-container">
-                            <button class="carousel-btn prev" aria-label="Previous image">❮</button>
-                            <button class="carousel-btn next" aria-label="Next image">❯</button>
-                            <div class="carousel-track">
-                                <!-- Autoplaying Video (Acts like a high-quality GIF) -->
-                                 <div class="carousel-slide">
-                                    <video src="Prosthetic Vid 2.mp4" autoplay loop muted playsinline style="width: 100%; height: 350px; object-fit: contain; background-color: #1a1a1a;"></video>
-                                    <div class="carousel-caption">Live testing of the tendon-driven prosthetic hand actuation.</div>
-                                </div>
-                                <div class="carousel-slide">
-                                    <img src="Prosthetic Mech CAD.png" alt="Prosthetic CAD">
-                                    <div class="carousel-caption">SolidWorks CAD model detailing the finger joint framework.</div>
-                                </div>
-                                <div class="carousel-slide">
-                                    <img src="Prosthetic Mech interations.png" alt="Mechanical Iterations">
-                                    <div class="carousel-caption">Iterative mechanical design process for the palm and finger joints.</div>
-                                </div>
-                                <div class="carousel-slide">
-                                    <img src="Prosthetic Electrical .png" alt="Electrical Schematic">
-                                    <div class="carousel-caption">Custom circuit schematic for signal filtering and amplification.</div>
-                                </div>
-                                <div class="carousel-slide">
-                                    <img src="Prosthetic Finished PCB.JPG" alt="Finished PCB">
-                                    <div class="carousel-caption">Finished custom printed circuit board (PCB) for the EMG control system.</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- 2025 HEADER -->
-                <div class="year-header">2025</div>
-
-                <!-- ROBOTIC HAND SUPPORT -->
-                <section class="project-section" id="hand-support">
-                    <div class="project-title">Robotic Hand Support Mechanism</div>
-                    <div class="project-meta">Academic Design Project · Sept 2024 - April 2025</div>
-                    <div class="project-tech">MyoWare Biosensors • Hardware Validation • Mechanics</div>
-                    <div class="project-desc">
-                        <ul>
-                            <li>Assembled a functional biomechanical prototype, integrating MyoWare surface electromyography (EMG) sensors with an Arduino Uno to control a unified grasp mechanism.</li>
-                            <li>Drafted circuit schematics and developed foundational firmware to read analog muscle signals, utilizing basic thresholding to trigger a continuous rotation servo.</li>
-                            <li>Compiled technical summaries documenting the electromechanical assembly and system integration process.</li>
-                        </ul>
-
-                        <!-- ALBUM SCROLL FEATURE -->
-                        <div class="carousel-container">
-                            <button class="carousel-btn prev" aria-label="Previous image">❮</button>
-                            <button class="carousel-btn next" aria-label="Next image">❯</button>
-                            <div class="carousel-track">
-                                <div class="carousel-slide">
-                                    <img src="Hand Support P1.png" alt="Early Glove Prototype">
-                                    <div class="carousel-caption">Early string-driven glove prototype for finger mobility testing.</div>
-                                </div>
-                                <div class="carousel-slide">
-                                    <img src="Hand SUpport P2.png" alt="Mechanical Linkage Prototype">
-                                    <div class="carousel-caption">Iterated 3D printed mechanical linkage driven by a continuous rotation servo.</div>
-                                </div>
-                                <div class="carousel-slide">
-                                    <img src="Hand support testing Myoware.png" alt="MyoWare Sensor Testing">
-                                    <div class="carousel-caption">Validating surface electromyography (EMG) using MyoWare biosensors.</div>
-                                </div>
-                                <div class="carousel-slide">
-                                    <img src="Hand support soldering wires to sensors.png" alt="Soldering Sensors">
-                                    <div class="carousel-caption">Soldering custom wiring and hardware connections for the sensor array.</div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </section>
-
-                <!-- 2024 HEADER -->
-                <div class="year-header">2024</div>
-
-                <!-- ADAPTIVE PADDLEBOARD -->
-            <section class="project-section" id="paddleboard">
-                <div class="project-title">Adaptive Paddleboard</div>
-                <div class="project-meta">Accessible Design for Cerebral Palsy · Sept 2024 - Dec 2024</div>
-                <div class="project-tech">Mechanical Prototyping • Human-Centered Design</div>
-                <div class="project-desc">
-                    <ul>
-                        <li>Collaborated with KidsAbility to conduct human factors research, conceptualizing and designing a novel paddleboard support system for teenagers with mild spastic cerebral palsy.</li>
-                        <li>Engineered a kneeling-centric design alternative to traditional seated models, developing an adjustable, cushioned pole framework that improves core engagement, balance, and independent mobility.</li>
-                        <li>Modeled the mechanical framework in SolidWorks, iterating on the design's center of gravity and structural geometry to mitigate capsizing risks and ensure dynamic stability on the water.</li>
-                        <li>Fabricated medium-fidelity physical prototypes utilizing ergonomic foam padding and structural materials to validate boarding ease, safety constraints, and user comfort through practical physical testing.</li>
-                    </ul>
-
-                    <!-- ALBUM SCROLL FEATURE -->
-                    <div class="carousel-container">
-                        <button class="carousel-btn prev" aria-label="Previous image">❮</button>
-                        <button class="carousel-btn next" aria-label="Next image">❯</button>
-                        <div class="carousel-track">
-                            <div class="carousel-slide">
-                                <img src="Paddleboard drawing1.png" alt="Adjustability Concept Sketch">
-                                <div class="carousel-caption">Conceptual sketches illustrating height adjustability for standing and kneeling configurations.</div>
-                            </div>
-                            <div class="carousel-slide">
-                                <img src="Paddleboard drawing 2.png" alt="Isometric Schematic">
-                                <div class="carousel-caption">Isometric design identifying outrigger stabilization, knee cushions, and the adjustable seat framework.</div>
-                            </div>
-                            <div class="carousel-slide">
-                                <img src="Paddleboard MedFed Prototype.png" alt="Medium Fidelity Prototype">
-                                <div class="carousel-caption">Medium-fidelity prototype featuring the physical styrofoam seating and adjustable pole mechanics.</div>
-                            </div>
-                        </div>
-                    </div>
-
+    <main id="main">
+        <section class="page-hero page-header">
+            <div class="hero-glow" aria-hidden="true"><span></span><span></span></div>
+            <div class="container">
+                <p class="eyebrow proj fade-up" style="--d:0s">Projects</p>
+                <h1 class="display split">Featured Projects</h1>
+                <p class="lead fade-up" style="--d:.5s">Hardware design, firmware development, and prototyping.</p>
+                <div class="facts fade-up" style="--d:.7s">
+                    <div class="fact"><b>4</b><span>Projects</span></div>
+                    <div class="fact"><b>CAD → PCB</b><span>Mechanical to electrical</span></div>
+                    <div class="fact"><b>EMG</b><span>Biosignal control</span></div>
                 </div>
-            </section>
-
             </div>
+        </section>
 
-        </main>
-    </div>
+        <section class="section" style="padding-top:24px">
+            <div class="container history-column">
+            <!-- 2026 -->
+            <div class="year-group">
+                <div class="year-label year-header proj">2026</div>
+                <div class="year-entries">
+                <!-- LOWER-BODY EXOSKELETON -->
+                <article class="entry is-proj project-section reveal" id="exo" data-spy-section>
+                    <div class="entry-grid">
+                        <div class="entry-info">
+                            <div class="entry-top"><span class="badge-live">Current</span></div>
+                            <h3 class="entry-title project-title">Lower-Body Exoskeleton</h3>
+                            <p class="entry-role project-meta">Mechanical Team Lead</p>
+                            <div class="entry-meta"><span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.8-3.5 3.4-5.5 6.5-5.5s5.7 2 6.5 5.5"/><path d="M16 4.5a3.5 3.5 0 010 7M18 14.8c1.9.7 3.1 2.6 3.5 5.2"/></svg>UW Biomechatronics Club</span><span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Sept 2024 - Present</span></div>
+                            <div class="tech project-tech"><span>SolidWorks</span><span>Arduino</span><span>3D Printing</span><span>Systems Integration</span></div>
+                            <ul class="entry-list project-desc">
+                                <li>Leading the Mechanical Subteam in the design and early-stage development of a lower-body exoskeleton for the ACE 2026 Competition, drafting CAD models for a custom cycloidal gearbox and planning mechanical systems with safety and modularity in mind.</li>
+                                <li>Applied skills from previous robotic hand projects, including 3D printing, assembly, and integration of mechanical components, to develop reliable prototypes and ensure seamless hardware functionality.</li>
+                                <li>Coordinating with other subteam leads and leveraging Arduino and biosensor experience to guide system integration, iterative design, and multidisciplinary collaboration.</li>
+                            </ul>
+                        </div>
+                        <div class="entry-media">
+                            <!-- ALBUM SCROLL FEATURE -->
+                            <div class="gallery carousel-container" data-gallery>
+                                <div class="gallery-track carousel-track" tabindex="0" role="region" aria-label="Lower-Body Exoskeleton photos">
+                                    <figure class="gallery-slide carousel-slide">
+                                        <button class="gallery-media" type="button" aria-label="Enlarge image: SolidWorks assembly of the custom exoskeleton actuator and motor shell."><img src="images/exo-actuator-with-motor-shell-cad.webp" alt="Actuator CAD" loading="lazy"></button>
+                                        <figcaption class="gallery-caption carousel-caption">SolidWorks assembly of the custom exoskeleton actuator and motor shell.</figcaption>
+                                    </figure>
+                                    <figure class="gallery-slide carousel-slide">
+                                        <button class="gallery-media" type="button" aria-label="Enlarge image: CAD modeling of the motor controller housing and motor mount integration."><img src="images/exo-cad-of-motor-controller-and-motor-mount.webp" alt="Motor Controller CAD" loading="lazy"></button>
+                                        <figcaption class="gallery-caption carousel-caption">CAD modeling of the motor controller housing and motor mount integration.</figcaption>
+                                    </figure>
+                                    <figure class="gallery-slide carousel-slide">
+                                        <button class="gallery-media" type="button" aria-label="Enlarge image: Exploded view detailing the structural mounting plates and internal housing."><img src="images/exo-cad-of-motor-controller-and-motor-mount-p2.webp" alt="Exploded CAD View" loading="lazy"></button>
+                                        <figcaption class="gallery-caption carousel-caption">Exploded view detailing the structural mounting plates and internal housing.</figcaption>
+                                    </figure>
+                                    <figure class="gallery-slide carousel-slide">
+                                        <button class="gallery-media" type="button" aria-label="Enlarge image: Physical fabrication and assembly of the Mark 1 aluminum exoskeleton frame."><img src="images/exo-mark-1-p2.webp" alt="Mark 1 Frame Fabrication" loading="lazy"></button>
+                                        <figcaption class="gallery-caption carousel-caption">Physical fabrication and assembly of the Mark 1 aluminum exoskeleton frame.</figcaption>
+                                    </figure>
+                                    <figure class="gallery-slide carousel-slide">
+                                        <button class="gallery-media" type="button" aria-label="Enlarge image: Conducting physical fit and ergonomic testing of the Mark 1 frame."><img src="images/exo-mark-1.webp" alt="Mark 1 Fit Testing" loading="lazy"></button>
+                                        <figcaption class="gallery-caption carousel-caption">Conducting physical fit and ergonomic testing of the Mark 1 frame.</figcaption>
+                                    </figure>
+                                </div>
+                                <div class="gallery-controls">
+                                    <div class="gallery-dots"></div>
+                                    <div class="gallery-arrows">
+                                        <button class="carousel-btn prev" type="button" aria-label="Previous image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
+                                        <button class="carousel-btn next" type="button" aria-label="Next image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                <!-- EMG CONTROLLED PROSTHETIC HAND -->
+                <article class="entry is-proj flip project-section reveal" id="emg-hand" data-spy-section>
+                    <div class="entry-grid">
+                        <div class="entry-info">
+                            
+                            <h3 class="entry-title project-title">EMG Controlled Prosthetic Hand</h3>
+                            <p class="entry-role project-meta">Independent Hardware Project</p>
+                            <div class="entry-meta"><span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>May 2026 - Aug 2026</span></div>
+                            <div class="tech project-tech"><span>C++</span><span>Arduino Uno</span><span>Custom PCBs</span><span>Signal Filtering</span></div>
+                            <ul class="entry-list project-desc">
+                                <li>Engineered a tendon-driven, myoelectric prosthetic hand prototype using forearm sensors to translate muscle signals into mechanical actuation.</li>
+                                <li>Programmed an Arduino Uno microcontroller in C++ to process sensor inputs and drive a continuous rotation servo for dynamic grip control.</li>
+                                <li>Drafted circuit schematics and technical documentation to validate firmware and hardware integration.</li>
+                            </ul>
+                        </div>
+                        <div class="entry-media">
+                            <!-- ALBUM SCROLL FEATURE -->
+                            <div class="gallery carousel-container" data-gallery>
+                                <div class="gallery-track carousel-track" tabindex="0" role="region" aria-label="EMG Controlled Prosthetic Hand photos">
+                                    <figure class="gallery-slide carousel-slide">
+                                        <div class="gallery-media is-video"><video src="Prosthetic Vid 2.mp4" poster="images/prosthetic-vid-poster.jpg" autoplay loop muted playsinline preload="metadata" aria-label="Live testing of the tendon-driven prosthetic hand actuation."></video></div>
+                                        <figcaption class="gallery-caption carousel-caption">Live testing of the tendon-driven prosthetic hand actuation.</figcaption>
+                                    </figure>
+                                    <figure class="gallery-slide carousel-slide">
+                                        <button class="gallery-media" type="button" aria-label="Enlarge image: SolidWorks CAD model detailing the finger joint framework."><img src="images/prosthetic-mech-cad.webp" alt="Prosthetic CAD" loading="lazy"></button>
+                                        <figcaption class="gallery-caption carousel-caption">SolidWorks CAD model detailing the finger joint framework.</figcaption>
+                                    </figure>
+                                    <figure class="gallery-slide carousel-slide">
+                                        <button class="gallery-media" type="button" aria-label="Enlarge image: Iterative mechanical design process for the palm and finger joints."><img src="images/prosthetic-mech-iterations.webp" alt="Mechanical Iterations" loading="lazy"></button>
+                                        <figcaption class="gallery-caption carousel-caption">Iterative mechanical design process for the palm and finger joints.</figcaption>
+                                    </figure>
+                                    <figure class="gallery-slide carousel-slide">
+                                        <button class="gallery-media" type="button" aria-label="Enlarge image: Custom circuit schematic for signal filtering and amplification."><img src="images/prosthetic-electrical.webp" alt="Electrical Schematic" loading="lazy"></button>
+                                        <figcaption class="gallery-caption carousel-caption">Custom circuit schematic for signal filtering and amplification.</figcaption>
+                                    </figure>
+                                    <figure class="gallery-slide carousel-slide">
+                                        <button class="gallery-media" type="button" aria-label="Enlarge image: Finished custom printed circuit board (PCB) for the EMG control system."><img src="images/prosthetic-finished-pcb.webp" alt="Finished PCB" loading="lazy"></button>
+                                        <figcaption class="gallery-caption carousel-caption">Finished custom printed circuit board (PCB) for the EMG control system.</figcaption>
+                                    </figure>
+                                </div>
+                                <div class="gallery-controls">
+                                    <div class="gallery-dots"></div>
+                                    <div class="gallery-arrows">
+                                        <button class="carousel-btn prev" type="button" aria-label="Previous image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
+                                        <button class="carousel-btn next" type="button" aria-label="Next image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                </div>
+            </div>
+            <!-- 2025 -->
+            <div class="year-group">
+                <div class="year-label year-header proj">2025</div>
+                <div class="year-entries">
+                <!-- ROBOTIC HAND SUPPORT MECHANISM -->
+                <article class="entry is-proj project-section reveal" id="hand-support" data-spy-section>
+                    <div class="entry-grid">
+                        <div class="entry-info">
+                            
+                            <h3 class="entry-title project-title">Robotic Hand Support Mechanism</h3>
+                            <p class="entry-role project-meta">Academic Design Project</p>
+                            <div class="entry-meta"><span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Sept 2024 - April 2025</span></div>
+                            <div class="tech project-tech"><span>MyoWare Biosensors</span><span>Hardware Validation</span><span>Mechanics</span></div>
+                            <ul class="entry-list project-desc">
+                                <li>Assembled a functional biomechanical prototype, integrating MyoWare surface electromyography (EMG) sensors with an Arduino Uno to control a unified grasp mechanism.</li>
+                                <li>Drafted circuit schematics and developed foundational firmware to read analog muscle signals, utilizing basic thresholding to trigger a continuous rotation servo.</li>
+                                <li>Compiled technical summaries documenting the electromechanical assembly and system integration process.</li>
+                            </ul>
+                        </div>
+                        <div class="entry-media">
+                            <!-- ALBUM SCROLL FEATURE -->
+                            <div class="gallery carousel-container" data-gallery>
+                                <div class="gallery-track carousel-track" tabindex="0" role="region" aria-label="Robotic Hand Support Mechanism photos">
+                                    <figure class="gallery-slide carousel-slide">
+                                        <button class="gallery-media" type="button" aria-label="Enlarge image: Early string-driven glove prototype for finger mobility testing."><img src="images/hand-support-p1.webp" alt="Early Glove Prototype" loading="lazy"></button>
+                                        <figcaption class="gallery-caption carousel-caption">Early string-driven glove prototype for finger mobility testing.</figcaption>
+                                    </figure>
+                                    <figure class="gallery-slide carousel-slide">
+                                        <button class="gallery-media" type="button" aria-label="Enlarge image: Iterated 3D printed mechanical linkage driven by a continuous rotation servo."><img src="images/hand-support-p2.webp" alt="Mechanical Linkage Prototype" loading="lazy"></button>
+                                        <figcaption class="gallery-caption carousel-caption">Iterated 3D printed mechanical linkage driven by a continuous rotation servo.</figcaption>
+                                    </figure>
+                                    <figure class="gallery-slide carousel-slide">
+                                        <button class="gallery-media" type="button" aria-label="Enlarge image: Validating surface electromyography (EMG) using MyoWare biosensors."><img src="images/hand-support-testing-myoware.webp" alt="MyoWare Sensor Testing" loading="lazy"></button>
+                                        <figcaption class="gallery-caption carousel-caption">Validating surface electromyography (EMG) using MyoWare biosensors.</figcaption>
+                                    </figure>
+                                    <figure class="gallery-slide carousel-slide">
+                                        <button class="gallery-media" type="button" aria-label="Enlarge image: Soldering custom wiring and hardware connections for the sensor array."><img src="images/hand-support-soldering-wires-to-sensors.webp" alt="Soldering Sensors" loading="lazy"></button>
+                                        <figcaption class="gallery-caption carousel-caption">Soldering custom wiring and hardware connections for the sensor array.</figcaption>
+                                    </figure>
+                                </div>
+                                <div class="gallery-controls">
+                                    <div class="gallery-dots"></div>
+                                    <div class="gallery-arrows">
+                                        <button class="carousel-btn prev" type="button" aria-label="Previous image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
+                                        <button class="carousel-btn next" type="button" aria-label="Next image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                </div>
+            </div>
+            <!-- 2024 -->
+            <div class="year-group">
+                <div class="year-label year-header proj">2024</div>
+                <div class="year-entries">
+                <!-- ADAPTIVE PADDLEBOARD -->
+                <article class="entry is-proj project-section reveal" id="paddleboard" data-spy-section>
+                    <div class="entry-grid">
+                        <div class="entry-info">
+                            
+                            <h3 class="entry-title project-title">Adaptive Paddleboard</h3>
+                            <p class="entry-role project-meta">Accessible Design for Cerebral Palsy</p>
+                            <div class="entry-meta"><span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.8-3.5 3.4-5.5 6.5-5.5s5.7 2 6.5 5.5"/><path d="M16 4.5a3.5 3.5 0 010 7M18 14.8c1.9.7 3.1 2.6 3.5 5.2"/></svg>In collaboration with KidsAbility</span><span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Sept 2024 - Dec 2024</span></div>
+                            <div class="tech project-tech"><span>Mechanical Prototyping</span><span>Human-Centered Design</span></div>
+                            <ul class="entry-list project-desc">
+                                <li>Collaborated with KidsAbility to conduct human factors research, conceptualizing and designing a novel paddleboard support system for teenagers with mild spastic cerebral palsy.</li>
+                                <li>Engineered a kneeling-centric design alternative to traditional seated models, developing an adjustable, cushioned pole framework that improves core engagement, balance, and independent mobility.</li>
+                                <li>Modeled the mechanical framework in SolidWorks, iterating on the design&#x27;s center of gravity and structural geometry to mitigate capsizing risks and ensure dynamic stability on the water.</li>
+                                <li>Fabricated medium-fidelity physical prototypes utilizing ergonomic foam padding and structural materials to validate boarding ease, safety constraints, and user comfort through practical physical testing.</li>
+                            </ul>
+                        </div>
+                        <div class="entry-media">
+                            <!-- ALBUM SCROLL FEATURE -->
+                            <div class="gallery carousel-container" data-gallery>
+                                <div class="gallery-track carousel-track" tabindex="0" role="region" aria-label="Adaptive Paddleboard photos">
+                                    <figure class="gallery-slide carousel-slide">
+                                        <button class="gallery-media" type="button" aria-label="Enlarge image: Conceptual sketches illustrating height adjustability for standing and kneeling configurations."><img src="images/paddleboard-drawing1.webp" alt="Adjustability Concept Sketch" loading="lazy"></button>
+                                        <figcaption class="gallery-caption carousel-caption">Conceptual sketches illustrating height adjustability for standing and kneeling configurations.</figcaption>
+                                    </figure>
+                                    <figure class="gallery-slide carousel-slide">
+                                        <button class="gallery-media" type="button" aria-label="Enlarge image: Isometric design identifying outrigger stabilization, knee cushions, and the adjustable seat framework."><img src="images/paddleboard-drawing-2.webp" alt="Isometric Schematic" loading="lazy"></button>
+                                        <figcaption class="gallery-caption carousel-caption">Isometric design identifying outrigger stabilization, knee cushions, and the adjustable seat framework.</figcaption>
+                                    </figure>
+                                    <figure class="gallery-slide carousel-slide">
+                                        <button class="gallery-media" type="button" aria-label="Enlarge image: Medium-fidelity prototype featuring the physical styrofoam seating and adjustable pole mechanics."><img src="images/paddleboard-medfed-prototype.webp" alt="Medium Fidelity Prototype" loading="lazy"></button>
+                                        <figcaption class="gallery-caption carousel-caption">Medium-fidelity prototype featuring the physical styrofoam seating and adjustable pole mechanics.</figcaption>
+                                    </figure>
+                                </div>
+                                <div class="gallery-controls">
+                                    <div class="gallery-dots"></div>
+                                    <div class="gallery-arrows">
+                                        <button class="carousel-btn prev" type="button" aria-label="Previous image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
+                                        <button class="carousel-btn next" type="button" aria-label="Next image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                </div>
+            </div>
+            </div>
+        </section>
 
-    <footer>
-        <div class="footer-content"><span>© 2026 Louis Lin</span><span>Built with GitHub Pages</span></div>
+        <section class="section section-alt cta-band">
+            <div class="container">
+                <h2 class="headline reveal">Want the full story<br><span class="grad-text">behind a build?</span></h2>
+                <p class="lead reveal">Happy to walk through design decisions, iterations, and test results.</p>
+                <div class="cta-row reveal">
+                    <a href="contact.html" class="btn">Get in touch</a>
+                    <a href="experiences.html" class="link-arrow">See experience</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <nav class="footer-nav" aria-label="Footer">
+                <a href="index.html">Home</a>
+                <a href="experiences.html">Experiences</a>
+                <a href="projects.html">Projects</a>
+                <a href="contact.html">Contact</a>
+                <a href="https://www.linkedin.com/in/louis-lin-43164a328" target="_blank" rel="noopener">LinkedIn</a>
+                <a href="https://github.com/louis-lin06" target="_blank" rel="noopener">GitHub</a>
+            </nav>
+            <div class="footer-content">
+                <span>© 2026 Louis Lin</span>
+                <span>Built with GitHub Pages</span>
+            </div>
+        </div>
     </footer>
 
-    <script>
-        // Mobile Menu
-        document.querySelector('.mobile-menu-btn').addEventListener('click', () => {
-            document.querySelector('.nav-links').classList.toggle('active');
-        });
-
-        // Mobile Table of Contents
-        const tocBtn = document.querySelector('.mobile-toc-btn');
-        const tocAside = document.querySelector('aside');
-        const tocBackdrop = document.querySelector('.toc-backdrop');
-        const tocCloseBtn = document.querySelector('.toc-close-btn');
-        const tocLinks = document.querySelectorAll('.toc-link');
-
-        function toggleTOC() { tocAside.classList.toggle('active'); tocBackdrop.classList.toggle('active'); }
-        tocBtn.addEventListener('click', toggleTOC);
-        tocBackdrop.addEventListener('click', toggleTOC);
-        tocCloseBtn.addEventListener('click', toggleTOC);
-        
-        tocLinks.forEach(link => { link.addEventListener('click', () => { if (window.innerWidth <= 768) toggleTOC(); }); });
-
-        // Scrollspy for TOC
-        const sections = document.querySelectorAll('.project-section');
-        window.addEventListener('scroll', () => {
-            let current = '';
-            sections.forEach(section => { if (scrollY >= (section.offsetTop - 150)) current = section.getAttribute('id'); });
-            tocLinks.forEach(link => { link.classList.remove('active'); if (link.getAttribute('href') === `#${current}`) link.classList.add('active'); });
-        });
-        
-        // Carousel functionality
-        const carousels = document.querySelectorAll('.carousel-container');
-        carousels.forEach(carousel => {
-            const track = carousel.querySelector('.carousel-track');
-            const prevBtn = carousel.querySelector('.prev');
-            const nextBtn = carousel.querySelector('.next');
-            const slide = carousel.querySelector('.carousel-slide');
-
-            if (track && prevBtn && nextBtn && slide) {
-                const updateButtonVisibility = () => {
-                    if (track.scrollLeft <= 0) {
-                        prevBtn.classList.add('hidden');
-                    } else {
-                        prevBtn.classList.remove('hidden');
-                    }
-                    if (Math.ceil(track.scrollLeft + track.clientWidth) >= track.scrollWidth) {
-                        nextBtn.classList.add('hidden');
-                    } else {
-                        nextBtn.classList.remove('hidden');
-                    }
-                };
-
-                prevBtn.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    track.scrollBy({ left: -slide.clientWidth, behavior: 'smooth' });
-                });
-
-                nextBtn.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    track.scrollBy({ left: slide.clientWidth, behavior: 'smooth' });
-                });
-
-                track.addEventListener('scroll', updateButtonVisibility);
-                updateButtonVisibility();
-            }
-        });
-    </script>
+    <script src="assets/site.js"></script>
 </body>
 </html>

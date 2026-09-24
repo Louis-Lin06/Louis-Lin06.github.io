@@ -1,168 +1,126 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-js">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <title>Contact | Louis Lin</title>
+    <meta name="description" content="Get in touch with Louis Lin about opportunities in mechanical and biomedical engineering.">
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+    <meta property="og:title" content="Contact | Louis Lin">
+    <meta property="og:description" content="Get in touch with Louis Lin about opportunities in mechanical and biomedical engineering.">
+    <meta property="og:image" content="https://louis-lin06.github.io/social-preview.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <style>
-        :root { --bg-page: #ffffff; --bg-surface: #f9fafb; --text-main: #111827; --text-muted: #6b7280; --border: #e5e7eb; --blue-accent: #0ea5e9; --linkedin-blue: #3b82f6; --focus-ring: #0ea5e9; }
-        
-        html, body { scroll-behavior: smooth; max-width: 100vw; overflow-x: hidden; width: 100%; }
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        
-        body { 
-            font-family: 'Inter', sans-serif; 
-            background: linear-gradient(to right, rgba(30, 58, 138, 0.45) 0%, #ffffff 20%, #ffffff 80%, rgba(30, 58, 138, 0.45) 100%);
-            background-attachment: fixed;
-            color: var(--text-main); 
-            line-height: 1.6; 
-            display: flex; 
-            flex-direction: column; 
-            min-height: 100vh; 
-        }
-
-        :focus:not(:focus-visible) { outline: none; }
-        :focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 3px; border-radius: 4px; }
-        
-        /* Navigation */
-        nav { position: sticky; top: 0; background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); z-index: 100; }
-        .nav-container { max-width: 1000px; margin: 0 auto; padding: 1rem 1.5rem; display: flex; justify-content: space-between; align-items: center; position: relative; }
-        .nav-brand { font-weight: 600; font-size: 1.1rem; text-decoration: none; color: var(--text-main); line-height: 1.3; }
-        .nav-links { display: flex; gap: 2rem; align-items: center; }
-        .nav-links a { text-decoration: none; color: var(--text-muted); font-size: 0.9rem; font-weight: 500; transition: color 0.2s; }
-        .nav-links a:hover, .nav-links a.active { color: var(--text-main); }
-        .btn-linkedin { background-color: var(--linkedin-blue); color: white !important; padding: 0.5rem 1rem; border-radius: 6px; font-weight: 500; transition: opacity 0.2s ease, transform 0.2s ease; }
-        .btn-linkedin:hover { opacity: 0.9; transform: translateY(-1px); }
-        
-        .mobile-menu-btn { display: none; background: none; border: none; font-size: 1.5rem; color: var(--text-main); cursor: pointer; }
-
-        /* Page Layout */
-        main { max-width: 800px; margin: 0 auto; padding: 6rem 1.5rem; width: 100%; flex: 1; display: flex; flex-direction: column; align-items: center; text-align: center; }
-        
-        .page-header { margin-bottom: 3rem; }
-        .page-header h1 { font-size: 3rem; font-weight: 600; letter-spacing: -0.03em; margin-bottom: 1rem; color: var(--text-main); }
-        .page-header p { font-size: 1.1rem; color: var(--text-muted); max-width: 500px; margin: 0 auto; }
-
-        /* Contact Grid - Flexbox for perfect centering */
-        .contact-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem; width: 100%; max-width: 700px; margin-top: 2rem; }
-        
-        .contact-card { 
-            flex: 1 1 250px;
-            max-width: 300px;
-            background: rgba(255, 255, 255, 0.8); 
-            backdrop-filter: blur(8px); 
-            border: 1px solid var(--border); 
-            border-radius: 12px; 
-            padding: 2rem 1.5rem; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            text-decoration: none; 
-            color: var(--text-main); 
-            transition: all 0.2s ease; 
-            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
-        }
-        
-        .contact-card:hover { transform: translateY(-3px); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05); border-color: var(--blue-accent); }
-        
-        .contact-icon { width: 48px; height: 48px; background: var(--bg-surface); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem; color: var(--blue-accent); }
-        .contact-icon svg { width: 24px; height: 24px; }
-        
-        .contact-label { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600; color: var(--text-muted); margin-bottom: 0.25rem; }
-        .contact-value { font-size: 1.1rem; font-weight: 500; word-break: break-word; text-align: center; }
-
-        footer { border-top: 1px solid var(--border); padding: 2rem 1.5rem; margin-top: auto; }
-        .footer-content { max-width: 1000px; margin: 0 auto; display: flex; justify-content: space-between; color: var(--text-muted); font-size: 0.85rem; }
-
-        /* Mobile Adjustments */
-        @media (max-width: 1024px) {
-            .mobile-menu-btn { display: block; }
-            .nav-links { display: none; flex-direction: column; width: 100%; position: absolute; top: 100%; left: 0; background: rgba(255,255,255,0.98); border-bottom: 1px solid var(--border); padding: 1.5rem; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
-            .nav-links.active { display: flex; }
-            .nav-brand { font-size: 0.95rem; max-width: 75%; display: block; }
-            .btn-linkedin { width: 100%; text-align: center; }
-
-            main { padding: 4rem 1.5rem; }
-            .page-header h1 { font-size: 2.25rem; }
-            
-            /* Stacks the contact cards vertically on phones */
-            .contact-grid { flex-direction: column; align-items: center; }
-            .contact-card { width: 100%; max-width: 100%; flex: none; }
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/site.css">
 </head>
 <body>
-    <nav>
-        <div class="nav-container">
-            <a href="index.html" class="nav-brand">Louis Lin | Engineering Portfolio</a>
-            <button class="mobile-menu-btn" aria-label="Toggle menu">☰</button>
-            <div class="nav-links">
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="gnav">
+        <div class="container gnav-inner">
+            <a href="index.html" class="gnav-brand"><img src="favicon.svg" alt="">Louis Lin<span class="sep">|</span><span class="sub">Engineering Portfolio</span></a>
+            <button class="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="site-menu"><span></span><span></span></button>
+            <nav class="gnav-links" id="site-menu" aria-label="Main">
                 <a href="index.html">Home</a>
                 <a href="experiences.html">Experiences</a>
                 <a href="projects.html">Projects</a>
-                <a href="contact.html" class="active">Contact</a>
-                <a href="https://www.linkedin.com/in/louis-lin-43164a328" target="_blank" class="btn-linkedin">LinkedIn</a>
+                <a href="contact.html" class="active" aria-current="page">Contact</a>
+                <a href="https://www.linkedin.com/in/louis-lin-43164a328" target="_blank" rel="noopener" class="btn-linkedin"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 110-4.13 2.06 2.06 0 010 4.13zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>LinkedIn</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main">
+        <section class="page-hero page-header">
+            <div class="hero-glow" aria-hidden="true"><span></span><span></span></div>
+            <div class="container">
+                <p class="eyebrow fade-up" style="--d:0s">Contact</p>
+                <h1 class="display split">Let's <span class="grad-text">Connect</span></h1>
+                <p class="lead fade-up" style="--d:.45s">I'm currently seeking new opportunities in mechanical and biomedical engineering. Feel free to reach out!</p>
             </div>
-        </div>
-    </nav>
+        </section>
 
-    <main>
-        <div class="page-header">
-            <h1>Let's Connect</h1>
-            <p>I'm currently seeking new opportunities in mechanical and biomedical engineering. Feel free to reach out!</p>
-        </div>
+        <section class="section" style="padding-top:8px">
+            <div class="container">
+                <div class="contact-grid">
+                    <!-- Personal Email Card -->
+                    <div class="contact-card reveal">
+                        <div class="contact-icon c1">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                        </div>
+                        <div class="contact-text">
+                            <span class="contact-label">Personal Email</span>
+                            <a class="contact-value stretched-link" href="mailto:louislin06@gmail.com">louislin06@gmail.com</a>
+                        </div>
+                        <button class="copy-btn" type="button" data-copy="louislin06@gmail.com" aria-label="Copy personal email">Copy</button>
+                    </div>
 
-        <div class="contact-grid">
-            <!-- Personal Email Card -->
-            <a href="mailto:louislin06@gmail.com" class="contact-card">
-                <div class="contact-icon">
-                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                    <!-- Academic Email Card -->
+                    <div class="contact-card reveal" style="--d:.08s">
+                        <div class="contact-icon c2">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                        </div>
+                        <div class="contact-text">
+                            <span class="contact-label">Academic Email</span>
+                            <a class="contact-value stretched-link" href="mailto:l229lin@uwaterloo.ca">l229lin@uwaterloo.ca</a>
+                        </div>
+                        <button class="copy-btn" type="button" data-copy="l229lin@uwaterloo.ca" aria-label="Copy academic email">Copy</button>
+                    </div>
+
+                    <!-- LinkedIn Card -->
+                    <a href="https://www.linkedin.com/in/louis-lin-43164a328" target="_blank" rel="noopener" class="contact-card reveal" style="--d:.16s">
+                        <div class="contact-icon c3">
+                            <svg fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 110-4.13 2.06 2.06 0 010 4.13zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
+                        </div>
+                        <div class="contact-text">
+                            <span class="contact-label">LinkedIn</span>
+                            <span class="contact-value">Louis Lin</span>
+                        </div>
+                        <span class="contact-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg></span>
+                    </a>
+
+                    <!-- GitHub Card -->
+                    <a href="https://github.com/louis-lin06" target="_blank" rel="noopener" class="contact-card reveal" style="--d:.24s">
+                        <div class="contact-icon c4">
+                            <svg fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                        </div>
+                        <div class="contact-text">
+                            <span class="contact-label">GitHub</span>
+                            <span class="contact-value">louis-lin06</span>
+                        </div>
+                        <span class="contact-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg></span>
+                    </a>
                 </div>
-                <span class="contact-label">Personal Email</span>
-                <span class="contact-value">louislin06@gmail.com</span>
-            </a>
 
-            <!-- Academic Email Card -->
-            <a href="mailto:l229lin@uwaterloo.ca" class="contact-card">
-                <div class="contact-icon">
-                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                <div class="cta-row reveal" style="margin-top:56px">
+                    <a href="experiences.html#resume" class="link-arrow">Preview my resume</a>
+                    <a href="Louis Lin Resume - Technical.pdf" download class="link-arrow">Download PDF</a>
                 </div>
-                <span class="contact-label">Academic Email</span>
-                <span class="contact-value">l229lin@uwaterloo.ca</span>
-            </a>
-
-            <!-- LinkedIn Card -->
-            <a href="https://www.linkedin.com/in/louis-lin-43164a328" target="_blank" class="contact-card">
-                <div class="contact-icon">
-                    <svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
-                </div>
-                <span class="contact-label">LinkedIn</span>
-                <span class="contact-value">Louis Lin</span>
-            </a>
-
-            <!-- GitHub Card -->
-            <a href="https://github.com/louis-lin06" target="_blank" class="contact-card">
-                <div class="contact-icon">
-                    <svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-                </div>
-                <span class="contact-label">GitHub</span>
-                <span class="contact-value">louis-lin06</span>
-            </a>
-        </div>
+            </div>
+        </section>
     </main>
 
-    <footer>
-        <div class="footer-content"><span>© 2026 Louis Lin</span><span>Built with GitHub Pages</span></div>
+    <footer class="site-footer">
+        <div class="container">
+            <nav class="footer-nav" aria-label="Footer">
+                <a href="index.html">Home</a>
+                <a href="experiences.html">Experiences</a>
+                <a href="projects.html">Projects</a>
+                <a href="contact.html">Contact</a>
+                <a href="https://www.linkedin.com/in/louis-lin-43164a328" target="_blank" rel="noopener">LinkedIn</a>
+                <a href="https://github.com/louis-lin06" target="_blank" rel="noopener">GitHub</a>
+            </nav>
+            <div class="footer-content">
+                <span>© 2026 Louis Lin</span>
+                <span>Built with GitHub Pages</span>
+            </div>
+        </div>
     </footer>
 
-    <script>
-        // Mobile Menu Toggle
-        document.querySelector('.mobile-menu-btn').addEventListener('click', () => {
-            document.querySelector('.nav-links').classList.toggle('active');
-        });
-    </script>
+    <script src="assets/site.js"></script>
 </body>
 </html>

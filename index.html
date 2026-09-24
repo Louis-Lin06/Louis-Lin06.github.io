@@ -1,407 +1,287 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-js">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <title>Louis Lin | Engineering Portfolio</title>
+    <meta name="description" content="Biomedical Engineering student specializing in mechanical design, firmware, and hardware prototyping.">
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
     <!-- Open Graph / Social Media Meta Tags -->
     <meta property="og:title" content="Louis Lin | Engineering Portfolio">
     <meta property="og:description" content="Biomedical Engineering student specializing in mechanical design, firmware, and hardware prototyping.">
     <meta property="og:image" content="https://louis-lin06.github.io/social-preview.png">
     <meta property="og:url" content="https://louis-lin06.github.io/">
     <meta property="og:type" content="website">
-    
     <!-- Twitter Large Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Louis Lin | Engineering Portfolio">
     <meta name="twitter:description" content="Biomedical Engineering student specializing in mechanical design, firmware, and hardware prototyping.">
     <meta name="twitter:image" content="https://louis-lin06.github.io/social-preview.png">
-    
+
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            /* Palette: Bright white with Purple and Blue accents */
-            --bg-page: #ffffff;
-            --bg-surface: #f9fafb;
-            --text-main: #111827;
-            --text-muted: #6b7280;
-            --border: #e5e7eb;
-            --border-hover: #d1d5db;
-            
-            /* Accents */
-            --blue-accent: #0ea5e9;   /* Lighter, brighter Sky Blue for Projects */
-            --linkedin-blue: #3b82f6; /* Original standard Blue for LinkedIn button */
-            --purple-accent: #7c3aed; /* Deep Purple for Employment */
-            
-            /* Track Label Backgrounds */
-            --proj-bg: #f0f9ff;       /* Soft contrasting blue background for Projects label */
-            --job-bg: #f5f3ff;        /* Soft contrasting purple background for Employment label */
-            
-            /* Utilities */
-            --focus-ring: #8b5cf6;
-        }
-
-        html, body { 
-            scroll-behavior: smooth; 
-            max-width: 100vw; 
-            overflow-x: hidden; /* Locks horizontal scroll on mobile */
-            width: 100%;
-        }
-
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        
-        body { 
-            font-family: 'Inter', sans-serif; 
-            /* Side-to-side linear gradient using dark navy blue */
-            background: linear-gradient(to right, rgba(30, 58, 138, 0.45) 0%, #ffffff 20%, #ffffff 80%, rgba(30, 58, 138, 0.45) 100%);
-            background-attachment: fixed;
-            color: var(--text-main); 
-            line-height: 1.6; 
-            display: flex; 
-            flex-direction: column; 
-            min-height: 100vh; 
-        }
-        
-        /* Accessibility: Vercel Focus Guidelines */
-        :focus:not(:focus-visible) { outline: none; }
-        :focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 3px; border-radius: 4px; }
-
-        /* Navigation */
-        nav { position: sticky; top: 0; background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); z-index: 100; }
-        .nav-container { max-width: 1000px; margin: 0 auto; padding: 1rem 1.5rem; display: flex; justify-content: space-between; align-items: center; position: relative; }
-        .nav-brand { font-weight: 600; font-size: 1.1rem; text-decoration: none; color: var(--text-main); line-height: 1.3; }
-        
-        .nav-links { display: flex; gap: 2rem; align-items: center; }
-        .nav-links a { text-decoration: none; color: var(--text-muted); font-size: 0.9rem; font-weight: 500; transition: color 0.2s ease; }
-        .nav-links a:hover, .nav-links a.active { color: var(--text-main); }
-        
-        .btn-linkedin { background-color: var(--linkedin-blue); color: white !important; padding: 0.5rem 1rem; border-radius: 6px; font-weight: 500; transition: opacity 0.2s ease, transform 0.2s ease; }
-        .btn-linkedin:hover { opacity: 0.9; transform: translateY(-1px); }
-
-        /* Mobile Menu Button */
-        .mobile-menu-btn { display: none; background: none; border: none; font-size: 1.5rem; color: var(--text-main); cursor: pointer; }
-
-        /* Layout */
-        main { flex: 1; max-width: 1000px; margin: 0 auto; padding: 5rem 1.5rem; width: 100%; }
-        
-        /* --- Redesigned Hero Section --- */
-        .hero { 
-            margin-bottom: 6rem; 
-            display: grid; 
-            grid-template-columns: 1fr 320px; 
-            gap: 4rem; 
-            align-items: center; 
-            width: 100%;
-        }
-        
-        .hero-content h1 { 
-            font-size: clamp(2rem, 4vw, 3rem); 
-            font-weight: 600; 
-            letter-spacing: -0.03em; 
-            line-height: 1.1; 
-            margin-bottom: 1.5rem; 
-        }
-        
-        .hero-text p { 
-            font-size: 1.05rem; 
-            color: var(--text-muted); 
-            line-height: 1.7; 
-            margin-bottom: 1.25rem; 
-        }
-        
-        .hero-text p:last-child {
-            margin-bottom: 0;
-        }
-
-        /* Portrait Profile Image Styling */
-        .hero-image {
-            width: 100%;
-            aspect-ratio: 3 / 4;
-            object-fit: cover;
-            object-position: top;
-            border-radius: 20px;
-            background-color: var(--border); 
-            box-shadow: 0 10px 30px -10px rgba(30, 58, 138, 0.2); 
-            border: 1px solid var(--border);
-        }
-
-        /* Gantt Timeline Section */
-        .timeline-section { background-color: rgba(249, 250, 251, 0.6); backdrop-filter: blur(8px); border: 1px solid var(--border); border-radius: 12px; padding: 3rem 0; margin-bottom: 6rem; position: relative; width: 100%; max-width: 100%; overflow: hidden; }
-        .timeline-header { padding: 0 2rem; margin-bottom: 2rem; display: flex; justify-content: space-between; align-items: flex-end; }
-        .timeline-header h2 { font-size: 1.25rem; font-weight: 600; margin-bottom: 0; }
-        
-        /* Swipe Hint (Hidden on Desktop) */
-        .swipe-hint { display: none; }
-
-        /* Scroll Wrapper */
-        .gantt-scroll-wrapper { overflow-x: auto; overscroll-behavior-x: contain; padding: 0 2rem 2rem 2rem; scrollbar-width: thin; scroll-behavior: smooth; }
-
-        /* The Grid System: 36 columns = 3 Years (12 months per year) */
-        .gantt-grid { display: grid; grid-template-columns: repeat(36, minmax(45px, 1fr)); gap: 1rem 0; min-width: 1650px; position: relative; }
-
-        /* Time Axis (X-Axis) */
-        .gantt-axis { display: contents; }
-        
-        .gantt-year { 
-            border-bottom: 2px solid var(--border); 
-            padding-bottom: 0.5rem; 
-            margin-bottom: 0.25rem; 
-        }
-        
-        /* Sticky Year Text */
-        .gantt-year span {
-            position: sticky;
-            left: 0.5rem; 
-            font-size: 0.95rem; 
-            font-weight: 600; 
-            color: var(--text-main); 
-            background: rgba(249, 250, 251, 0.9); 
-            padding: 0.1rem 0.5rem;
-            border-radius: 4px;
-            z-index: 5;
-        }
-
-        .gantt-month { font-size: 0.7rem; font-weight: 500; color: var(--text-muted); text-align: center; text-transform: uppercase; margin-bottom: 1rem; }
-
-        /* Vertical Grid Lines */
-        .gantt-grid::before { content: ''; position: absolute; top: 4.5rem; bottom: 0; left: 0; right: 0; background-image: linear-gradient(to right, var(--border) 1px, transparent 1px); background-size: calc(100% / 36) 100%; pointer-events: none; opacity: 0.5; }
-
-        /* Track Divider with Contrasting Background and Sticky Text */
-        .track-label { 
-            grid-column: 1 / 37; 
-            display: flex;
-            align-items: center;
-            padding: 0;
-            margin-top: 1rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .track-label.blue {
-            background-color: var(--proj-bg);
-            border-top: 1px solid #bae6fd;
-            border-bottom: 1px solid #bae6fd;
-        }
-
-        .track-label.purple {
-            background-color: var(--job-bg);
-            border-top: 1px solid #ddd6fe;
-            border-bottom: 1px solid #ddd6fe;
-        }
-
-        .track-label span {
-            position: sticky;
-            left: 0; 
-            padding: 0.6rem 1rem;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            font-weight: 700;
-            z-index: 5;
-            backdrop-filter: blur(4px); 
-        }
-
-        .track-label.blue span { color: var(--blue-accent); }
-        .track-label.purple span { color: var(--purple-accent); }
-
-        /* Gantt Bars */
-        .gantt-bar { position: relative; z-index: 2; padding: 0.75rem 1rem; border-radius: 6px; text-decoration: none; display: flex; flex-direction: column; justify-content: center; transition: transform 0.2s ease, filter 0.2s ease; box-shadow: 0 1px 3px rgba(0,0,0,0.1); margin: 0 2px; }
-        .gantt-bar:hover { transform: translateY(-2px); filter: brightness(1.05); z-index: 10; }
-        .bar-title { font-size: 0.9rem; font-weight: 600; margin-bottom: 0.2rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-        .bar-subtitle { font-size: 0.75rem; opacity: 0.9; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-
-        /* Track Colors */
-        .bar-project { background-color: var(--blue-accent); color: white; border-left: 4px solid #0369a1; }
-        .bar-job { background-color: var(--purple-accent); color: white; border-left: 4px solid #5b21b6; }
-
-        /* Footer */
-        footer { border-top: 1px solid var(--border); padding: 2rem 1.5rem; margin-top: auto; }
-        .footer-content { max-width: 1000px; margin: 0 auto; display: flex; justify-content: space-between; color: var(--text-muted); font-size: 0.85rem; }
-
-        /* Animation for the mobile swipe hint */
-        @keyframes swipeMotion {
-            0% { transform: translateX(0); opacity: 0.5; }
-            50% { transform: translateX(5px); opacity: 1; }
-            100% { transform: translateX(0); opacity: 0.5; }
-        }
-
-        /* Mobile Adjustments */
-        @media (max-width: 1024px) {
-            .nav-container { padding: 1rem; }
-            .mobile-menu-btn { display: block; }
-            .nav-links { display: none; flex-direction: column; width: 100%; position: absolute; top: 100%; left: 0; background: rgba(255, 255, 255, 0.98); border-bottom: 1px solid var(--border); padding: 1.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
-            .nav-links.active { display: flex; }
-            .btn-linkedin { text-align: center; width: 100%; }
-            
-            /* Responsive Navbar adjustments so text doesn't hit the menu button */
-            .nav-brand { font-size: 0.95rem; max-width: 75%; display: block; line-height: 1.3; }
-            
-            /* Mobile Hero Adjustments */
-            main { padding: 3rem 1rem; width: 100%; box-sizing: border-box; }
-            .hero { grid-template-columns: 1fr; gap: 2rem; margin-bottom: 3rem; display: flex; flex-direction: column; }
-            
-            /* Add dynamic clamp() scaling so text fits perfectly on any screen size */
-            .hero-content h1 { text-align: center; font-size: clamp(1.75rem, 8vw, 2.25rem); }
-            .hero-text p { font-size: 0.95rem; text-align: left; }
-            
-            /* Ensure the image doesn't overflow the container on very tiny phones */
-            .hero-image { max-width: min(100%, 250px); margin: 0 auto; order: -1; }
-            
-            /* Mobile Timeline Adjustments */
-            .timeline-section { padding: 2rem 0; margin-bottom: 4rem; width: 100%; }
-            .timeline-header { padding: 0 1rem; margin-bottom: 1rem; flex-direction: column; align-items: flex-start; gap: 0.5rem; }
-            .gantt-scroll-wrapper { padding: 0 1rem 1rem 1rem; width: 100%; box-sizing: border-box; }
-            
-            /* Activate Swipe Hint */
-            .swipe-hint { display: flex; align-items: center; gap: 0.4rem; font-size: 0.8rem; font-weight: 600; color: var(--blue-accent); background: var(--proj-bg); padding: 0.3rem 0.75rem; border-radius: 99px; width: fit-content; }
-            .swipe-hint span { display: inline-block; animation: swipeMotion 1.5s infinite ease-in-out; }
-            
-            /* Compress elements to fit better vertically on mobile */
-            .track-label span { padding: 0.4rem 0.75rem; font-size: 0.7rem; }
-            .gantt-bar { padding: 0.6rem 0.75rem; }
-            .bar-title { font-size: 0.85rem; }
-            .bar-subtitle { font-size: 0.7rem; }
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preload" as="image" href="images/index-page-profile-photo.webp">
+    <link rel="stylesheet" href="assets/site.css">
 </head>
 <body>
+    <a class="skip-link" href="#main">Skip to content</a>
 
-    <nav>
-        <div class="nav-container">
-            <a href="index.html" class="nav-brand">Louis Lin | Engineering Portfolio</a>
-            <button class="mobile-menu-btn" aria-label="Toggle menu">☰</button>
-            <div class="nav-links">
-                <a href="index.html" class="active">Home</a>
+    <header class="gnav">
+        <div class="container gnav-inner">
+            <a href="index.html" class="gnav-brand"><img src="favicon.svg" alt="">Louis Lin<span class="sep">|</span><span class="sub">Engineering Portfolio</span></a>
+            <button class="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="site-menu"><span></span><span></span></button>
+            <nav class="gnav-links" id="site-menu" aria-label="Main">
+                <a href="index.html" class="active" aria-current="page">Home</a>
                 <a href="experiences.html">Experiences</a>
                 <a href="projects.html">Projects</a>
                 <a href="contact.html">Contact</a>
-                <a href="https://www.linkedin.com/in/louis-lin-43164a328" target="_blank" class="btn-linkedin">LinkedIn</a>
-            </div>
+                <a href="https://www.linkedin.com/in/louis-lin-43164a328" target="_blank" rel="noopener" class="btn-linkedin"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 110-4.13 2.06 2.06 0 010 4.13zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>LinkedIn</a>
+            </nav>
         </div>
-    </nav>
+    </header>
 
-    <main>
-        <div class="hero">
-            <div class="hero-content">
-                <!-- Removed the non-breaking space (&nbsp;) between Biomedical and Applications so it can wrap naturally -->
-                <h1>Building Hardware for<br>Biomedical Applications.</h1>
-                <div class="hero-text">
-                    <p>I’m Louis, a Biomedical Engineering student at the University of Waterloo with a strong interest in medical devices and hands-on engineering. I enjoy taking an idea from CAD to a physical prototype and figuring out how to make it work, especially when the solution isn’t immediately obvious.</p>
-                    
-                    <p>My experience spans mechanical design, electronics, and software. I’ve designed and built mechanical systems, worked with PCBs and circuits, written firmware for motors and EMG-based systems, and developed software and web applications. Through these projects, I’ve learned to troubleshoot problems across both hardware and software and to adapt when things don’t work the way I expected.</p>
-                    
-                    <p>What I enjoy most about engineering is the freedom to approach a problem in different ways. There isn’t always one right answer, and I like experimenting, building, testing, and refining until I find an approach that works. This portfolio is a collection of projects that reflect that process, from an EMG-controlled prosthetic hand to an ongoing lower-body exoskeleton and the hardware and software I’ve built along the way.</p>
+    <main id="main">
+
+        <!-- HERO -->
+        <section class="hero">
+            <div class="hero-glow" aria-hidden="true"><span></span><span></span></div>
+            <div class="container">
+                <p class="eyebrow fade-up" style="--d:0s"><span class="dot"></span>Biomedical Engineering · University of Waterloo</p>
+                <h1 class="display split">Building Hardware for<br><span class="grad-text">Biomedical Applications.</span></h1>
+                <p class="lead fade-up" style="--d:.7s">From CAD to a working prototype: mechanical design, electronics, and firmware for medical devices.</p>
+                <div class="cta-row fade-up" style="--d:.85s">
+                    <a href="projects.html" class="btn">View projects</a>
+                    <a href="experiences.html" class="link-arrow">See experience</a>
                 </div>
             </div>
-            
-            <img src="Index page Profile photo.JPG" alt="Louis Lin" class="hero-image">
-        </div>
+        </section>
 
-        <section class="timeline-section">
-            <div class="timeline-header">
-                <h2>My Engineering Progression</h2>
-                <div class="swipe-hint">Swipe to explore <span>←</span></div>
+        <!-- AT A GLANCE -->
+        <section class="section-tight" aria-label="At a glance">
+            <div class="container">
+                <div class="stats">
+                    <div class="reveal"><div class="stat-num grad-text" data-count="4">4</div><div class="stat-label">Engineering internships</div></div>
+                    <div class="reveal" style="--d:.1s"><div class="stat-num grad-text" data-count="4">4</div><div class="stat-label">Hardware projects</div></div>
+                    <div class="reveal" style="--d:.2s"><div class="stat-num grad-text" data-count="3">3</div><div class="stat-label">Countries worked in</div></div>
+                </div>
             </div>
+        </section>
 
-            <div class="gantt-scroll-wrapper" id="timelineScroll">
-                <div class="gantt-grid">
-                    
-                    <div class="gantt-year" style="grid-column: 1 / 13; grid-row: 1;"><span>2024</span></div>
-                    <div class="gantt-year" style="grid-column: 13 / 25; grid-row: 1;"><span>2025</span></div>
-                    <div class="gantt-year" style="grid-column: 25 / 37; grid-row: 1;"><span>2026</span></div>
-                    
-                    <div class="gantt-month" style="grid-column: 1; grid-row: 2;">Jan</div><div class="gantt-month" style="grid-column: 2; grid-row: 2;">Feb</div><div class="gantt-month" style="grid-column: 3; grid-row: 2;">Mar</div>
-                    <div class="gantt-month" style="grid-column: 4; grid-row: 2;">Apr</div><div class="gantt-month" style="grid-column: 5; grid-row: 2;">May</div><div class="gantt-month" style="grid-column: 6; grid-row: 2;">Jun</div>
-                    <div class="gantt-month" style="grid-column: 7; grid-row: 2;">Jul</div><div class="gantt-month" style="grid-column: 8; grid-row: 2;">Aug</div><div class="gantt-month" style="grid-column: 9; grid-row: 2;">Sep</div>
-                    <div class="gantt-month" style="grid-column: 10; grid-row: 2;">Oct</div><div class="gantt-month" style="grid-column: 11; grid-row: 2;">Nov</div><div class="gantt-month" style="grid-column: 12; grid-row: 2;">Dec</div>
-                    <div class="gantt-month" style="grid-column: 13; grid-row: 2;">Jan</div><div class="gantt-month" style="grid-column: 14; grid-row: 2;">Feb</div><div class="gantt-month" style="grid-column: 15; grid-row: 2;">Mar</div>
-                    <div class="gantt-month" style="grid-column: 16; grid-row: 2;">Apr</div><div class="gantt-month" style="grid-column: 17; grid-row: 2;">May</div><div class="gantt-month" style="grid-column: 18; grid-row: 2;">Jun</div>
-                    <div class="gantt-month" style="grid-column: 19; grid-row: 2;">Jul</div><div class="gantt-month" style="grid-column: 20; grid-row: 2;">Aug</div><div class="gantt-month" style="grid-column: 21; grid-row: 2;">Sep</div>
-                    <div class="gantt-month" style="grid-column: 22; grid-row: 2;">Oct</div><div class="gantt-month" style="grid-column: 23; grid-row: 2;">Nov</div><div class="gantt-month" style="grid-column: 24; grid-row: 2;">Dec</div>
-                    <div class="gantt-month" style="grid-column: 25; grid-row: 2;">Jan</div><div class="gantt-month" style="grid-column: 26; grid-row: 2;">Feb</div><div class="gantt-month" style="grid-column: 27; grid-row: 2;">Mar</div>
-                    <div class="gantt-month" style="grid-column: 28; grid-row: 2;">Apr</div><div class="gantt-month" style="grid-column: 29; grid-row: 2;">May</div><div class="gantt-month" style="grid-column: 30; grid-row: 2;">Jun</div>
-                    <div class="gantt-month" style="grid-column: 31; grid-row: 2;">Jul</div><div class="gantt-month" style="grid-column: 32; grid-row: 2;">Aug</div><div class="gantt-month" style="grid-column: 33; grid-row: 2;">Sep</div>
-                    <div class="gantt-month" style="grid-column: 34; grid-row: 2;">Oct</div><div class="gantt-month" style="grid-column: 35; grid-row: 2;">Nov</div><div class="gantt-month" style="grid-column: 36; grid-row: 2;">Dec</div>
+        <!-- ABOUT -->
+        <section class="section section-alt" id="about">
+            <div class="container">
+                <div class="about">
+                    <div class="about-photo reveal" data-parallax>
+                        <img src="images/index-page-profile-photo.webp" alt="Louis Lin" width="933" height="1400">
+                    </div>
+                    <div class="about-copy hero-text">
+                        <p class="eyebrow reveal">About</p>
+                        <h2 class="headline reveal">Idea to prototype,<br>and everything between.</h2>
+                        <p class="reveal">I’m Louis, <strong>a Biomedical Engineering student at the University of Waterloo</strong> with a strong interest in medical devices and hands-on engineering. I enjoy taking an idea from CAD to a physical prototype and figuring out how to make it work, especially when the solution isn’t immediately obvious.</p>
+                        <p class="reveal">My experience spans <strong>mechanical design, electronics, and software</strong>. I’ve designed and built mechanical systems, worked with PCBs and circuits, written firmware for motors and EMG-based systems, and developed software and web applications. Through these projects, I’ve learned to troubleshoot problems across both hardware and software and to adapt when things don’t work the way I expected.</p>
+                        <p class="reveal">What I enjoy most about engineering is <strong>the freedom to approach a problem in different ways</strong>. There isn’t always one right answer, and I like experimenting, building, testing, and refining until I find an approach that works. This portfolio is a collection of projects that reflect that process, from an EMG-controlled prosthetic hand to an ongoing lower-body exoskeleton and the hardware and software I’ve built along the way.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-                    <!-- Professional Experience -->
-                    <div class="track-label purple" style="grid-row: 3;">
-                        <span>Professional Experience</span>
+        <!-- DISCIPLINES -->
+        <section class="section">
+            <div class="container">
+                <div class="section-head">
+                    <p class="eyebrow reveal">What I work across</p>
+                    <h2 class="headline reveal">Three disciplines.<br>One system.</h2>
+                </div>
+                <div class="skills">
+                    <div class="card skill reveal">
+                        <div class="skill-icon i1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l9 5v10l-9 5-9-5V7l9-5z"/><path d="M12 22V12M21 7l-9 5-9-5"/></svg></div>
+                        <h3>Mechanical Design</h3>
+                        <p>SolidWorks CAD, 3D printing, and fabrication, from a custom cycloidal gearbox to an aluminum exoskeleton frame.</p>
+                    </div>
+                    <div class="card skill reveal" style="--d:.1s">
+                        <div class="skill-icon i2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="5" width="14" height="14" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3"/></svg></div>
+                        <h3>Electronics</h3>
+                        <p>Circuit schematics, custom PCBs, and EMG signal filtering and amplification for biosensor-driven control.</p>
+                    </div>
+                    <div class="card skill reveal" style="--d:.2s">
+                        <div class="skill-icon i3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M13.5 4l-3 16"/></svg></div>
+                        <h3>Firmware &amp; Software</h3>
+                        <p>C++ on Arduino for motor and EMG control, plus Python simulations, JavaScript apps, and API pipelines.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FEATURED PROJECTS -->
+        <section class="section section-alt">
+            <div class="container">
+                <div class="section-head">
+                    <p class="eyebrow proj reveal">Featured work</p>
+                    <h2 class="headline reveal">Built, tested, refined.</h2>
+                </div>
+                <div class="bento">
+                    <a href="projects.html#exo" class="tile tile-wide tile-split reveal">
+                        <div class="tile-body">
+                            <p class="tile-kicker proj">Mechanical Team Lead</p>
+                            <h3>EXO Lower-Body Exoskeleton</h3>
+                            <p>Leading the mechanical subteam on a custom cycloidal gearbox, actuator, and aluminum frame for the ACE 2026 Competition.</p>
+                            <div class="tech" style="--accent: var(--proj)"><span>SolidWorks</span><span>Arduino</span><span>3D Printing</span></div>
+                            <span class="link-arrow">Learn more</span>
+                        </div>
+                        <div class="tile-media"><img src="images/exo-mark-1.webp" alt="Fit testing the Mark 1 exoskeleton frame" loading="lazy"></div>
+                    </a>
+                    <a href="projects.html#emg-hand" class="tile tile-tall reveal" style="--d:.1s">
+                        <div class="tile-body">
+                            <p class="tile-kicker proj">Custom PCBs &amp; Signal Filtering</p>
+                            <h3>EMG Prosthetic Hand</h3>
+                            <span class="link-arrow">Learn more</span>
+                        </div>
+                        <div class="tile-media"><video src="Prosthetic Vid 2.mp4" poster="images/prosthetic-vid-poster.jpg" autoplay loop muted playsinline aria-label="Prosthetic hand actuation test"></video></div>
+                    </a>
+                    <a href="projects.html#hand-support" class="tile tile-half reveal">
+                        <div class="tile-body">
+                            <p class="tile-kicker proj">MyoWare Biosensors</p>
+                            <h3>Robotic Hand Support</h3>
+                            <span class="link-arrow">Learn more</span>
+                        </div>
+                        <div class="tile-media"><img src="images/hand-support-p2.webp" alt="3D printed hand support linkage" loading="lazy"></div>
+                    </a>
+                    <a href="projects.html#paddleboard" class="tile tile-half reveal" style="--d:.1s">
+                        <div class="tile-body">
+                            <p class="tile-kicker proj">For Kids with Cerebral Palsy</p>
+                            <h3>Adaptive Paddleboard</h3>
+                            <span class="link-arrow">Learn more</span>
+                        </div>
+                        <div class="tile-media"><img src="images/paddleboard-medfed-prototype.webp" alt="Adaptive paddleboard prototype" loading="lazy"></div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- TIMELINE -->
+        <section class="section section-alt" style="padding-top:0">
+            <div class="container">
+                <div class="timeline-card timeline-section reveal">
+                    <div class="timeline-header">
+                        <div>
+                            <h2>My Engineering Progression</h2>
+                        </div>
+                        <div class="legend">
+                            <span><i class="l-exp"></i>Professional Experience</span>
+                            <span><i class="l-proj"></i>Projects</span>
+                            <span class="timeline-hint swipe-hint"><span class="arr">←</span> Drag or swipe to explore</span>
+                        </div>
                     </div>
 
-                    <a href="experiences.html#premier" class="gantt-bar bar-job" style="grid-column: 5 / 9; grid-row: 4;">
-                        <span class="bar-title">Premier Healthcare</span>
-                        <span class="bar-subtitle">Medical Machinery Intern</span>
-                    </a>
+                    <div class="gantt-scroll-wrapper" id="timelineScroll">
+                        <div class="gantt-grid animate">
 
-                    <a href="experiences.html#airboss" class="gantt-bar bar-job" style="grid-column: 17 / 21; grid-row: 4;">
-                        <span class="bar-title">AirBoss of America</span>
-                        <span class="bar-subtitle">Production Operations Specialist</span>
-                    </a>
-                    
-                    <a href="experiences.html#roche" class="gantt-bar bar-job" style="grid-column: 25 / 29; grid-row: 4;">
-                        <span class="bar-title">Roche</span>
-                        <span class="bar-subtitle">Pharma Technical (Quality) Intern</span>
-                    </a>
+                            <div class="gantt-year" style="grid-column: 1 / 13; grid-row: 1;"><span>2024</span></div>
+                            <div class="gantt-year" style="grid-column: 13 / 25; grid-row: 1;"><span>2025</span></div>
+                            <div class="gantt-year" style="grid-column: 25 / 37; grid-row: 1;"><span>2026</span></div>
 
-                    <a href="experiences.html#hygea" class="gantt-bar bar-job" style="grid-column: 33 / 37; grid-row: 4;">
-                        <span class="bar-title">Hygea Medical</span>
-                        <span class="bar-subtitle">Mechanical Engineering Intern</span>
-                    </a>
+                            <div class="gantt-month" style="grid-column: 1; grid-row: 2;">Jan</div><div class="gantt-month" style="grid-column: 2; grid-row: 2;">Feb</div><div class="gantt-month" style="grid-column: 3; grid-row: 2;">Mar</div>
+                            <div class="gantt-month" style="grid-column: 4; grid-row: 2;">Apr</div><div class="gantt-month" style="grid-column: 5; grid-row: 2;">May</div><div class="gantt-month" style="grid-column: 6; grid-row: 2;">Jun</div>
+                            <div class="gantt-month" style="grid-column: 7; grid-row: 2;">Jul</div><div class="gantt-month" style="grid-column: 8; grid-row: 2;">Aug</div><div class="gantt-month" style="grid-column: 9; grid-row: 2;">Sep</div>
+                            <div class="gantt-month" style="grid-column: 10; grid-row: 2;">Oct</div><div class="gantt-month" style="grid-column: 11; grid-row: 2;">Nov</div><div class="gantt-month" style="grid-column: 12; grid-row: 2;">Dec</div>
+                            <div class="gantt-month" style="grid-column: 13; grid-row: 2;">Jan</div><div class="gantt-month" style="grid-column: 14; grid-row: 2;">Feb</div><div class="gantt-month" style="grid-column: 15; grid-row: 2;">Mar</div>
+                            <div class="gantt-month" style="grid-column: 16; grid-row: 2;">Apr</div><div class="gantt-month" style="grid-column: 17; grid-row: 2;">May</div><div class="gantt-month" style="grid-column: 18; grid-row: 2;">Jun</div>
+                            <div class="gantt-month" style="grid-column: 19; grid-row: 2;">Jul</div><div class="gantt-month" style="grid-column: 20; grid-row: 2;">Aug</div><div class="gantt-month" style="grid-column: 21; grid-row: 2;">Sep</div>
+                            <div class="gantt-month" style="grid-column: 22; grid-row: 2;">Oct</div><div class="gantt-month" style="grid-column: 23; grid-row: 2;">Nov</div><div class="gantt-month" style="grid-column: 24; grid-row: 2;">Dec</div>
+                            <div class="gantt-month" style="grid-column: 25; grid-row: 2;">Jan</div><div class="gantt-month" style="grid-column: 26; grid-row: 2;">Feb</div><div class="gantt-month" style="grid-column: 27; grid-row: 2;">Mar</div>
+                            <div class="gantt-month" style="grid-column: 28; grid-row: 2;">Apr</div><div class="gantt-month" style="grid-column: 29; grid-row: 2;">May</div><div class="gantt-month" style="grid-column: 30; grid-row: 2;">Jun</div>
+                            <div class="gantt-month" style="grid-column: 31; grid-row: 2;">Jul</div><div class="gantt-month" style="grid-column: 32; grid-row: 2;">Aug</div><div class="gantt-month" style="grid-column: 33; grid-row: 2;">Sep</div>
+                            <div class="gantt-month" style="grid-column: 34; grid-row: 2;">Oct</div><div class="gantt-month" style="grid-column: 35; grid-row: 2;">Nov</div><div class="gantt-month" style="grid-column: 36; grid-row: 2;">Dec</div>
 
-                    <!-- Projects -->
-                    <div class="track-label blue" style="grid-row: 5;">
-                        <span>Projects</span>
+                            <!-- Professional Experience -->
+                            <div class="track-label purple" style="grid-row: 3;">
+                                <span>Professional Experience</span>
+                            </div>
+
+                            <a href="experiences.html#premier" class="gantt-bar bar-job" style="grid-column: 5 / 9; grid-row: 4;">
+                                <span class="bar-title">Premier Healthcare</span>
+                                <span class="bar-subtitle">Medical Machinery Intern</span>
+                            </a>
+
+                            <a href="experiences.html#airboss" class="gantt-bar bar-job" style="grid-column: 17 / 21; grid-row: 4;">
+                                <span class="bar-title">AirBoss of America</span>
+                                <span class="bar-subtitle">Production Operations Specialist</span>
+                            </a>
+
+                            <a href="experiences.html#roche" class="gantt-bar bar-job" style="grid-column: 25 / 29; grid-row: 4;">
+                                <span class="bar-title">Roche</span>
+                                <span class="bar-subtitle">Pharma Technical (Quality) Intern</span>
+                            </a>
+
+                            <a href="experiences.html#hygea" class="gantt-bar bar-job" style="grid-column: 33 / 37; grid-row: 4;">
+                                <span class="bar-title">Hygea Medical</span>
+                                <span class="bar-subtitle">Mechanical Engineering Intern</span>
+                            </a>
+
+                            <!-- Projects -->
+                            <div class="track-label blue" style="grid-row: 5;">
+                                <span>Projects</span>
+                            </div>
+
+                            <a href="projects.html#hand-support" class="gantt-bar bar-project" style="grid-column: 9 / 17; grid-row: 6;">
+                                <span class="bar-title">Robotic Hand Support</span>
+                                <span class="bar-subtitle">MyoWare Biosensors</span>
+                            </a>
+
+                            <a href="projects.html#paddleboard" class="gantt-bar bar-project" style="grid-column: 9 / 13; grid-row: 7;">
+                                <span class="bar-title">Adaptive Paddleboard</span>
+                                <span class="bar-subtitle">For Kids with Cerebral Palsy</span>
+                            </a>
+
+                            <a href="projects.html#exo" class="gantt-bar bar-project" style="grid-column: 21 / 37; grid-row: 6;">
+                                <span class="bar-title">EXO Lower-Body Exoskeleton</span>
+                                <span class="bar-subtitle">Mechanical Team Lead</span>
+                            </a>
+
+                            <a href="projects.html#emg-hand" class="gantt-bar bar-project" style="grid-column: 29 / 33; grid-row: 7;">
+                                <span class="bar-title">EMG Prosthetic Hand</span>
+                                <span class="bar-subtitle">Custom PCBs &amp; Signal Filtering</span>
+                            </a>
+
+                        </div>
                     </div>
+                </div>
+            </div>
+        </section>
 
-                    <a href="projects.html#hand-support" class="gantt-bar bar-project" style="grid-column: 9 / 17; grid-row: 6;">
-                        <span class="bar-title">Robotic Hand Support</span>
-                        <span class="bar-subtitle">MyoWare Biosensors</span>
-                    </a>
-
-                    <a href="projects.html#paddleboard" class="gantt-bar bar-project" style="grid-column: 9 / 13; grid-row: 7;">
-                        <span class="bar-title">Adaptive Paddleboard</span>
-                        <span class="bar-subtitle">For Kids with Cerebral Palsy</span>
-                    </a>
-
-                    <a href="projects.html#exo" class="gantt-bar bar-project" style="grid-column: 21 / 37; grid-row: 6;">
-                        <span class="bar-title">EXO Lower-Body Exoskeleton</span>
-                        <span class="bar-subtitle">Mechanical Team Lead</span>
-                    </a>
-
-                    <a href="projects.html#emg-hand" class="gantt-bar bar-project" style="grid-column: 29 / 33; grid-row: 7;">
-                        <span class="bar-title">EMG Prosthetic Hand</span>
-                        <span class="bar-subtitle">Custom PCBs & Signal Filtering</span>
-                    </a>
-
+        <!-- CTA -->
+        <section class="section cta-band">
+            <div class="container">
+                <h2 class="headline reveal">Let’s build something<br><span class="grad-text">that helps people.</span></h2>
+                <p class="lead reveal">I’m currently seeking new opportunities in mechanical and biomedical engineering.</p>
+                <div class="cta-row reveal">
+                    <a href="contact.html" class="btn">Get in touch</a>
+                    <a href="experiences.html#resume" class="link-arrow">Preview resume</a>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer>
-        <div class="footer-content">
-            <span>© 2026 Louis Lin</span>
-            <span>Built with GitHub Pages</span>
+    <footer class="site-footer">
+        <div class="container">
+            <nav class="footer-nav" aria-label="Footer">
+                <a href="index.html">Home</a>
+                <a href="experiences.html">Experiences</a>
+                <a href="projects.html">Projects</a>
+                <a href="contact.html">Contact</a>
+                <a href="https://www.linkedin.com/in/louis-lin-43164a328" target="_blank" rel="noopener">LinkedIn</a>
+                <a href="https://github.com/louis-lin06" target="_blank" rel="noopener">GitHub</a>
+            </nav>
+            <div class="footer-content">
+                <span>© 2026 Louis Lin</span>
+                <span>Built with GitHub Pages</span>
+            </div>
         </div>
     </footer>
 
-    <script>
-        // Mobile Menu Toggle
-        document.querySelector('.mobile-menu-btn').addEventListener('click', () => {
-            document.querySelector('.nav-links').classList.toggle('active');
-        });
-
-        // Auto-scroll timeline to the right (Present / 2026) on page load with a slight delay for mobile rendering
-        window.addEventListener('load', () => {
-            const wrapper = document.getElementById('timelineScroll');
-            if (wrapper) {
-                setTimeout(() => {
-                    wrapper.scrollLeft = wrapper.scrollWidth;
-                }, 100); 
-            }
-        });
-    </script>
-
+    <script src="assets/site.js"></script>
 </body>
 </html>
