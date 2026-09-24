@@ -267,9 +267,9 @@ window.I18N_DATA = {
   "加拿大密西沙加",
   "加拿大密西沙加"
  ],
- "Jan 2026 - Apr 2026": [
-  "2026年1月 – 2026年4月",
-  "2026年1月 – 2026年4月"
+ "Jan 2026 - May 2026": [
+  "2026年1月 – 2026年5月",
+  "2026年1月 – 2026年5月"
  ],
  "Engineered a custom JavaScript mobile application for the Global Leaders’ Summit, integrating real-time itinerary synchronization and live-voting modules to facilitate engagement for 120+ executive attendees.": [
   "为全球领导者峰会开发定制的 JavaScript 移动应用，集成实时行程同步和现场投票模块，服务 120 多位高管参会者的互动。",
