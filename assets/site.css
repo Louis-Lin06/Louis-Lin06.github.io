@@ -397,7 +397,6 @@ html[lang^="zh"] .now-marker span { letter-spacing: 0.02em; }
 .entry.is-proj { --accent: var(--proj); }
 .entry-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 44px; align-items: start; }
 .entry-grid.solo { grid-template-columns: minmax(0, 1fr); }
-.entry.flip .entry-media { order: -1; }
 .entry-top { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; flex-wrap: wrap; }
 .entry-title { font-size: clamp(24px, 2.6vw, 30px); line-height: 1.15; letter-spacing: -0.025em; font-weight: 700; }
 .entry-role { font-size: 19px; color: var(--text); margin-top: 6px; font-weight: 500; letter-spacing: -0.015em; }
@@ -529,8 +528,12 @@ html[lang^="zh"] .now-marker span { letter-spacing: 0.02em; }
     .entry { padding: 36px; }
     .entry::before { top: 36px; }
     .entry-grid { grid-template-columns: minmax(0, 1fr); gap: 32px; }
-    .entry.flip .entry-media { order: 0; }
-    .entry-media { max-width: 620px; }
+    /* Single column (tablets and phones): title, role, dates and tags first,
+       then photos and videos, then the bullet points */
+    .entry-grid:not(.solo) { display: flex; flex-direction: column; gap: 0; }
+    .entry-grid:not(.solo) > .entry-info { display: contents; }
+    .entry-grid:not(.solo) > .entry-media { order: 1; margin-top: 24px; max-width: 620px; width: 100%; }
+    .entry-grid:not(.solo) .entry-list { order: 2; }
     .year-group { grid-template-columns: 100px minmax(0, 1fr); gap: 24px; }
     .year-label { font-size: 40px; }
 }
@@ -633,7 +636,7 @@ html[lang^="zh"] .now-marker span { letter-spacing: 0.02em; }
 @media (max-width: 420px) {
     .contact-card .copy-btn { display: none; }
     .facts { gap: 12px 28px; }
-    .fact b { font-size: 26px; }
+    .fact b { font-size: 26px; white-space: nowrap; }
 }
 
 /* ---------- Reduced motion ---------- */
