@@ -1,13 +1,14 @@
-/* Language switcher: English / 简体中文 / 繁體中文
+/* Language switcher: English / 简体中文 / 繁體中文 / Bahasa Indonesia
    Translations live in i18n-data.js. The English text in the HTML is the source. */
 (() => {
     const DATA = window.I18N_DATA || { text: {}, keyed: {}, titles: {} };
     const LANGS = [
         { code: 'en', short: 'EN', label: 'English', html: 'en' },
         { code: 'zh-Hans', short: '简', label: '简体中文', html: 'zh-Hans' },
-        { code: 'zh-Hant', short: '繁', label: '繁體中文', html: 'zh-Hant' }
+        { code: 'zh-Hant', short: '繁', label: '繁體中文', html: 'zh-Hant' },
+        { code: 'id', short: 'ID', label: 'Bahasa Indonesia', html: 'id' }
     ];
-    const IDX = { 'zh-Hans': 0, 'zh-Hant': 1 };
+    const IDX = { 'zh-Hans': 0, 'zh-Hant': 1, 'id': 2 };
     const STORE = 'site-lang';
     const norm = (s) => s.replace(/\s+/g, ' ').trim();
 
@@ -21,7 +22,7 @@
         return LANGS.some(l => l.code === saved) ? saved : 'en';
     };
 
-    /* Files with a translated version (e.g. the resume): English path -> [Simplified, Traditional] */
+    /* Files with a translated version (e.g. the resume): English path -> [Simplified, Traditional, Indonesian] */
     const FILES = DATA.files || {};
 
     /* ---------- Collect translatable content once (English originals) ---------- */
@@ -95,7 +96,7 @@
         wrap = document.createElement('div');
         wrap.className = 'lang-switch';
         wrap.innerHTML = `
-            <button class="lang-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Language · 语言 · 語言">${globe}<span class="lang-cur">EN</span></button>
+            <button class="lang-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Language · 语言 · 語言 · Bahasa">${globe}<span class="lang-cur">EN</span></button>
             <div class="lang-menu" role="menu">
                 ${LANGS.map(l => `<button type="button" role="menuitemradio" aria-checked="false" data-lang="${l.code}" lang="${l.html}"><span>${l.label}</span>${check}</button>`).join('')}
             </div>`;

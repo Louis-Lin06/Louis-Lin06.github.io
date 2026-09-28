@@ -697,14 +697,14 @@ html[lang^="zh"] .now-marker span { letter-spacing: 0.02em; }
 .lang-btn svg { width: 15px; height: 15px; }
 .lang-cur { min-width: 1.3em; text-align: center; }
 .lang-menu {
-    position: absolute; right: 0; top: calc(100% + 10px); min-width: 168px; padding: 6px;
+    position: absolute; right: 0; top: calc(100% + 10px); min-width: 196px; padding: 6px;
     background: var(--bg); border-radius: 14px;
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18), inset 0 0 0 1px var(--line-soft);
     opacity: 0; transform: translateY(-6px) scale(0.98); transform-origin: top right; pointer-events: none; visibility: hidden;
     transition: opacity 0.2s var(--ease), transform 0.25s var(--ease-out), visibility 0s linear 0.25s;
 }
 .lang-switch.open .lang-menu { opacity: 1; transform: none; pointer-events: auto; visibility: visible; transition: opacity 0.2s var(--ease), transform 0.25s var(--ease-out); }
-.lang-menu button { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 9px 12px; border-radius: 9px; font-size: 14px; color: var(--text); text-align: left; letter-spacing: 0; }
+.lang-menu button { white-space: nowrap; width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 9px 12px; border-radius: 9px; font-size: 14px; color: var(--text); text-align: left; letter-spacing: 0; }
 .lang-menu button:hover { background: var(--line-soft); }
 .lang-menu button svg { width: 15px; height: 15px; color: var(--blue); opacity: 0; }
 .lang-menu button.active { font-weight: 600; }
