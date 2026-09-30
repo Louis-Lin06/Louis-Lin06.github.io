@@ -15,14 +15,23 @@
     const STORE = 'site-language';
     const norm = (s) => s.replace(/\s+/g, ' ').trim();
 
-    /* The visitor's choice is remembered across visits (localStorage). With no saved choice
-       the page renders in English and the first-visit picker asks which language to use. */
+    /* The visitor's choice is remembered (localStorage) and used on every page. The picker opens
+       each time someone arrives at the site (link, bookmark, typed address), but not on a refresh,
+       back/forward, or when moving between pages of this site. */
     const read = () => { try { return localStorage.getItem(STORE); } catch { return null; } };
     const write = (v) => { try { localStorage.setItem(STORE, v); } catch { /* private mode */ } };
     const saved = read();
     const hasChoice = LANGS.some(l => l.code === saved);
 
     const detect = () => (hasChoice ? saved : 'en');
+
+    const isNewArrival = () => {
+        let type = 'navigate';
+        try { const n = performance.getEntriesByType('navigation')[0]; if (n) type = n.type; } catch { /* old browser */ }
+        if (type === 'reload' || type === 'back_forward') return false;
+        try { if (document.referrer && new URL(document.referrer).origin === location.origin) return false; } catch { /* bad referrer */ }
+        return true;
+    };
 
     // Best match for the browser's language, used to highlight a suggestion in the picker
     const suggest = () => {
@@ -173,7 +182,7 @@
     const EN_NAMES = { en: 'English', 'zh-Hans': 'Simplified Chinese', 'zh-Hant': 'Traditional Chinese', id: 'Indonesian', de: 'German', es: 'Spanish' };
 
     const showPicker = () => {
-        const sug = suggest();
+        const sug = hasChoice ? saved : suggest();
         const p = PICK[sug] || PICK.en;
         const el = document.createElement('div');
         el.className = 'lang-picker';
@@ -184,7 +193,7 @@
         const hello = sug === 'en' ? PICK.en.hi : `${p.hi} · ${PICK.en.hi}`;
         el.innerHTML = `
             <div class="lp-card">
-                <button class="lp-close" type="button" aria-label="${PICK.en.close}">&times;</button>
+                <button class="lp-close" type="button" aria-label="${hasChoice ? 'Close' : PICK.en.close}">&times;</button>
                 <div class="lp-icon" aria-hidden="true">${globe}</div>
                 <h2 class="lp-title" id="langPickerTitle" lang="${LANGS.find(l => l.code === sug).html}">${hello}</h2>
                 <p class="lp-sub">${sub}</p>
@@ -211,7 +220,7 @@
             if (btn) btn.focus({ preventScroll: true });
         };
         const onKey = (e) => {
-            if (e.key === 'Escape') { e.preventDefault(); close('en'); return; }
+            if (e.key === 'Escape') { e.preventDefault(); close(current); return; }
             if (e.key === 'Tab') {   // keep focus inside the dialog
                 const f = focusables(); const i = f.indexOf(document.activeElement);
                 if (e.shiftKey && i <= 0) { e.preventDefault(); f[f.length - 1].focus(); }
@@ -222,7 +231,7 @@
         el.addEventListener('click', (e) => {
             const o = e.target.closest('.lp-option');
             if (o) return close(o.dataset.lang);
-            if (e.target.closest('.lp-close') || e.target === el) close('en');
+            if (e.target.closest('.lp-close') || e.target === el) close(current);  // dismiss keeps the language shown
         });
         const first = el.querySelector('.lp-option.suggested') || el.querySelector('.lp-option');
         setTimeout(() => first.focus({ preventScroll: true }), 60);
@@ -231,7 +240,7 @@
     buildSwitcher();
     const initial = detect();
     if (initial !== 'en') apply(initial); else { current = 'en'; updateSwitcher(); }
-    if (!hasChoice) showPicker();
+    if (isNewArrival()) showPicker();
 
     // Path of a file (e.g. the resume) in the current language
     const file = (path) => (current === 'en' || !FILES[path] ? path : FILES[path][IDX[current]]);

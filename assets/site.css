@@ -744,6 +744,9 @@ main, .lnav-inner, .site-footer, .gnav-links, .gnav-brand { transition: opacity 
 
 /* ---------- First-visit language picker ---------- */
 html.lang-picker-open { overflow: hidden; }
+/* Nothing moves under the frosted overlay, so the browser does not re-blur it every frame */
+html.lang-picker-open body > :not(.lang-picker), html.lang-picker-open body > :not(.lang-picker) *,
+html.lang-picker-open body > :not(.lang-picker) *::before, html.lang-picker-open body > :not(.lang-picker) *::after { animation-play-state: paused !important; }
 .lang-picker { position: fixed; inset: 0; z-index: 1200; display: flex; align-items: center; justify-content: center; padding: 20px 16px; background: rgba(0, 0, 0, 0.42); backdrop-filter: blur(14px) saturate(140%); -webkit-backdrop-filter: blur(14px) saturate(140%); opacity: 0; transition: opacity 0.35s var(--ease); }
 .lang-picker.open { opacity: 1; }
 .lp-card { position: relative; width: 100%; max-width: 540px; max-height: calc(100dvh - 40px); overflow-y: auto; background: var(--bg); border-radius: 26px; padding: 36px 32px 30px; text-align: center; box-shadow: 0 40px 100px -30px rgba(0, 0, 0, 0.55); transform: translateY(18px) scale(0.97); transition: transform 0.5s var(--ease-out); }
