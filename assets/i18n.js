@@ -1,4 +1,5 @@
-/* Language switcher: English / 简体中文 / 繁體中文 / Bahasa Indonesia
+/* Language switcher: English / 简体中文 / 繁體中文 / Bahasa Indonesia / Deutsch / Español
+   First visit: a language picker appears; the choice is remembered (localStorage).
    Translations live in i18n-data.js. The English text in the HTML is the source. */
 (() => {
     const DATA = window.I18N_DATA || { text: {}, keyed: {}, titles: {} };
@@ -6,23 +7,39 @@
         { code: 'en', short: 'EN', label: 'English', html: 'en' },
         { code: 'zh-Hans', short: '简', label: '简体中文', html: 'zh-Hans' },
         { code: 'zh-Hant', short: '繁', label: '繁體中文', html: 'zh-Hant' },
-        { code: 'id', short: 'ID', label: 'Bahasa Indonesia', html: 'id' }
+        { code: 'id', short: 'ID', label: 'Bahasa Indonesia', html: 'id' },
+        { code: 'de', short: 'DE', label: 'Deutsch', html: 'de' },
+        { code: 'es', short: 'ES', label: 'Español', html: 'es' }
     ];
-    const IDX = { 'zh-Hans': 0, 'zh-Hant': 1, 'id': 2 };
+    const IDX = { 'zh-Hans': 0, 'zh-Hant': 1, 'id': 2, 'de': 3, 'es': 4 };
     const STORE = 'site-lang';
     const norm = (s) => s.replace(/\s+/g, ' ').trim();
 
-    /* The site always opens in English. A language the visitor picks is kept only for
-       the current visit (sessionStorage), so it carries across pages but not to a new visit. */
-    const read = () => { try { return sessionStorage.getItem(STORE); } catch { return null; } };
-    const write = (v) => { try { sessionStorage.setItem(STORE, v); } catch { /* private mode */ } };
+    /* The visitor's choice is remembered across visits (localStorage). With no saved choice
+       the page renders in English and the first-visit picker asks which language to use. */
+    const read = () => { try { return localStorage.getItem(STORE); } catch { return null; } };
+    const write = (v) => { try { localStorage.setItem(STORE, v); } catch { /* private mode */ } };
+    const saved = read();
+    const hasChoice = LANGS.some(l => l.code === saved);
 
-    const detect = () => {
-        const saved = read();
-        return LANGS.some(l => l.code === saved) ? saved : 'en';
+    const detect = () => (hasChoice ? saved : 'en');
+
+    // Best match for the browser's language, used to highlight a suggestion in the picker
+    const suggest = () => {
+        const prefs = navigator.languages || [navigator.language || 'en'];
+        for (const p of prefs) {
+            const l = (p || '').toLowerCase();
+            if (/^zh-(tw|hk|mo|hant)/.test(l)) return 'zh-Hant';
+            if (/^zh/.test(l)) return 'zh-Hans';
+            if (/^(id|ms)/.test(l)) return 'id';
+            if (/^de/.test(l)) return 'de';
+            if (/^es/.test(l)) return 'es';
+            if (/^en/.test(l)) return 'en';
+        }
+        return 'en';
     };
 
-    /* Files with a translated version (e.g. the resume): English path -> [Simplified, Traditional, Indonesian] */
+    /* Files with a translated version (e.g. the resume): English path -> [Simplified, Traditional, Indonesian, German, Spanish] */
     const FILES = DATA.files || {};
 
     /* ---------- Collect translatable content once (English originals) ---------- */
@@ -96,7 +113,7 @@
         wrap = document.createElement('div');
         wrap.className = 'lang-switch';
         wrap.innerHTML = `
-            <button class="lang-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Language · 语言 · 語言 · Bahasa">${globe}<span class="lang-cur">EN</span></button>
+            <button class="lang-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Language · 语言 · 語言 · Bahasa · Sprache · Idioma">${globe}<span class="lang-cur">EN</span></button>
             <div class="lang-menu" role="menu">
                 ${LANGS.map(l => `<button type="button" role="menuitemradio" aria-checked="false" data-lang="${l.code}" lang="${l.html}"><span>${l.label}</span>${check}</button>`).join('')}
             </div>`;
@@ -123,12 +140,12 @@
     // Fade the page text out, swap the language, fade back in
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const root = document.documentElement;
-    const switchTo = (code) => {
-        if (code === current) return;
-        if (reduce) { apply(code, { save: true }); return; }
+    const switchTo = (code, { saveChoice = true } = {}) => {
+        if (code === current) { if (saveChoice) write(code); return; }
+        if (reduce) { apply(code, { save: saveChoice }); return; }
         root.classList.add('lang-fading');
         setTimeout(() => {
-            apply(code, { save: true });
+            apply(code, { save: saveChoice });
             requestAnimationFrame(() => requestAnimationFrame(() => root.classList.remove('lang-fading')));
         }, 160);
     };
@@ -144,9 +161,77 @@
         });
     }
 
+    /* ---------- First-visit language picker ---------- */
+    const PICK = {
+        en: { hi: 'Welcome', sub: 'Choose your language. You can change it anytime from the menu.', tag: 'Suggested', close: 'Continue in English' },
+        'zh-Hans': { hi: '欢迎', sub: '请选择语言，之后可随时在菜单中更改。', tag: '推荐' },
+        'zh-Hant': { hi: '歡迎', sub: '請選擇語言，之後可隨時在選單中更改。', tag: '推薦' },
+        id: { hi: 'Selamat datang', sub: 'Pilih bahasa Anda. Anda dapat mengubahnya kapan saja melalui menu.', tag: 'Disarankan' },
+        de: { hi: 'Willkommen', sub: 'Wählen Sie Ihre Sprache. Sie können sie jederzeit im Menü ändern.', tag: 'Empfohlen' },
+        es: { hi: 'Te damos la bienvenida', sub: 'Elige tu idioma. Puedes cambiarlo en cualquier momento desde el menú.', tag: 'Recomendado' }
+    };
+    const EN_NAMES = { en: 'English', 'zh-Hans': 'Simplified Chinese', 'zh-Hant': 'Traditional Chinese', id: 'Indonesian', de: 'German', es: 'Spanish' };
+
+    const showPicker = () => {
+        const sug = suggest();
+        const p = PICK[sug] || PICK.en;
+        const el = document.createElement('div');
+        el.className = 'lang-picker';
+        el.setAttribute('role', 'dialog');
+        el.setAttribute('aria-modal', 'true');
+        el.setAttribute('aria-labelledby', 'langPickerTitle');
+        const sub = sug === 'en' ? PICK.en.sub : `${p.sub}<br><span class="lp-sub-en">${PICK.en.sub}</span>`;
+        const hello = sug === 'en' ? PICK.en.hi : `${p.hi} · ${PICK.en.hi}`;
+        el.innerHTML = `
+            <div class="lp-card">
+                <button class="lp-close" type="button" aria-label="${PICK.en.close}">&times;</button>
+                <div class="lp-icon" aria-hidden="true">${globe}</div>
+                <h2 class="lp-title" id="langPickerTitle" lang="${LANGS.find(l => l.code === sug).html}">${hello}</h2>
+                <p class="lp-sub">${sub}</p>
+                <div class="lp-options">
+                    ${LANGS.map(l => `<button type="button" class="lp-option${l.code === sug ? ' suggested' : ''}" data-lang="${l.code}">
+                        <span class="lp-native" lang="${l.html}">${l.label}</span>
+                        <span class="lp-en">${l.code === 'en' ? '' : EN_NAMES[l.code]}</span>
+                        ${l.code === sug ? `<span class="lp-tag" lang="${l.html}">${(PICK[l.code] || PICK.en).tag}</span>` : ''}
+                    </button>`).join('')}
+                </div>
+            </div>`;
+        document.body.appendChild(el);
+        root.classList.add('lang-picker-open');
+        requestAnimationFrame(() => requestAnimationFrame(() => el.classList.add('open')));
+
+        const focusables = () => Array.from(el.querySelectorAll('button'));
+        const close = (code) => {
+            write(code);
+            if (code !== current) switchTo(code, { saveChoice: false });
+            el.classList.remove('open');
+            root.classList.remove('lang-picker-open');
+            document.removeEventListener('keydown', onKey, true);
+            setTimeout(() => el.remove(), 350);
+            if (btn) btn.focus({ preventScroll: true });
+        };
+        const onKey = (e) => {
+            if (e.key === 'Escape') { e.preventDefault(); close('en'); return; }
+            if (e.key === 'Tab') {   // keep focus inside the dialog
+                const f = focusables(); const i = f.indexOf(document.activeElement);
+                if (e.shiftKey && i <= 0) { e.preventDefault(); f[f.length - 1].focus(); }
+                else if (!e.shiftKey && i === f.length - 1) { e.preventDefault(); f[0].focus(); }
+            }
+        };
+        document.addEventListener('keydown', onKey, true);
+        el.addEventListener('click', (e) => {
+            const o = e.target.closest('.lp-option');
+            if (o) return close(o.dataset.lang);
+            if (e.target.closest('.lp-close') || e.target === el) close('en');
+        });
+        const first = el.querySelector('.lp-option.suggested') || el.querySelector('.lp-option');
+        setTimeout(() => first.focus({ preventScroll: true }), 60);
+    };
+
     buildSwitcher();
     const initial = detect();
     if (initial !== 'en') apply(initial); else { current = 'en'; updateSwitcher(); }
+    if (!hasChoice) showPicker();
 
     // Path of a file (e.g. the resume) in the current language
     const file = (path) => (current === 'en' || !FILES[path] ? path : FILES[path][IDX[current]]);
