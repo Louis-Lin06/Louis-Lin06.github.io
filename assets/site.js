@@ -33,7 +33,12 @@
     /* ---------- Global nav ---------- */
     const gnav = $('.gnav');
     if (gnav) {
-        const onScroll = () => gnav.classList.toggle('is-scrolled', window.scrollY > 8);
+        const onScroll = () => {
+            const top = window.scrollY <= 8;
+            gnav.classList.toggle('is-scrolled', !top);
+            // At the very top only the soft glow sits under the bars, so skip the costly glass blur there
+            document.documentElement.classList.toggle('at-top', top);
+        };
         onScroll();
         window.addEventListener('scroll', onScroll, { passive: true });
 
@@ -120,6 +125,12 @@
         window.addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
         update();
     }
+
+    /* ---------- Pause looping decorative animations when off-screen ---------- */
+    const animIO = new IntersectionObserver((entries) => {
+        entries.forEach(en => en.target.classList.toggle(en.target.classList.contains('hero-glow') ? 'paused' : 'anim-paused', !en.isIntersecting));
+    });
+    $$('.hero-glow, .timeline-hint .arr, .badge-live, .hero .eyebrow .dot').forEach(el => animIO.observe(el));
 
     /* ---------- Pause autoplay videos when off-screen ---------- */
     const vidIO = new IntersectionObserver((entries) => {
@@ -275,7 +286,10 @@
     const spyTargets = $$('[data-spy-section]');
     if (spyTargets.length) {
         const spyLinks = $$('.lnav-links a[href^="#"], .toc-link');
+        let lastId = null;
         const setActive = (id) => {
+            if (id === lastId) return;
+            lastId = id;
             spyLinks.forEach(l => l.classList.toggle('active', l.getAttribute('href') === `#${id}`));
             $$('.year-group').forEach(g => g.classList.toggle('current', !!(id && $(`#${CSS.escape(id)}`, g))));
             const act = $(`.lnav-links a.active`);
@@ -286,8 +300,11 @@
             }
         };
         let ticking = false;
+        let spyOffset = 0;
+        const measureOffset = () => { spyOffset = (parseInt(getComputedStyle(document.documentElement).scrollPaddingTop, 10) || 0) + 60; };
+        measureOffset(); window.addEventListener('resize', measureOffset);
         const spy = () => {
-            const offset = (parseInt(getComputedStyle(document.documentElement).scrollPaddingTop, 10) || 0) + 60;
+            const offset = spyOffset;
             let current = '';
             spyTargets.forEach(s => { if (s.getBoundingClientRect().top - offset <= 0) current = s.id; });
             if (window.innerHeight + window.scrollY >= document.body.scrollHeight - 4) current = spyTargets[spyTargets.length - 1].id;
