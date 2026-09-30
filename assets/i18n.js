@@ -12,7 +12,7 @@
         { code: 'es', short: 'ES', label: 'Español', html: 'es' }
     ];
     const IDX = { 'zh-Hans': 0, 'zh-Hant': 1, 'id': 2, 'de': 3, 'es': 4 };
-    const STORE = 'site-lang';
+    const STORE = 'site-language';
     const norm = (s) => s.replace(/\s+/g, ' ').trim();
 
     /* The visitor's choice is remembered across visits (localStorage). With no saved choice
