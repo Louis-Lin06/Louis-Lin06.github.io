@@ -761,9 +761,9 @@ html.lang-picker-open body > :not(.lang-picker) *::before, html.lang-picker-open
 .lp-sub { margin: 10px auto 24px; max-width: 400px; color: var(--text-2); font-size: 15px; line-height: 1.5; }
 .lp-sub-en { font-size: 13px; color: var(--text-3); }
 .lp-options { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; text-align: left; }
-.lp-option { position: relative; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; text-align: left; min-height: 70px; gap: 2px; padding: 14px 16px; border-radius: 14px; background: var(--card); box-shadow: inset 0 0 0 1px var(--line-soft); transition: transform 0.2s var(--ease); }
+.lp-option { position: relative; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; text-align: left; min-height: 70px; gap: 2px; padding: 14px 16px; border-radius: 14px; background: var(--card); box-shadow: inset 0 0 0 1px var(--line-soft); transition: transform 0.12s var(--ease); touch-action: manipulation; }
 /* Hover ring fades with opacity only (GPU), no repaint per frame */
-.lp-option::after { content: ""; position: absolute; inset: 0; border-radius: inherit; box-shadow: inset 0 0 0 1.5px var(--text-3); opacity: 0; transition: opacity 0.2s; pointer-events: none; will-change: opacity; }
+.lp-option::after { content: ""; position: absolute; inset: 0; border-radius: inherit; box-shadow: inset 0 0 0 1.5px var(--text-3); opacity: 0; pointer-events: none; will-change: opacity; }  /* no fade: the ring shows the instant the cursor arrives */
 @media (hover: hover) { .lp-option:hover::after { opacity: 1; } }
 .lp-option:active { transform: scale(0.98); }
 .lp-option.suggested { box-shadow: inset 0 0 0 2px var(--blue); }
