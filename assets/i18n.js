@@ -182,7 +182,7 @@
     const EN_NAMES = { en: 'English', 'zh-Hans': 'Simplified Chinese', 'zh-Hant': 'Traditional Chinese', id: 'Indonesian', de: 'German', es: 'Spanish' };
 
     const showPicker = () => {
-        const sug = hasChoice ? saved : suggest();
+        const sug = suggest();   // default is always the visitor's browser language
         const p = PICK[sug] || PICK.en;
         const el = document.createElement('div');
         el.className = 'lang-picker';
@@ -193,7 +193,7 @@
         const hello = sug === 'en' ? PICK.en.hi : `${p.hi} · ${PICK.en.hi}`;
         el.innerHTML = `
             <div class="lp-card">
-                <button class="lp-close" type="button" aria-label="${hasChoice ? 'Close' : PICK.en.close}">&times;</button>
+                <button class="lp-close" type="button" aria-label="Close">&times;</button>
                 <div class="lp-icon" aria-hidden="true">${globe}</div>
                 <h2 class="lp-title" id="langPickerTitle" lang="${LANGS.find(l => l.code === sug).html}">${hello}</h2>
                 <p class="lp-sub">${sub}</p>
@@ -201,7 +201,6 @@
                     ${LANGS.map(l => `<button type="button" class="lp-option${l.code === sug ? ' suggested' : ''}" data-lang="${l.code}">
                         <span class="lp-native" lang="${l.html}">${l.label}</span>
                         <span class="lp-en">${l.code === 'en' ? '' : EN_NAMES[l.code]}</span>
-                        ${l.code === sug ? `<span class="lp-tag" lang="${l.html}">${(PICK[l.code] || PICK.en).tag}</span>` : ''}
                     </button>`).join('')}
                 </div>
             </div>`;
@@ -220,7 +219,7 @@
             if (btn) btn.focus({ preventScroll: true });
         };
         const onKey = (e) => {
-            if (e.key === 'Escape') { e.preventDefault(); close(current); return; }
+            if (e.key === 'Escape') { e.preventDefault(); close(sug); return; }
             if (e.key === 'Tab') {   // keep focus inside the dialog
                 const f = focusables(); const i = f.indexOf(document.activeElement);
                 if (e.shiftKey && i <= 0) { e.preventDefault(); f[f.length - 1].focus(); }
@@ -231,7 +230,7 @@
         el.addEventListener('click', (e) => {
             const o = e.target.closest('.lp-option');
             if (o) return close(o.dataset.lang);
-            if (e.target.closest('.lp-close') || e.target === el) close(current);  // dismiss keeps the language shown
+            if (e.target.closest('.lp-close') || e.target === el) close(sug);  // dismissing picks the browser language
         });
         const first = el.querySelector('.lp-option.suggested') || el.querySelector('.lp-option');
         setTimeout(() => first.focus({ preventScroll: true }), 60);

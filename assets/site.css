@@ -747,9 +747,11 @@ html.lang-picker-open { overflow: hidden; }
 /* Nothing moves under the frosted overlay, so the browser does not re-blur it every frame */
 html.lang-picker-open body > :not(.lang-picker), html.lang-picker-open body > :not(.lang-picker) *,
 html.lang-picker-open body > :not(.lang-picker) *::before, html.lang-picker-open body > :not(.lang-picker) *::after { animation-play-state: paused !important; }
-.lang-picker { position: fixed; inset: 0; z-index: 1200; display: flex; align-items: center; justify-content: center; padding: 20px 16px; background: rgba(0, 0, 0, 0.42); backdrop-filter: blur(14px) saturate(140%); -webkit-backdrop-filter: blur(14px) saturate(140%); opacity: 0; transition: opacity 0.35s var(--ease); }
+.lang-picker { position: fixed; inset: 0; z-index: 1200; display: flex; align-items: center; justify-content: center; padding: 20px 16px; opacity: 0; transition: opacity 0.35s var(--ease); }
+/* Frosted backdrop on its own layer, and the card on another, so hovering a language only redraws the card, never re-blurs the screen */
+.lang-picker::before { content: ""; position: absolute; inset: 0; background: rgba(0, 0, 0, 0.42); backdrop-filter: blur(14px) saturate(140%); -webkit-backdrop-filter: blur(14px) saturate(140%); }
 .lang-picker.open { opacity: 1; }
-.lp-card { position: relative; width: 100%; max-width: 540px; max-height: calc(100dvh - 40px); overflow-y: auto; background: var(--bg); border-radius: 26px; padding: 36px 32px 30px; text-align: center; box-shadow: 0 40px 100px -30px rgba(0, 0, 0, 0.55); transform: translateY(18px) scale(0.97); transition: transform 0.5s var(--ease-out); }
+.lp-card { position: relative; width: 100%; max-width: 540px; max-height: calc(100dvh - 40px); overflow-y: auto; background: var(--bg); border-radius: 26px; padding: 36px 32px 30px; text-align: center; box-shadow: 0 40px 100px -30px rgba(0, 0, 0, 0.55); transform: translateY(18px) scale(0.97); transition: transform 0.5s var(--ease-out); will-change: transform; contain: layout paint; }
 .lang-picker.open .lp-card { transform: none; }
 .lp-close { position: absolute; top: 14px; right: 14px; width: 32px; height: 32px; border-radius: 50%; background: var(--line-soft); color: var(--text-2); font-size: 20px; line-height: 1; display: grid; place-items: center; }
 .lp-close:hover { background: var(--line); }
@@ -759,22 +761,22 @@ html.lang-picker-open body > :not(.lang-picker) *::before, html.lang-picker-open
 .lp-sub { margin: 10px auto 24px; max-width: 400px; color: var(--text-2); font-size: 15px; line-height: 1.5; }
 .lp-sub-en { font-size: 13px; color: var(--text-3); }
 .lp-options { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; text-align: left; }
-.lp-option { position: relative; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; text-align: left; min-height: 70px; gap: 2px; padding: 14px 16px; border-radius: 14px; background: var(--card); box-shadow: inset 0 0 0 1px var(--line-soft); transition: box-shadow 0.2s, background 0.2s, transform 0.2s var(--ease); }
-.lp-option:hover { box-shadow: inset 0 0 0 1.5px var(--text-3); }
+.lp-option { position: relative; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; text-align: left; min-height: 70px; gap: 2px; padding: 14px 16px; border-radius: 14px; background: var(--card); box-shadow: inset 0 0 0 1px var(--line-soft); transition: transform 0.2s var(--ease); }
+/* Hover ring fades with opacity only (GPU), no repaint per frame */
+.lp-option::after { content: ""; position: absolute; inset: 0; border-radius: inherit; box-shadow: inset 0 0 0 1.5px var(--text-3); opacity: 0; transition: opacity 0.2s; pointer-events: none; will-change: opacity; }
+@media (hover: hover) { .lp-option:hover::after { opacity: 1; } }
 .lp-option:active { transform: scale(0.98); }
 .lp-option.suggested { box-shadow: inset 0 0 0 2px var(--blue); }
 .lp-option:focus-visible { outline: none; box-shadow: inset 0 0 0 2px var(--blue), 0 0 0 4px color-mix(in srgb, var(--blue) 22%, transparent); }
 .lp-en:empty { display: none; }
 .lp-native { font-size: 17px; font-weight: 600; color: var(--text); white-space: nowrap; }
 .lp-en { font-size: 13px; color: var(--text-2); }
-.lp-tag { position: absolute; top: 10px; right: 10px; font-size: 11px; font-weight: 600; color: var(--blue); background: color-mix(in srgb, var(--blue) 12%, transparent); padding: 2px 8px; border-radius: 980px; }
 @media (max-width: 420px) {
     .lp-card { padding: 30px 18px 20px; border-radius: 22px; }
     .lp-title { font-size: 26px; }
     .lp-option { padding: 12px 12px; }
     .lp-native { font-size: 16px; }
-    .lp-tag { position: static; align-self: flex-start; margin-top: 4px; }
-}
+    }
 @media (prefers-reduced-motion: reduce) { .lang-picker, .lp-card { transition: none; } }
 
 /* Long German compound words: allow hyphenation in headings and body text */
