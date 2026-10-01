@@ -5,11 +5,11 @@
     const DATA = window.I18N_DATA || { text: {}, keyed: {}, titles: {} };
     const LANGS = [
         { code: 'en', short: 'EN', label: 'English', html: 'en' },
+        { code: 'es', short: 'ES', label: 'Español', html: 'es' },
         { code: 'zh-Hans', short: '简', label: '简体中文', html: 'zh-Hans' },
         { code: 'zh-Hant', short: '繁', label: '繁體中文', html: 'zh-Hant' },
-        { code: 'id', short: 'ID', label: 'Bahasa Indonesia', html: 'id' },
         { code: 'de', short: 'DE', label: 'Deutsch', html: 'de' },
-        { code: 'es', short: 'ES', label: 'Español', html: 'es' }
+        { code: 'id', short: 'ID', label: 'Bahasa Indonesia', html: 'id' }
     ];
     const IDX = { 'zh-Hans': 0, 'zh-Hant': 1, 'id': 2, 'de': 3, 'es': 4 };
     const STORE = 'site-language';
