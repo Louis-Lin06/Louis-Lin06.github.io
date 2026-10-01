@@ -747,11 +747,11 @@ html.lang-picker-open { overflow: hidden; }
 /* Nothing moves under the frosted overlay, so the browser does not re-blur it every frame */
 html.lang-picker-open body > :not(.lang-picker), html.lang-picker-open body > :not(.lang-picker) *,
 html.lang-picker-open body > :not(.lang-picker) *::before, html.lang-picker-open body > :not(.lang-picker) *::after { animation-play-state: paused !important; }
-.lang-picker { position: fixed; inset: 0; z-index: 1200; display: flex; align-items: center; justify-content: center; padding: 20px 16px; opacity: 0; transition: opacity 0.35s var(--ease); }
+.lang-picker { position: fixed; inset: 0; z-index: 1200; display: flex; align-items: center; justify-content: center; padding: 20px 16px; opacity: 0; transition: opacity 0.22s var(--ease); }
 /* Frosted backdrop on its own layer, and the card on another, so hovering a language only redraws the card, never re-blurs the screen */
 .lang-picker::before { content: ""; position: absolute; inset: 0; background: rgba(0, 0, 0, 0.42); backdrop-filter: blur(14px) saturate(140%); -webkit-backdrop-filter: blur(14px) saturate(140%); }
 .lang-picker.open { opacity: 1; }
-.lp-card { position: relative; width: 100%; max-width: 540px; max-height: calc(100dvh - 40px); overflow-y: auto; background: var(--bg); border-radius: 26px; padding: 36px 32px 30px; text-align: center; box-shadow: 0 40px 100px -30px rgba(0, 0, 0, 0.55); transform: translateY(18px) scale(0.97); transition: transform 0.5s var(--ease-out); will-change: transform; contain: layout paint; }
+.lp-card { position: relative; width: 100%; max-width: 540px; max-height: calc(100dvh - 40px); overflow-y: auto; background: var(--bg); border-radius: 26px; padding: 36px 32px 30px; text-align: center; box-shadow: 0 40px 100px -30px rgba(0, 0, 0, 0.55); transform: translateY(12px) scale(0.98); transition: transform 0.3s var(--ease-out); will-change: transform; contain: layout paint; }
 .lang-picker.open .lp-card { transform: none; }
 .lp-close { position: absolute; top: 14px; right: 14px; width: 32px; height: 32px; border-radius: 50%; background: var(--line-soft); color: var(--text-2); font-size: 20px; line-height: 1; display: grid; place-items: center; }
 .lp-close:hover { background: var(--line); }
@@ -764,7 +764,7 @@ html.lang-picker-open body > :not(.lang-picker) *::before, html.lang-picker-open
 .lp-option { position: relative; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; text-align: left; min-height: 70px; gap: 2px; padding: 14px 16px; border-radius: 14px; background: var(--card); box-shadow: inset 0 0 0 1px var(--line-soft); transition: transform 0.12s var(--ease); touch-action: manipulation; }
 /* Hover ring fades with opacity only (GPU), no repaint per frame */
 .lp-option::after { content: ""; position: absolute; inset: 0; border-radius: inherit; box-shadow: inset 0 0 0 1.5px var(--text-3); opacity: 0; pointer-events: none; will-change: opacity; }  /* no fade: the ring shows the instant the cursor arrives */
-@media (hover: hover) { .lp-option:hover::after { opacity: 1; } }
+@media (hover: hover) { .lp-option:hover { background: var(--line-soft); } .lp-option:hover::after { opacity: 1; } }
 .lp-option:active { transform: scale(0.98); }
 .lp-option.suggested { box-shadow: inset 0 0 0 2px var(--blue); }
 .lp-option:focus-visible { outline: none; box-shadow: inset 0 0 0 2px var(--blue), 0 0 0 4px color-mix(in srgb, var(--blue) 22%, transparent); }
@@ -783,3 +783,11 @@ html.lang-picker-open body > :not(.lang-picker) *::before, html.lang-picker-open
 html[lang="de"] .display, html[lang="de"] .headline, html[lang="de"] .entry-title, html[lang="de"] .lead,
 html[lang="de"] .entry-list li, html[lang="de"] .skill h3, html[lang="de"] .skill p, html[lang="de"] .tile h3 { hyphens: auto; -webkit-hyphens: auto; }
 html[lang="de"], html[lang="es"] { overflow-wrap: break-word; }
+
+/* ---------- Gallery photos always fill the frame ----------
+   fill-cover: close to the frame's shape, fills it with a slight crop.
+   fill-blur: very tall or wide images stay whole; the empty space is filled with the image's own
+   edges extended and softened (a small pre-made image, so nothing is blurred live). */
+.gallery-media.fill-cover img, .gallery-media.fill-cover video { object-fit: cover; }
+.gallery-media.fill-blur { background: var(--fill) center / 100% 100% no-repeat, var(--media-bg); }
+.gallery-media.fill-blur img, .gallery-media.fill-blur video { position: relative; object-fit: contain; }

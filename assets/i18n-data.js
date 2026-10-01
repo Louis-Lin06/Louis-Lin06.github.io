@@ -67,8 +67,8 @@ window.I18N_DATA = {
   "Premier Healthcare Solutions"
  ],
  "Premier Healthcare": [
-  "信裕",
-  "信裕",
+  "信裕股份有限公司",
+  "信裕股份有限公司",
   "Premier Healthcare",
   "Premier Healthcare",
   "Premier Healthcare"

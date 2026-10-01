@@ -215,7 +215,7 @@
             el.classList.remove('open');
             root.classList.remove('lang-picker-open');
             document.removeEventListener('keydown', onKey, true);
-            setTimeout(() => el.remove(), 350);
+            setTimeout(() => el.remove(), 250);
             if (btn) btn.focus({ preventScroll: true });
         };
         const onKey = (e) => {
