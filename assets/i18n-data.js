@@ -514,6 +514,13 @@ window.I18N_DATA = {
   "Sept. 2026 – heute",
   "sept. 2026 – actualidad"
  ],
+ "Developing a soft cryoablation needle for natural-orifice treatment of in situ and superficial carcinomas of the bronchial mucosa and submucosa, testing R&D prototypes to determine the strength of PEEK-to-stainless steel connections.": [
+  "参与研发一款经自然腔道进行冷冻消融的软性冷冻针，用于治疗支气管黏膜及黏膜下层的原位癌和浅表癌；开展研发原型测试，测定 PEEK 与不锈钢之间的连接强度。",
+  "參與研發一款經自然孔道進行冷凍消融的軟性冷凍針，用於治療支氣管黏膜及黏膜下層的原位癌與表淺癌；進行研發原型測試，測定 PEEK 與不鏽鋼之間的接合強度。",
+  "Mengembangkan jarum krio fleksibel untuk krioablasi melalui lubang alami tubuh guna mengobati karsinoma in situ dan superfisial pada mukosa dan submukosa bronkus, serta menguji kekuatan sambungan PEEK dengan baja tahan karat pada prototipe.",
+  "Entwicklung einer flexiblen Kryonadel zur Kryoablation über natürliche Körperöffnungen bei oberflächlichen und In-situ-Karzinomen der Bronchialmukosa und -submukosa; Festigkeitsprüfung von PEEK-Edelstahl-Verbindungen an Prototypen.",
+  "Desarrollo una aguja criogénica flexible para crioablación por orificios naturales en carcinomas in situ y superficiales de la mucosa y la submucosa bronquiales, y ensayo prototipos para determinar la resistencia de las uniones entre PEEK y acero inoxidable."
+ ],
  "Engineered Python simulations to model theoretical ice ball growth geometries within tissue phantoms, calculating surrounding power dissipation and evaluating phase-change thermodynamics.": [
   "编写 Python 仿真程序，模拟组织仿体中冰球的理论生长几何形态，计算周围的功率耗散并评估相变热力学。",
   "以 Python 開發模擬程式，推算組織仿體內冰球的理論生長幾何，計算周圍的功率耗散，並評估相變熱力學。",
