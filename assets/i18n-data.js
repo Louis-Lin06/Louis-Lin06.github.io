@@ -248,12 +248,12 @@ window.I18N_DATA = {
   "Firmware & Software",
   "Firmware y software"
  ],
- "C++ on Arduino for motor and EMG control, plus Python simulations, JavaScript apps, and API pipelines.": [
-  "在 Arduino 上用 C++ 实现电机与肌电控制，以及 Python 仿真、JavaScript 应用和 API 数据流程。",
-  "以 C++ 在 Arduino 上實作馬達與肌電控制，另有 Python 模擬、JavaScript 應用程式與 API 資料串接流程。",
-  "C++ pada Arduino untuk kendali motor dan EMG, serta simulasi Python, aplikasi JavaScript, dan pipeline API.",
-  "C++ auf Arduino für Motor- und EMG-Steuerung sowie Python-Simulationen, JavaScript-Apps und API-Pipelines.",
-  "C++ en Arduino para control de motores y EMG, además de simulaciones en Python, aplicaciones en JavaScript y flujos de datos con API."
+  "C++ on Arduino for motor and EMG control, plus Python and Simulink simulations, JavaScript apps, and API pipelines.": [
+  "在 Arduino 上用 C++ 实现电机与肌电控制，以及 Python 与 Simulink 仿真、JavaScript 应用和 API 数据流程。",
+  "以 C++ 在 Arduino 上實作馬達與肌電控制，另有 Python 與 Simulink 模擬、JavaScript 應用程式與 API 資料串接流程。",
+  "C++ pada Arduino untuk kendali motor dan EMG, serta simulasi Python dan Simulink, aplikasi JavaScript, dan pipeline API.",
+  "C++ auf Arduino für Motor- und EMG-Steuerung sowie Simulationen in Python und Simulink, JavaScript-Apps und API-Pipelines.",
+  "C++ en Arduino para control de motores y EMG, además de simulaciones en Python y Simulink, aplicaciones en JavaScript y flujos de datos con API."
  ],
  "My Engineering Progression": [
   "我的工程成长历程",
@@ -751,6 +751,20 @@ window.I18N_DATA = {
   "Lisensi & Sertifikasi",
   "Lizenzen & Zertifikate",
   "Licencias y certificaciones"
+ ],
+ "Simulink Onramp": [
+  "Simulink Onramp",
+  "Simulink Onramp",
+  "Simulink Onramp",
+  "Simulink Onramp",
+  "Simulink Onramp"
+ ],
+ "MathWorks": [
+  "MathWorks",
+  "MathWorks",
+  "MathWorks",
+  "MathWorks",
+  "MathWorks"
  ],
  "MATLAB Certification": [
   "MATLAB 认证",
