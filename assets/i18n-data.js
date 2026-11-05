@@ -514,12 +514,12 @@ window.I18N_DATA = {
   "Sept. 2026 – heute",
   "sept. 2026 – actualidad"
  ],
- "Developing a soft cryoablation needle for natural-orifice treatment of in situ and superficial carcinomas of the bronchial mucosa and submucosa, testing R&D prototypes to determine the strength of PEEK-to-stainless steel connections.": [
-  "参与研发一款经自然腔道进行冷冻消融的软性冷冻针，用于治疗支气管黏膜及黏膜下层的原位癌和浅表癌；开展研发原型测试，测定 PEEK 与不锈钢之间的连接强度。",
-  "參與研發一款經自然孔道進行冷凍消融的軟性冷凍針，用於治療支氣管黏膜及黏膜下層的原位癌與表淺癌；進行研發原型測試，測定 PEEK 與不鏽鋼之間的接合強度。",
-  "Mengembangkan jarum krio fleksibel untuk krioablasi melalui lubang alami tubuh guna mengobati karsinoma in situ dan superfisial pada mukosa dan submukosa bronkus, serta menguji kekuatan sambungan PEEK dengan baja tahan karat pada prototipe.",
-  "Entwicklung einer flexiblen Kryonadel zur Kryoablation über natürliche Körperöffnungen bei oberflächlichen und In-situ-Karzinomen der Bronchialmukosa und -submukosa; Festigkeitsprüfung von PEEK-Edelstahl-Verbindungen an Prototypen.",
-  "Desarrollo una aguja criogénica flexible para crioablación por orificios naturales en carcinomas in situ y superficiales de la mucosa y la submucosa bronquiales, y ensayo prototipos para determinar la resistencia de las uniones entre PEEK y acero inoxidable."
+ "Developing a soft cryoablation needle for natural-orifice treatment of in situ and superficial carcinomas of the bronchial mucosa and submucosa, and mechanically testing R&D prototypes.": [
+  "参与研发一款经自然腔道进行冷冻消融的软性冷冻针，用于治疗支气管黏膜及黏膜下层的原位癌和浅表癌，并对研发原型进行力学测试。",
+  "參與研發一款經自然孔道進行冷凍消融的軟性冷凍針，用於治療支氣管黏膜及黏膜下層的原位癌與表淺癌，並對研發原型進行機械性能測試。",
+  "Mengembangkan jarum kriogenik fleksibel untuk krioablasi melalui lubang alami tubuh guna mengobati karsinoma in situ dan superfisial pada mukosa dan submukosa bronkus, serta melakukan uji mekanis prototipe R&D.",
+  "Entwicklung einer flexiblen Kryonadel zur Kryoablation über natürliche Körperöffnungen bei oberflächlichen und In-situ-Karzinomen der Bronchialmukosa und -submukosa sowie mechanische Prüfung von F&E-Prototypen.",
+  "Desarrollo una aguja criogénica flexible para crioablación por orificios naturales en carcinomas in situ y superficiales de la mucosa y la submucosa bronquiales, y realizo ensayos mecánicos de prototipos de I+D."
  ],
  "Engineered Python simulations to model theoretical ice ball growth geometries within tissue phantoms, calculating surrounding power dissipation and evaluating phase-change thermodynamics.": [
   "编写 Python 仿真程序，模拟组织仿体中冰球的理论生长几何形态，计算周围的功率耗散并评估相变热力学。",
@@ -541,6 +541,13 @@ window.I18N_DATA = {
   "Menganalisis data termodinamika eksperimental untuk merumuskan persamaan kehilangan panas dan menentukan volume terapi efektif perangkat kriogenik, sekaligus menetapkan metrik dasar sebagai acuan optimasi perangkat keras selanjutnya.",
   "Auswertung experimenteller thermodynamischer Daten zur Aufstellung von Wärmeverlustgleichungen und zur Bestimmung des effektiven Behandlungsvolumens kryogener Geräte; Festlegung von Basiskennzahlen als Grundlage für künftige Hardwareoptimierungen.",
   "Analicé datos termodinámicos experimentales para formular ecuaciones de pérdida de calor y determinar el volumen de tratamiento efectivo de los dispositivos criogénicos, estableciendo métricas de referencia para orientar futuras optimizaciones del hardware."
+ ],
+ "Supporting international sales of Hygea’s AI CAM capsule endoscopy system to clients in Malaysia, Saudi Arabia and the UAE, presenting the product, answering technical questions and interpreting in client meetings.": [
+  "协助海杰亚 AI CAM 胶囊内镜系统的国际销售，服务马来西亚、沙特阿拉伯和阿联酋客户，在客户会议中进行产品介绍、解答技术问题并担任中英文口译。",
+  "協助海傑亞 AI CAM 膠囊內視鏡系統的國際銷售，服務馬來西亞、沙烏地阿拉伯及阿拉伯聯合大公國客戶，於客戶會議中進行產品簡報、解答技術問題並擔任中英口譯。",
+  "Mendukung penjualan internasional sistem endoskopi kapsul AI CAM milik Hygea kepada klien di Malaysia, Arab Saudi, dan UEA dengan mempresentasikan produk, menjawab pertanyaan teknis, serta menjadi juru bahasa dalam pertemuan klien.",
+  "Unterstützung des internationalen Vertriebs des Kapselendoskopiesystems AI CAM von Hygea an Kunden in Malaysia, Saudi-Arabien und den VAE; Produktpräsentationen, Beantwortung technischer Fragen und Dolmetschen in Kundenterminen.",
+  "Apoyo las ventas internacionales del sistema de endoscopia por cápsula AI CAM de Hygea a clientes de Malasia, Arabia Saudita y los Emiratos Árabes Unidos: presento el producto, respondo preguntas técnicas e interpreto en las reuniones con clientes."
  ],
  "Mississauga, Canada": [
   "加拿大密西沙加",
