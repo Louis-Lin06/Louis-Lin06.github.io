@@ -549,6 +549,69 @@ window.I18N_DATA = {
   "Unterstützung des internationalen Vertriebs des Kapselendoskopiesystems AI CAM von Hygea an Kunden in Malaysia, Saudi-Arabien und den VAE; Produktpräsentationen, Beantwortung technischer Fragen und Dolmetschen in Kundenterminen.",
   "Apoyo las ventas internacionales del sistema de endoscopia por cápsula AI CAM de Hygea a clientes de Malasia, Arabia Saudita y los Emiratos Árabes Unidos: presento el producto, respondo preguntas técnicas e interpreto en las reuniones con clientes."
  ],
+ "Hygea cryoablation system in the lab": [
+  "实验室中的海杰亚冷冻消融系统",
+  "實驗室中的海傑亞冷凍消融系統",
+  "Sistem krioablasi Hygea di laboratorium",
+  "Das Kryoablationssystem von Hygea im Labor",
+  "Sistema de crioablación de Hygea en el laboratorio"
+ ],
+ "Testing a soft cryo needle prototype": [
+  "测试软性冷冻针原型",
+  "測試軟性冷凍針原型",
+  "Menguji prototipe jarum kriogenik fleksibel",
+  "Test eines Prototyps der flexiblen Kryonadel",
+  "Prueba de un prototipo de aguja criogénica flexible"
+ ],
+ "A batch of needle prototypes ready for testing": [
+  "一批待测试的冷冻针原型",
+  "一批待測試的冷凍針原型",
+  "Sekumpulan prototipe jarum yang siap diuji",
+  "Mehrere Nadelprototypen, bereit zur Prüfung",
+  "Un lote de prototipos de aguja listos para las pruebas"
+ ],
+ "Needle handle assembly in SolidWorks": [
+  "SolidWorks 中的针柄装配体",
+  "SolidWorks 中的針柄組合件",
+  "Rakitan gagang jarum di SolidWorks",
+  "Baugruppe des Nadelgriffs in SolidWorks",
+  "Ensamblaje del mango de la aguja en SolidWorks"
+ ],
+ "Thermal-structural simulation of the needle in Ansys": [
+  "在 Ansys 中进行的冷冻针热-结构耦合仿真",
+  "在 Ansys 中進行的冷凍針熱-結構耦合模擬",
+  "Simulasi termal-struktural jarum di Ansys",
+  "Thermisch-strukturelle Simulation der Nadel in Ansys",
+  "Simulación térmico-estructural de la aguja en Ansys"
+ ],
+ "3D scanning setup for inspecting prototypes": [
+  "用于检测原型的 3D 扫描装置",
+  "用於檢測原型的 3D 掃描設備",
+  "Perangkat pemindaian 3D untuk memeriksa prototipe",
+  "3D-Scan-Aufbau zur Prüfung von Prototypen",
+  "Equipo de escaneo 3D para inspeccionar prototipos"
+ ],
+ "Freeze test thermocouple data, analyzed and plotted with a program I wrote": [
+  "冷冻测试的热电偶数据，由我编写的程序进行分析和绘图",
+  "冷凍測試的熱電偶資料，以我撰寫的程式進行分析與繪圖",
+  "Data termokopel dari uji pembekuan, dianalisis dan diplot dengan program yang saya tulis",
+  "Thermoelementdaten eines Gefriertests, ausgewertet und grafisch dargestellt mit einem von mir geschriebenen Programm",
+  "Datos de termopares de una prueba de congelación, analizados y graficados con un programa que escribí"
+ ],
+ "Ice ball growth in gelatin, animated from test data with a program I wrote": [
+  "冰球在明胶中的生长过程，由我编写的程序根据测试数据生成动画",
+  "冰球在明膠中的生長過程，以我撰寫的程式依測試資料製成動畫",
+  "Pertumbuhan bola es dalam gelatin, dianimasikan dari data uji dengan program yang saya tulis",
+  "Wachstum des Eisballs in Gelatine, aus Testdaten animiert mit einem von mir geschriebenen Programm",
+  "Crecimiento de la bola de hielo en gelatina, animado a partir de datos de prueba con un programa que escribí"
+ ],
+ "AI CAM client meeting": [
+  "AI CAM 客户会议",
+  "AI CAM 客戶會議",
+  "Pertemuan klien AI CAM",
+  "Kundentermin zu AI CAM",
+  "Reunión con clientes sobre AI CAM"
+ ],
  "Mississauga, Canada": [
   "加拿大密西沙加",
   "加拿大密西沙加",
