@@ -514,12 +514,12 @@ window.I18N_DATA = {
   "Sept. 2026 – heute",
   "sept. 2026 – actualidad"
  ],
- "Developing a soft cryoablation needle for natural-orifice treatment of in situ and superficial carcinomas of the bronchial mucosa and submucosa, and mechanically testing R&D prototypes.": [
-  "参与研发一款经自然腔道进行冷冻消融的软性冷冻针，用于治疗支气管黏膜及黏膜下层的原位癌和浅表癌，并对研发原型进行力学测试。",
-  "參與研發一款經自然孔道進行冷凍消融的軟性冷凍針，用於治療支氣管黏膜及黏膜下層的原位癌與表淺癌，並對研發原型進行機械性能測試。",
-  "Mengembangkan jarum kriogenik fleksibel untuk krioablasi melalui lubang alami tubuh guna mengobati karsinoma in situ dan superfisial pada mukosa dan submukosa bronkus, serta melakukan uji mekanis prototipe R&D.",
-  "Entwicklung einer flexiblen Kryonadel zur Kryoablation über natürliche Körperöffnungen bei oberflächlichen und In-situ-Karzinomen der Bronchialmukosa und -submukosa sowie mechanische Prüfung von F&E-Prototypen.",
-  "Desarrollo una aguja criogénica flexible para crioablación por orificios naturales en carcinomas in situ y superficiales de la mucosa y la submucosa bronquiales, y realizo ensayos mecánicos de prototipos de I+D."
+ "Developing a soft cryoablation needle for natural-orifice treatment of in situ and superficial carcinomas of the bronchial mucosa and submucosa, researching current clinical procedures to fit the device into existing workflows, and mechanically testing R&D prototypes.": [
+  "参与研发一款经自然腔道进行冷冻消融的软性冷冻针，用于治疗支气管黏膜及黏膜下层的原位癌和浅表癌；调研现行临床术式，使器械融入现有诊疗流程，并对研发原型进行力学测试。",
+  "參與研發一款經自然孔道進行冷凍消融的軟性冷凍針，用於治療支氣管黏膜及黏膜下層的原位癌與表淺癌；研究現行臨床術式，使器械融入既有診療流程，並對研發原型進行機械性能測試。",
+  "Mengembangkan jarum kriogenik fleksibel untuk krioablasi melalui lubang alami tubuh guna mengobati karsinoma in situ dan superfisial pada mukosa dan submukosa bronkus, meneliti prosedur klinis saat ini agar perangkat terintegrasi dengan alur kerja yang ada, serta melakukan uji mekanis prototipe R&D.",
+  "Entwicklung einer flexiblen Kryonadel zur Kryoablation über natürliche Körperöffnungen bei oberflächlichen und In-situ-Karzinomen der Bronchialmukosa und -submukosa, Analyse aktueller klinischer Verfahren zur Einbindung des Produkts in bestehende Abläufe sowie mechanische Prüfung von F&E-Prototypen.",
+  "Desarrollo una aguja criogénica flexible para crioablación por orificios naturales en carcinomas in situ y superficiales de la mucosa y la submucosa bronquiales, investigo los procedimientos clínicos actuales para integrar el dispositivo en los flujos de trabajo existentes y realizo ensayos mecánicos de prototipos de I+D."
  ],
  "Engineered Python simulations to model theoretical ice ball growth geometries within tissue phantoms, calculating surrounding power dissipation and evaluating phase-change thermodynamics.": [
   "编写 Python 仿真程序，模拟组织仿体中冰球的理论生长几何形态，计算周围的功率耗散并评估相变热力学。",
@@ -556,12 +556,12 @@ window.I18N_DATA = {
   "Das Kryoablationssystem von Hygea im Labor",
   "Sistema de crioablación de Hygea en el laboratorio"
  ],
- "Testing a soft cryo needle prototype": [
-  "测试软性冷冻针原型",
-  "測試軟性冷凍針原型",
-  "Menguji prototipe jarum kriogenik fleksibel",
-  "Test eines Prototyps der flexiblen Kryonadel",
-  "Prueba de un prototipo de aguja criogénica flexible"
+ "Testing a cryo needle currently on the market and using the data to study ways to reduce liquid nitrogen use": [
+  "测试一款市售冷冻针，并利用测试数据研究降低液氮消耗的方法",
+  "測試一款市售冷凍針，並利用測試資料研究降低液態氮消耗的方法",
+  "Menguji jarum kriogenik yang beredar di pasaran dan menggunakan datanya untuk mengkaji cara mengurangi pemakaian nitrogen cair",
+  "Test einer auf dem Markt erhältlichen Kryonadel und Auswertung der Daten, um Möglichkeiten zur Senkung des Flüssigstickstoffverbrauchs zu untersuchen",
+  "Prueba de una aguja criogénica comercial y análisis de los datos para estudiar cómo reducir el consumo de nitrógeno líquido"
  ],
  "A batch of needle prototypes ready for testing": [
   "一批待测试的冷冻针原型",
